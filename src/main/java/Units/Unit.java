@@ -6,11 +6,14 @@ public abstract class Unit {
     protected int attack;
     protected int armor;
 
-    public Unit(String name, int health, int attack, int armor) {
+    public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException {
         this.name = name;
         this.health = health;
         this.attack = attack;
         this.armor = armor;
+        if (health < 0 || attack <0 || armor < 0){
+            throw new IllegalArgumentException("Only positive numbers");
+        }
     }
 
     public void attack(Unit opponent){

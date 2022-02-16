@@ -1,9 +1,19 @@
-package Unit_tests;
+package WarGames_tests;
 import Units.*;
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Unit_tests {
+
+    @Test
+    public void numbersTest(){
+        try {
+            InfantryUnit infantryUnit3 = new InfantryUnit("Karl", -100);
+            fail("Method did not throw IllegalArgumentException as expected");
+        }catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(),"Only positive numbers");
+        }
+    }
 
     @Test
     public void attackTest() {

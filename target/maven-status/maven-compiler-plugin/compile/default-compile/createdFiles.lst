@@ -1,5 +1,6 @@
 Units\InfantryUnit.class
 Units\RangedUnit.class
+Units\Army.class
 Units\CommanderUnit.class
 Units\Unit.class
 Units\CavalryUnit.class
