@@ -1,6 +1,6 @@
 package Units;
 
-public class Unit {
+public abstract class Unit {
     private final String name;
     private int health;
     protected int attack;
@@ -43,11 +43,7 @@ public class Unit {
                 "Armor:" + this.armor;
     }
 
-    public int getAttackBonus(){
-        return 0;
-    }
-
-    public int getResistBonus(){
-        return 0;
-    }
+    public abstract int getAttackBonus();
+    
+    public abstract int getResistBonus();
 }
