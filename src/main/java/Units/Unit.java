@@ -44,6 +44,6 @@ public abstract class Unit {
     }
 
     public abstract int getAttackBonus();
-    
+
     public abstract int getResistBonus();
 }
