@@ -14,7 +14,7 @@ public abstract class Unit {
     }
 
     public void attack(Unit opponent){
-        opponent.health = opponent.health - (this.attack + getAttackBonus()) + (opponent.armor + getResistBonus());
+            opponent.health = opponent.health - (this.attack + this.getAttackBonus()) + (opponent.armor + opponent.getResistBonus());
     }
 
     public String getName() {
@@ -39,8 +39,8 @@ public abstract class Unit {
 
     @Override
     public String toString() {
-        return "Name: " + this.name + "/n" + "Health: " + this.health + "/n" + "Attack: " + this.attack + "/n" +
-                "Armor:" + this.armor;
+        return "Name: " + this.name + "\nHealth: " + this.health + "\nAttack: " + this.attack +
+                "\nArmor:" + this.armor + "\n";
     }
 
     public abstract int getAttackBonus();
