@@ -11,8 +11,8 @@ public abstract class Unit {
         this.health = health;
         this.attack = attack;
         this.armor = armor;
-        if (health < 0 || attack <0 || armor < 0){
-            throw new IllegalArgumentException("Only positive numbers");
+        if (health <= 0 || attack <= 0 || armor <= 0){
+            throw new IllegalArgumentException("Unit stats must be above zero.");
         }
     }
 
@@ -49,4 +49,6 @@ public abstract class Unit {
     public abstract int getAttackBonus();
 
     public abstract int getResistBonus();
+
+    public abstract Unit copy();
 }

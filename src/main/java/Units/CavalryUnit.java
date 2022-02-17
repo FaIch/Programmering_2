@@ -32,4 +32,9 @@ public class CavalryUnit extends Unit{
     public int getResistBonus() {
         return 1;
     }
+
+    @Override
+    public Unit copy() {
+        return new CavalryUnit(this.getName(),this.getHealth());
+    }
 }

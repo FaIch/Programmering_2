@@ -6,12 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Unit_tests {
 
     @Test
-    public void numbersTest(){
+    public void negativeTest(){
         try {
-            InfantryUnit infantryUnit3 = new InfantryUnit("Karl", -100);
+            InfantryUnit infantryUnit = new InfantryUnit("Karl", -100);
             fail("Method did not throw IllegalArgumentException as expected");
         }catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(),"Only positive numbers");
+            assertEquals(e.getMessage(),"Unit stats must be above zero.");
+        }
+        try {
+            InfantryUnit infantryUnit = new InfantryUnit("Karl", 100,0,15);
+            fail("Method did not throw IllegalArgumentException as expected");
+        }catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(),"Unit stats must be above zero.");
         }
     }
 

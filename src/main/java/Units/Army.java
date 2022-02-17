@@ -5,11 +5,12 @@ import java.util.Objects;
 import java.util.Random;
 public class Army {
     private final String name;
-    private ArrayList<Unit> units;
+    private final ArrayList<Unit> units;
 
 
     public Army(String name) {
         this.name = name;
+        this.units = new ArrayList<Unit>();
     }
 
     public Army(String name, ArrayList<Unit> units){
@@ -26,15 +27,17 @@ public class Army {
     }
 
     public void addUnit(Unit unit){
-        units.add(unit);
+        units.add(unit.copy());
     }
 
     public void addAllUnits(ArrayList<Unit> units1){
-        units.addAll(units1);
+        for (Unit unit : units1){
+            units.add(unit.copy());
+        }
     }
 
-    public void removeUnit(Unit unit){
-        units.remove(unit);
+    public boolean removeUnit(Unit unit){
+        return units.remove(unit);
     }
 
     public boolean hasUnits(){
@@ -42,7 +45,11 @@ public class Army {
     }
 
     public ArrayList<Unit> getAllUnits(){
-        return units;
+        ArrayList<Unit> returnList = new ArrayList<Unit>();
+        for (Unit unit : units){
+            returnList.add(unit.copy());
+        }
+        return returnList;
     }
 
     public Unit getRandomUnit(){
