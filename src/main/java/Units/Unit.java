@@ -3,8 +3,8 @@ package Units;
 public abstract class Unit {
     private final String name;
     private int health;
-    protected int attack;
-    protected int armor;
+    private final int attack;
+    private final int armor;
 
     public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException {
         this.name = name;

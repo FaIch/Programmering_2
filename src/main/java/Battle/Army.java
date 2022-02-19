@@ -1,8 +1,9 @@
-package Units;
-
+package Battle;
+import Units.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+
 public class Army {
     private final String name;
     private final ArrayList<Unit> units;
@@ -10,7 +11,7 @@ public class Army {
 
     public Army(String name) {
         this.name = name;
-        this.units = new ArrayList<Unit>();
+        this.units = new ArrayList<>();
     }
 
     public Army(String name, ArrayList<Unit> units){
@@ -45,7 +46,7 @@ public class Army {
     }
 
     public ArrayList<Unit> getAllUnits(){
-        ArrayList<Unit> returnList = new ArrayList<Unit>();
+        ArrayList<Unit> returnList = new ArrayList<>();
         for (Unit unit : units){
             returnList.add(unit.copy());
         }

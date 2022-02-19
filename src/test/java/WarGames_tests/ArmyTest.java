@@ -1,6 +1,8 @@
 package WarGames_tests;
 import Units.*;
+import Battle.*;
 import org.junit.jupiter.api.Test;
+
 
 import java.util.ArrayList;
 
