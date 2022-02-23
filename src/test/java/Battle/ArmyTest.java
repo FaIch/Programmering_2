@@ -1,0 +1,106 @@
+package Battle;
+import Units.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ArmyTest {
+    Army testArmy = new Army("Test");
+
+    @Test
+    @DisplayName("Get name of Army")
+    void getName() {
+        assertEquals("Test",testArmy.getName());
+    }
+
+
+    @Test
+    @DisplayName("Get number of units in Army")
+    void getNumberOfUnits(){
+        assertEquals(0,testArmy.getNumberOfUnits());
+        testArmy.addUnit(new CommanderUnit("Bob",180));
+        assertEquals(1,testArmy.getNumberOfUnits());
+    }
+
+    @Test
+    @DisplayName("Add unit to army")
+    void addUnit(){
+        assertFalse(testArmy.hasUnits());
+        testArmy.addUnit(new InfantryUnit("Per",1));
+        assertTrue(testArmy.hasUnits());
+    }
+
+    @Test
+    @DisplayName("Add list of units to army")
+    void addListOfUnits(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
+        }
+
+        testArmy.addAllUnits(testList);
+        assertEquals(76,testArmy.getNumberOfUnits());
+    }
+
+    @Test
+    @DisplayName("Add empty list to Army, throws IllegalArgumentException")
+    void addEmptyListThrowsException(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> testArmy.addAllUnits(testList));
+    }
+
+    @Test
+    @DisplayName("Add null unit, throws IllegalArgumentException")
+    void addNullUnitThrowsException(){
+        assertThrows(IllegalArgumentException.class, () -> testArmy.addUnit(null));
+
+    }
+
+    @Test
+    @DisplayName("Create army with empty list, throws IllegalArgumentException")
+    void createArmyWithEmptyListThrowsException(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () ->{
+           Army failArmy = new Army("FailArmy",testList);
+        });
+    }
+
+    @Test
+    @DisplayName("Remove unit in army")
+    void removeUnitInList(){
+        testArmy.addUnit(new InfantryUnit("Footman",100));
+        assertTrue(testArmy.hasUnits());
+        Unit randomUnit = testArmy.getRandomUnit();
+        testArmy.removeUnit(randomUnit);
+        assertFalse(testArmy.hasUnits());
+    }
+
+    @Test
+    @DisplayName("Remove unit thats not in army, throws IllegalArgumentException")
+    void removeUnitNotInListThrowsException(){
+        CommanderUnit commanderUnit = new CommanderUnit("Bob",180);
+        assertThrows(IllegalArgumentException.class, () -> testArmy.removeUnit(commanderUnit));
+    }
+
+    @Test
+    @DisplayName("Has units")
+    void hasUnits() {
+        assertFalse(testArmy.hasUnits());
+        CommanderUnit commanderUnit = new CommanderUnit("Boy",1);
+        testArmy.addUnit(commanderUnit);
+        assertTrue(testArmy.hasUnits());
+    }
+
+}

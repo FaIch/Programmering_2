@@ -42,7 +42,9 @@ public abstract class Unit {
 
     @Override
     public String toString() {
-        return "Name: " + this.name + "\nHealth: " + this.health + "\nAttack: " + this.attack +
+        return "Name: " + this.name +
+                "\nHealth: " + this.health +
+                "\nAttack: " + this.attack +
                 "\nArmor:" + this.armor + "\n";
     }
 

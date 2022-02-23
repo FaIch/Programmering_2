@@ -3,18 +3,33 @@ import Units.*;
 public class Battle {
     private final Army armyOne;
     private final Army armyTwo;
-
-    public Battle(Army armyOne, Army armyTwo) {
+    public Battle(Army armyOne, Army armyTwo) throws IllegalArgumentException {
+        if (!armyOne.hasUnits()){
+            throw new IllegalArgumentException(armyOne.getName() + " has no units");
+        }
+        else if (!armyTwo.hasUnits()){
+            throw new IllegalArgumentException(armyTwo.getName() + " has no units");
+        }
         this.armyOne = armyOne;
         this.armyTwo = armyTwo;
     }
 
     public Army simulate(){
-        while (armyOne.getNumberOfUnits() > 0 && armyTwo.getNumberOfUnits() > 0){
-            armyOneAttack();
-            if (armyTwo.getNumberOfUnits() > 0) {
-                armyTwoAttack();
+        int counter = 0;
+        while (armyOne.hasUnits() && armyTwo.hasUnits()){
+            if (counter % 2 == 0) {
+                armyOneAttack();
+                if (armyTwo.hasUnits()) {
+                    armyTwoAttack();
+                }
             }
+            if (counter % 2 != 0){
+                armyTwoAttack();
+                if (armyOne.hasUnits()){
+                    armyOneAttack();
+                }
+            }
+            counter++;
         }
         if (armyOne.getNumberOfUnits() > 0){
             return armyOne;
@@ -42,7 +57,7 @@ public class Battle {
 
     @Override
     public String toString() {
-        return "Winner of battle is: \n" + simulate().getName() + "\nNumber of units remaining: \n"
-                + simulate().getNumberOfUnits();
+        return "Winner of battle is: \n" + this.simulate().getName() + "\nNumber of units remaining: \n"
+                + this.simulate().getNumberOfUnits();
     }
 }

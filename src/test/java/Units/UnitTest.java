@@ -1,27 +1,22 @@
-package WarGames_tests;
+package Units;
+
 import Units.*;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Unit_tests {
+public class UnitTest {
 
     @Test
-    public void negativeTest(){
-        try {
-            InfantryUnit infantryUnit = new InfantryUnit("Karl", -100);
-            fail("Method did not throw IllegalArgumentException as expected");
-        }catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(),"Unit stats must be above zero.");
-        }
-        try {
-            InfantryUnit infantryUnit = new InfantryUnit("Karl", 100,0,15);
-            fail("Method did not throw IllegalArgumentException as expected");
-        }catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(),"Unit stats must be above zero.");
-        }
+    @DisplayName("Invalid value test, throws IllegalArgumentException")
+    public void invalidValueTestThrowsException(){
+        assertThrows(IllegalArgumentException.class, () -> new InfantryUnit("Bob",-100));
+        assertThrows(IllegalArgumentException.class, () -> new InfantryUnit("Per",0));
     }
 
     @Test
+    @DisplayName("Attack test")
     public void attackTest() {
         InfantryUnit infantryUnit1 = new InfantryUnit("Grunt", 100,20,10);
         InfantryUnit infantryUnit2 = new InfantryUnit("Footman", 100);
@@ -34,6 +29,7 @@ public class Unit_tests {
 
     }
     @Test
+    @DisplayName("Attack bonus test")
     public void attackBonusTest() {
         CommanderUnit unit1 = new CommanderUnit("1", 100);
         CommanderUnit unit2 = new CommanderUnit("2", 100);
@@ -51,6 +47,7 @@ public class Unit_tests {
     }
 
     @Test
+    @DisplayName("Resist bonus test")
     public void resistBonusTest() {
         RangedUnit unit1 = new RangedUnit("Håkon", 100);
         RangedUnit unit2 = new RangedUnit("Joakim", 100);
@@ -66,6 +63,7 @@ public class Unit_tests {
     }
 
     @Test
+    @DisplayName("toString test")
     public void toStringTest(){
         InfantryUnit infantryUnit1 = new InfantryUnit("Grunt", 100);
         assertEquals(infantryUnit1.toString(),"Name: " + infantryUnit1.getName() + "\nHealth: "

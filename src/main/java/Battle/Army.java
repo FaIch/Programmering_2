@@ -14,9 +14,13 @@ public class Army {
         this.units = new ArrayList<>();
     }
 
-    public Army(String name, ArrayList<Unit> units){
+    public Army(String name, ArrayList<Unit> newUnits) throws IllegalArgumentException{
+        if (newUnits == null || newUnits.isEmpty()){
+            throw new IllegalArgumentException("List cannot be empty/null");
+        }
         this.name = name;
-        this.units = units;
+        this.units = new ArrayList<>();
+        units.addAll(newUnits);
     }
 
     public String getName() {
@@ -27,16 +31,25 @@ public class Army {
         return units.size();
     }
 
-    public void addUnit(Unit unit){
+    public void addUnit(Unit unit) throws IllegalArgumentException{
+        if (unit == null){
+            throw new IllegalArgumentException("Unit cannot be null");
+        }
         units.add(unit);
     }
 
-    public void addAllUnits(ArrayList<Unit> units1){
+    public void addAllUnits(ArrayList<Unit> units1) throws IllegalArgumentException{
+        if (units1 == null || units1.isEmpty()){
+            throw new IllegalArgumentException("List cannot be null/empty");
+        }
         units.addAll(units1);
     }
 
-    public boolean removeUnit(Unit unit){
-        return units.remove(unit);
+    public void removeUnit(Unit unit) throws IllegalArgumentException{
+        if (!units.contains(unit)){
+            throw new IllegalArgumentException("Unit not in list");
+        }
+        units.remove(unit);
     }
 
     public boolean hasUnits(){
@@ -53,12 +66,13 @@ public class Army {
 
     public Unit getRandomUnit(){
         Random number = new Random();
-        return units.get(number.nextInt(getNumberOfUnits()));
+        return this.units.get(number.nextInt(getNumberOfUnits()));
     }
 
     @Override
     public String toString() {
-        return "Name of Army: " + this.name + "\n Army Size: " + getNumberOfUnits() + "\n";
+        return "Name of Army: " + this.name +
+                "\n Number of units left: " + getNumberOfUnits() + "\n";
     }
 
     @Override
