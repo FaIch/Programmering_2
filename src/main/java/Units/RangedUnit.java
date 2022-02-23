@@ -34,9 +34,4 @@ public class RangedUnit extends Unit{
         increaseCounter();
         return resistBonus;
     }
-
-    @Override
-    public Unit copy() {
-        return new RangedUnit(this.getName(),this.getHealth());
-    }
 }

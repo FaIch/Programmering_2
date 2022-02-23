@@ -21,8 +21,4 @@ public class InfantryUnit extends Unit{
         return 1;
     }
 
-    @Override
-    public Unit copy() {
-        return new InfantryUnit(this.getName(),this.getHealth());
-    }
 }

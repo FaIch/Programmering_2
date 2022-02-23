@@ -28,13 +28,11 @@ public class Army {
     }
 
     public void addUnit(Unit unit){
-        units.add(unit.copy());
+        units.add(unit);
     }
 
     public void addAllUnits(ArrayList<Unit> units1){
-        for (Unit unit : units1){
-            units.add(unit.copy());
-        }
+        units.addAll(units1);
     }
 
     public boolean removeUnit(Unit unit){
@@ -48,7 +46,7 @@ public class Army {
     public ArrayList<Unit> getAllUnits(){
         ArrayList<Unit> returnList = new ArrayList<>();
         for (Unit unit : units){
-            returnList.add(unit.copy());
+            returnList.add(unit);
         }
         return returnList;
     }

@@ -50,5 +50,4 @@ public abstract class Unit {
 
     public abstract int getResistBonus();
 
-    public abstract Unit copy();
 }

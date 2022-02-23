@@ -17,27 +17,23 @@ class ArmyTest {
 
     @Test
     void unitMods() {
-        CommanderUnit commanderUnit = new CommanderUnit("Bob",180);
-        InfantryUnit infantryUnit = new InfantryUnit("Footman",100);
-        RangedUnit rangedUnit = new RangedUnit("Archer",100);
-        CavalryUnit cavalryUnit = new CavalryUnit("Chad",100);
 
         assertEquals(0,testArmy.getNumberOfUnits());
 
-        testArmy.addUnit(commanderUnit);
+        testArmy.addUnit(new CommanderUnit("Bob",180));
         assertEquals(1,testArmy.getNumberOfUnits());
 
         ArrayList<Unit> testList = new ArrayList<>();
-        testList.add(commanderUnit);
+        testList.add(new CommanderUnit("Bob",180));
         int i = 0;
         for (i = 0;i < 50;i++){
-            testList.add(infantryUnit);
+            testList.add(new InfantryUnit("Footman",100));
         }
         for (i = 0; i < 20; i++){
-            testList.add(rangedUnit);
+            testList.add(new RangedUnit("Archer",100));
         }
         for (i = 0; i < 5; i++){
-            testList.add(cavalryUnit);
+            testList.add(new CavalryUnit("Chad",100));
         }
 
         testArmy.addAllUnits(testList);
