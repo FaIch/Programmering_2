@@ -17,7 +17,8 @@ public abstract class Unit {
     }
 
     public void attack(Unit opponent){
-            opponent.health = opponent.health - (this.attack + this.getAttackBonus()) + (opponent.armor + opponent.getResistBonus());
+            opponent.health = opponent.health - (this.attack + this.getAttackBonus()) +
+                    (opponent.armor + opponent.getResistBonus());
     }
 
     public String getName() {
@@ -36,7 +37,10 @@ public abstract class Unit {
         return armor;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(int health) throws IllegalArgumentException{
+        if (health <= 0){
+            throw new IllegalArgumentException("Cannot set health less than one");
+        }
         this.health = health;
     }
 
