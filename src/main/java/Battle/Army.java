@@ -25,9 +25,10 @@ public class Army {
 
     /**
      * Instantiates a new Army by name and a list of units.
+     * calls addAllUnits method to deep copy the units before adding.
      *
      * @param name     the name of the army
-     * @param newUnits A list of units that the army has
+     * @param newUnits A list of units that the army will have
      * @throws IllegalArgumentException if the list is empty or null.
      */
     public Army(String name, ArrayList<Unit> newUnits) throws IllegalArgumentException{
@@ -36,7 +37,7 @@ public class Army {
         }
         this.name = name;
         this.units = new ArrayList<>();
-        units.addAll(newUnits);
+        addAllUnits(newUnits);
     }
 
     /**
@@ -73,17 +74,15 @@ public class Army {
     /**
      * Adds a list of units
      *
-     * Question:
-     * Does this need to deep copy units from parameter list?
+     * calls the deepCopyUnits method to get deep copies of each unit before it is added to the army.
      *
      * @param units1 an input list of units that will be added to the army.
-     * @throws IllegalArgumentException if the list of units is empty or null.
      */
     public void addAllUnits(ArrayList<Unit> units1) throws IllegalArgumentException{
         if (units1 == null || units1.isEmpty()){
-            throw new IllegalArgumentException("List cannot be null/empty");
+            throw new IllegalArgumentException("List cannot be empty/null");
         }
-        units.addAll(units1);
+        units.addAll(deepCopyUnits(units1));
     }
 
     /**
@@ -114,9 +113,22 @@ public class Army {
      *
      * @return the array list of copied units from the army.
      */
-    public ArrayList<Unit> getAllUnits(){
+    public ArrayList<Unit> getAllUnits() {
+        return this.deepCopyUnits(units);
+    }
+
+    /**
+     * Method for deep coping units.
+     * Checks what type of unit the unit is. then instantiates a new unit of that type.
+     * Creates lower coupling between classes
+     *
+     * @param unitsIn the list of units that needs to be deep copied
+     * @return The input list deep copied.
+     */
+
+    public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn){
         ArrayList<Unit> returnList = new ArrayList<>();
-        for (Unit unit : units){
+        for (Unit unit : unitsIn){
             if (unit instanceof InfantryUnit){
                 returnList.add(new InfantryUnit(unit.getName(),unit.getHealth()));
             }
