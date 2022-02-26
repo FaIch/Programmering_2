@@ -73,7 +73,10 @@ public class Army {
     /**
      * Adds a list of units
      *
-     * @param units1 a input list of units that will be added to the army.
+     * Question:
+     * Does this need to deep copy units from parameter list?
+     *
+     * @param units1 an input list of units that will be added to the army.
      * @throws IllegalArgumentException if the list of units is empty or null.
      */
     public void addAllUnits(ArrayList<Unit> units1) throws IllegalArgumentException{
@@ -114,7 +117,20 @@ public class Army {
     public ArrayList<Unit> getAllUnits(){
         ArrayList<Unit> returnList = new ArrayList<>();
         for (Unit unit : units){
-            returnList.add(unit);
+            if (unit instanceof InfantryUnit){
+                returnList.add(new InfantryUnit(unit.getName(),unit.getHealth()));
+            }
+            else if (unit instanceof RangedUnit){
+                returnList.add(new RangedUnit(unit.getName(),unit.getHealth()));
+            }
+            else if (unit instanceof CavalryUnit){
+                if (unit instanceof CommanderUnit){
+                    returnList.add(new CommanderUnit(unit.getName(),unit.getHealth()));
+                }
+                else {
+                    returnList.add(new CavalryUnit(unit.getName(),unit.getHealth()));
+                }
+            }
         }
         return returnList;
     }
