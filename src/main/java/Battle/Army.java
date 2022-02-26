@@ -61,6 +61,8 @@ public class Army {
     /**
      * Add unit to army
      *
+     * Creates a list of the one unit to use the addAllUnits method to add a deep copy version of the input unit.
+     *
      * @param unit A unit of any type that will be added to the army.
      * @throws IllegalArgumentException if the parameter unit equals null.
      */
@@ -68,7 +70,9 @@ public class Army {
         if (unit == null){
             throw new IllegalArgumentException("Unit cannot be null");
         }
-        units.add(unit);
+        ArrayList<Unit> pushUnit = new ArrayList<>();
+        pushUnit.add(unit);
+        addAllUnits(pushUnit);
     }
 
     /**
