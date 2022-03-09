@@ -102,4 +102,87 @@ class ArmyTest {
         assertTrue(testArmy.hasUnits());
     }
 
+    @Test
+    @DisplayName("Get an empty list of InfantryUnits, throws exception")
+    void getEmptyUnitList(){
+        assertThrows(IllegalArgumentException.class, () -> testArmy.getInfantryUnits());
+    }
+
+    @Test
+    @DisplayName("Get Infantry units in army")
+    void getInfantryUnitsTest(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
+        }
+        testArmy.addAllUnits(testList);
+        assertEquals(50,testArmy.getInfantryUnits().size());
+    }
+
+    @Test
+    @DisplayName("Get Ranged units in army")
+    void getRangedUnitsTest(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
+        }
+        testArmy.addAllUnits(testList);
+        assertEquals(20,testArmy.getRangedUnits().size());
+    }
+
+    @Test
+    @DisplayName("Get Cavalry units in army")
+    void getCavalryUnitsTest(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
+        }
+        testArmy.addAllUnits(testList);
+        assertEquals(5,testArmy.getCavalryUnits().size());
+    }
+
+    @Test
+    @DisplayName("Get Commander units in army")
+    void getCommanderUnitsTest(){
+        ArrayList<Unit> testList = new ArrayList<>();
+        testList.add(new CommanderUnit("Bob",180));
+        testList.add(new CommanderUnit("Bob",180));
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
+        }
+        testArmy.addAllUnits(testList);
+        assertEquals(3,testArmy.getCommanderUnits().size());
+    }
 }

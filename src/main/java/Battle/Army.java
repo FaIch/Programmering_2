@@ -3,6 +3,7 @@ import Units.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * The type Army.
@@ -130,7 +131,10 @@ public class Army {
      * @return The input list deep copied.
      */
 
-    public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn){
+    public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn)throws IllegalArgumentException{
+        if (unitsIn.isEmpty()){
+            throw new IllegalArgumentException("List can not be empty");
+        }
         ArrayList<Unit> returnList = new ArrayList<>();
         for (Unit unit : unitsIn){
             if (unit instanceof InfantryUnit){
@@ -159,6 +163,59 @@ public class Army {
     public Unit getRandomUnit(){
         Random number = new Random();
         return this.units.get(number.nextInt(getNumberOfUnits()));
+    }
+
+    /**
+     * Get all infantryunits in the Army.
+     *
+     * Checks if the unit in army is an instance of InfantryUnit
+     *
+     * @return An array list consisting of infantryunits in the army.
+     */
+    public ArrayList<Unit> getInfantryUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof InfantryUnit)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get ranged units in the army
+     *
+     * checks if the unit is an instance of ranged unit
+     *
+     * @return the array list consisting of ranged units in the army
+     */
+    public ArrayList<Unit> getRangedUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(rawrxD -> rawrxD instanceof RangedUnit)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get cavalry units in the army.
+     *
+     * Checks if the unit is an instance of cavalry unit
+     *
+     * @return the list of cavalry units in the army.
+     */
+    public ArrayList<Unit> getCavalryUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof CavalryUnit)
+                .filter(p -> !(p instanceof  CommanderUnit))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get list of the commanderunits in the army.
+     *
+     * Checks if the unit is an instance of cavalryunit, and an instance of commanderunit.
+     *
+     * @return the list of commanderunits in the army.
+     */
+    public ArrayList<Unit> getCommanderUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof CommanderUnit)
+                .collect(Collectors.toList());
     }
 
     @Override
