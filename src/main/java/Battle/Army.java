@@ -30,7 +30,9 @@ public class Army {
      *
      * @param name     the name of the army
      * @param newUnits A list of units that the army will have
-     * @throws IllegalArgumentException if the list is empty or null.
+     * @throws IllegalArgumentException if the list is empty or null, this needs to be here, although it does not
+     * pose any direct problem creating an army with an empty list. It uses the deepCopyUnits method, this method
+     * cannot have an empty list when called. Therefore, it is more structured to call the exception in the constructor.
      */
     public Army(String name, ArrayList<Unit> newUnits) throws IllegalArgumentException{
         if (newUnits == null || newUnits.isEmpty()){

@@ -2,6 +2,8 @@ package Units;
 
 /**
  * The type Ranged unit.
+ * Has a variable counter, used to determine what the resist bonus should be, based on how many times the unit has
+ * been attacked
  */
 public class RangedUnit extends Unit{
     private int counter;
@@ -33,7 +35,9 @@ public class RangedUnit extends Unit{
     }
 
     /**
-     * Increases counter for calculating resist bonus
+     * Increases counter for calculating resist bonus, increases when the resistBonus method is called in Unit class
+     * ensuring that the number of times the unit has been attacked is taken into account with what the resistBonus
+     * the unit has.
      */
     public void increaseCounter(){
         counter++;

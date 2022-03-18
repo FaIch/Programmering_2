@@ -2,6 +2,7 @@ package Units;
 
 /**
  * The type Cavalry unit.
+ * Counter as a variable decides the attackBonus of the given unit, based on how many times the unit has attacked.
  */
 public class CavalryUnit extends Unit{
     private int counter;
@@ -36,7 +37,8 @@ public class CavalryUnit extends Unit{
     }
 
     /**
-     * Increases counter, used for calculating the attack bonus of the unit.
+     * Increases counter, used for calculating the attack bonus of the unit. Increases when the getAttackBonus method
+     * is called in the Unit superclass, ensuring correct attackBonus based on how many times the unit has attacked.
      */
     public void increaseCounter(){
         counter++;

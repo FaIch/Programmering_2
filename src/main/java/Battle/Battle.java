@@ -28,9 +28,9 @@ public class Battle {
 
     /**
      * Simulate the battle between the armies.
-     * The system is turn based, and which unit that attacks, and is attacked is random.
-     * Uses modulus to decide which player who should attack, armyone attacks if the number is even
-     * while armytwo attacks if the number is odd.
+     * The system is turn based, and which unit that attacks, and the unit that is attacked is random.
+     * Uses modulus to decide which player who should attack, armyOne attacks if the number is even
+     * while armyTwo attacks if the number is odd.
      *
      * @return the winning army of the battle.
      */
@@ -38,11 +38,10 @@ public class Battle {
         int counter = 0;
         while (armyOne.hasUnits() && armyTwo.hasUnits()) {
             if (counter % 2 == 0) {
-                armyOneAttack();
+                attack(armyTwo);
             }
-
-            if (counter % 2 != 0) {
-                armyTwoAttack();
+            else {
+                attack(armyOne);
             }
             counter++;
         }
@@ -53,32 +52,29 @@ public class Battle {
     }
 
     /**
-     * Method for army one attacking army two
-     * Gets a random unit from army two, attacks it with a random unit from army one.
-     * If the unit from army two has no more health, it is removed from the army.
+     * Method for attacking, a random unit from one army attacks a random unit from the other,
+     * if the health of the unit that is attacked is below or equal zero, the unit is removed from the army.
+     * @param army the army that is attacked, decided by the counter in the simulate method.
      */
-    public void armyOneAttack(){
-        Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
-        armyOne.getRandomUnit().attack(armyTwoRandomUnit);
+    public void attack(Army army){
+        if (army.equals(armyTwo)){
+            Unit armyOneRandomUnit = armyOne.getRandomUnit();
+            armyTwo.getRandomUnit().attack(armyOneRandomUnit);
 
-        if (armyTwoRandomUnit.getHealth() <= 0){
-            armyTwo.removeUnit(armyTwoRandomUnit);
+            if (armyOneRandomUnit.getHealth() <= 0){
+                armyOne.removeUnit(armyOneRandomUnit);
+            }
+        }
+        else {
+            Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
+            armyOne.getRandomUnit().attack(armyTwoRandomUnit);
+
+            if (armyTwoRandomUnit.getHealth() <= 0){
+                armyTwo.removeUnit(armyTwoRandomUnit);
+            }
         }
     }
 
-    /**
-     * Method for army two attacking army one
-     * Gets a random unit from army one, attacks it with a random unit from army two.
-     * If the unit from army one has no more health, it is removed from the army.
-     */
-    public void armyTwoAttack(){
-        Unit armyOneRandomUnit = armyOne.getRandomUnit();
-        armyTwo.getRandomUnit().attack(armyOneRandomUnit);
-
-        if (armyOneRandomUnit.getHealth() <= 0){
-            armyOne.removeUnit(armyOneRandomUnit);
-        }
-    }
 
     @Override
     public String toString() {
