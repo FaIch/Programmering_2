@@ -139,20 +139,25 @@ public class Army {
         }
         ArrayList<Unit> returnList = new ArrayList<>();
         for (Unit unit : unitsIn){
-            if (unit instanceof InfantryUnit){
-                returnList.add(new InfantryUnit(unit.getName(),unit.getHealth()));
-            }
-            else if (unit instanceof RangedUnit){
-                returnList.add(new RangedUnit(unit.getName(),unit.getHealth()));
-            }
-            else if (unit instanceof CavalryUnit){
-                if (unit instanceof CommanderUnit){
-                    returnList.add(new CommanderUnit(unit.getName(),unit.getHealth()));
+            try {
+                if (unit instanceof InfantryUnit){
+                    returnList.add(new InfantryUnit(unit.getName(),unit.getHealth()));
                 }
-                else {
-                    returnList.add(new CavalryUnit(unit.getName(),unit.getHealth()));
+                else if (unit instanceof RangedUnit){
+                    returnList.add(new RangedUnit(unit.getName(),unit.getHealth()));
                 }
+                else if (unit instanceof CavalryUnit){
+                    if (unit instanceof CommanderUnit){
+                        returnList.add(new CommanderUnit(unit.getName(),unit.getHealth()));
+                    }
+                    else {
+                        returnList.add(new CavalryUnit(unit.getName(),unit.getHealth()));
+                    }
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
+
         }
         return returnList;
     }

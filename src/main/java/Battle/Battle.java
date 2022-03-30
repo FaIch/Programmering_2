@@ -57,21 +57,24 @@ public class Battle {
      * @param army the army that is attacked, decided by the counter in the simulate method.
      */
     public void attack(Army army){
-        if (army.equals(armyTwo)){
-            Unit armyOneRandomUnit = armyOne.getRandomUnit();
-            armyTwo.getRandomUnit().attack(armyOneRandomUnit);
+        try {
+            if (army.equals(armyTwo)) {
+                Unit armyOneRandomUnit = armyOne.getRandomUnit();
+                armyTwo.getRandomUnit().attack(armyOneRandomUnit);
 
-            if (armyOneRandomUnit.getHealth() <= 0){
-                armyOne.removeUnit(armyOneRandomUnit);
-            }
-        }
-        else {
-            Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
-            armyOne.getRandomUnit().attack(armyTwoRandomUnit);
+                if (armyOneRandomUnit.getHealth() <= 0) {
+                    armyOne.removeUnit(armyOneRandomUnit);
+                }
+            } else {
+                Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
+                armyOne.getRandomUnit().attack(armyTwoRandomUnit);
 
-            if (armyTwoRandomUnit.getHealth() <= 0){
-                armyTwo.removeUnit(armyTwoRandomUnit);
+                if (armyTwoRandomUnit.getHealth() <= 0) {
+                    armyTwo.removeUnit(armyTwoRandomUnit);
+                }
             }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
     }
 
