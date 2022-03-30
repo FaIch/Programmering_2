@@ -8,11 +8,8 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 
 /**
- * The code is heavily inspired by lecture in file handling in IDATT2001 Example code.
- */
-
-/**
- * The class for writing an Army to a csv file.
+ * Class for writing an Army to a csv file.
+ * A fair amount of the code is copied/inspired by code examples in IDATT 2001 Filhåndtering
  */
 public class ArmyCSVWrite {
     private static final String NEWLINE = "\n";
@@ -20,6 +17,7 @@ public class ArmyCSVWrite {
 
     /**
      * Instantiates a new Army csv write.
+     * Empty constructor since the class should be able to write multiple files without creating a new instance.
      */
     public ArmyCSVWrite(){}
 

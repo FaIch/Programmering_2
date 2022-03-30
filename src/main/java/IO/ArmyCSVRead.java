@@ -51,20 +51,20 @@ public class ArmyCSVRead {
             army = new Army(scanner.nextLine());
             while (scanner.hasNext()){
                 String line = scanner.nextLine();
-                String[] tokens = line.split(DELIMITER);
+                String[] values = line.split(DELIMITER);
 
-                if (tokens.length != 3){
-                    throw new IOException("Invalid format. Ensure lines in .csv file is: Type, name, health");
+                if (values.length != 3){
+                    throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name', 'health'");
                 }
 
                 int health;
                 try {
-                    health = Integer.parseInt(tokens[2]);
+                    health = Integer.parseInt(values[2]);
                 }catch (NumberFormatException e){
                     throw new IOException("Health must be integer");
                 }
-                String type = tokens[0];
-                String name = tokens[1];
+                String type = values[0];
+                String name = values[1];
 
                 boolean existingType = false;
                 Unit unit = null;
