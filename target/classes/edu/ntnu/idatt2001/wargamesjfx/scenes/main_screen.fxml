@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="91.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: #101124;">
+                     <children>
+                        <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS" />
+                        <VBox prefHeight="100.0" prefWidth="245.0">
+                           <children>
+                              <Pane prefHeight="100.0" prefWidth="444.0" VBox.vgrow="ALWAYS" />
+                              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="251.0" text="WARGAMES" textFill="WHITE">
+                                 <font>
+                                    <Font name="Times New Roman" size="40.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="100.0" prefWidth="513.0" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="85.0" prefWidth="467.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="501.0" prefWidth="1187.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="83.0" layoutY="61.0" prefHeight="462.0" prefWidth="1021.0" style="-fx-background-color: GREY;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="462.0" prefWidth="258.0">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
+                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY1" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutX="2.0" layoutY="60.0" prefHeight="17.0" prefWidth="231.0" text="Label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutY="142.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutX="2.0" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutX="2.0" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label layoutX="102.0" layoutY="262.0" text="Label" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="100.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="462.0" prefWidth="235.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="462.0" prefWidth="258.0">
+                     <children>
+                        <Pane prefHeight="100.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
+                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY2" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="60.0" prefHeight="21.0" prefWidth="232.0" text="Label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutY="142.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                              <Label alignment="CENTER" layoutY="262.0" prefHeight="17.0" prefWidth="232.0" text="Label" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="100.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

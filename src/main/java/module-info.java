@@ -8,4 +8,6 @@ module edu.ntnu.idatt2001.wargamesjfx {
 
     opens edu.ntnu.idatt2001.wargamesjfx to javafx.fxml;
     exports edu.ntnu.idatt2001.wargamesjfx;
+    exports edu.ntnu.idatt2001.wargamesjfx.Controllers;
+    opens edu.ntnu.idatt2001.wargamesjfx.Controllers to javafx.fxml;
 }
