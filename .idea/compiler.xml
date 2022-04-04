@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="WarGames" />
-        <module name="wargames" />
+        <module name="WarGamesJFX" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WarGamesJFX" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
