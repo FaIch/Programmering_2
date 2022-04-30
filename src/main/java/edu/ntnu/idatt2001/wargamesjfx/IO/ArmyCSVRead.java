@@ -5,7 +5,9 @@ import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * The code is heavily inspired by lecture in file handling in IDATT2001 Example code.
@@ -19,17 +21,18 @@ public class ArmyCSVRead {
     /**
      * Instantiates a new Army csv read.
      */
-    public ArmyCSVRead() {}
+    public ArmyCSVRead() {
+    }
 
     /**
      * Reads Army from a csv file.
      * First the method ensures that the path is not only a '.csv' file, but also that it exists,
      * and that it is not empty.
-     *
+     * <p>
      * Afterwards it uses scanner to register one line of the file at a time. Creating a new Army with the first line
      * and then adding units all remaining lines in the file. It splits the lines on comma, and checks that the length
      * of the split array, is 3. If not, the Army is not written correctly in the file, and can therefor not be read.
-     *
+     * <p>
      * Then it checks what type of unit the added unit should be, before adding that unit. Continues as long as the
      * scanner finds a new line with information in it.
      *
@@ -38,30 +41,30 @@ public class ArmyCSVRead {
      * @throws IOException the io exceptions that are thrown if any of the operations fail.
      */
     public Army readArmyFromCSV(File file) throws IOException {
-        if (!file.getName().endsWith(".csv")){
+        if (!file.getName().endsWith(".csv")) {
             throw new IOException("Only .csv files are supported");
         }
-        if (!file.exists()){
+        if (!file.exists()) {
             throw new IOException("File does not exist");
         }
         Army army;
-        try (Scanner scanner = new Scanner(file)){
-            if (!scanner.hasNext()){
+        try (Scanner scanner = new Scanner(file)) {
+            if (!scanner.hasNext()) {
                 throw new IOException("File is empty");
             }
             army = new Army(scanner.nextLine());
-            while (scanner.hasNext()){
+            while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] values = line.split(DELIMITER);
 
-                if (values.length != 3){
+                if (values.length != 3) {
                     throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name', 'health'");
                 }
 
                 int health;
                 try {
                     health = Integer.parseInt(values[2]);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     throw new IOException("Health must be integer");
                 }
                 String type = values[0];
@@ -88,12 +91,46 @@ public class ArmyCSVRead {
                         existingType = true;
                     }
                 }
-                if (!existingType){
+                if (!existingType) {
                     throw new IOException("Invalid unit type.");
                 }
                 army.addUnit(unit);
             }
         }
         return army;
+    }
+
+    public ArrayList<String> getArmies() {
+        ArrayList<String> returnList = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
+                "wargamesjfx/files/allArmies.csv"))) {
+            if (!scanner.hasNext()) {
+                throw new IOException("File is empty");
+            }
+            while (scanner.hasNext()){
+                returnList.add(scanner.nextLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnList;
+    }
+        public Army getExistingArmy(String armyName) {
+        Army returnArmy = null;
+        try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
+                "wargamesjfx/files/allArmies.csv"))) {
+            if (!scanner.hasNext()) {
+                throw new IOException("File is empty");
+            }
+            while (scanner.hasNext()) {
+                if (scanner.nextLine().equals(armyName)) {
+                    returnArmy = readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/" +
+                            "wargamesjfx/files/" + armyName + ".csv"));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnArmy;
     }
 }

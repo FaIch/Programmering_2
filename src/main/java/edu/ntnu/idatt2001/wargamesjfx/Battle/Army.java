@@ -39,9 +39,11 @@ public class Army {
         if (newUnits == null || newUnits.isEmpty()){
             throw new IllegalArgumentException("List cannot be empty/null");
         }
-        this.name = name;
-        this.units = new ArrayList<>();
-        addAllUnits(newUnits);
+        else {
+            this.name = name;
+            this.units = new ArrayList<>();
+            addAllUnits(newUnits);
+        }
     }
 
     /**
@@ -74,9 +76,11 @@ public class Army {
         if (unit == null){
             throw new IllegalArgumentException("Unit cannot be null");
         }
-        ArrayList<Unit> pushUnit = new ArrayList<>();
-        pushUnit.add(unit);
-        addAllUnits(pushUnit);
+        else {
+            ArrayList<Unit> pushUnit = new ArrayList<>();
+            pushUnit.add(unit);
+            addAllUnits(pushUnit);
+        }
     }
 
     /**
@@ -90,7 +94,9 @@ public class Army {
         if (units1 == null || units1.isEmpty()){
             throw new IllegalArgumentException("List cannot be empty/null");
         }
-        units.addAll(deepCopyUnits(units1));
+        else {
+            units.addAll(deepCopyUnits(units1));
+        }
     }
 
     /**
@@ -103,7 +109,9 @@ public class Army {
         if (!units.contains(unit)){
             throw new IllegalArgumentException("Unit not in list");
         }
-        units.remove(unit);
+        else {
+            units.remove(unit);
+        }
     }
 
     /**
@@ -135,30 +143,28 @@ public class Army {
      */
 
     public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn)throws IllegalArgumentException{
+        ArrayList<Unit> returnList = new ArrayList<>();
         if (unitsIn.isEmpty()){
             throw new IllegalArgumentException("List can not be empty");
         }
-        ArrayList<Unit> returnList = new ArrayList<>();
-        for (Unit unit : unitsIn){
-            try {
-                if (unit instanceof InfantryUnit){
-                    returnList.add(new InfantryUnit(unit.getName(),unit.getHealth()));
-                }
-                else if (unit instanceof RangedUnit){
-                    returnList.add(new RangedUnit(unit.getName(),unit.getHealth()));
-                }
-                else if (unit instanceof CavalryUnit){
-                    if (unit instanceof CommanderUnit){
-                        returnList.add(new CommanderUnit(unit.getName(),unit.getHealth()));
+        else {
+            for (Unit unit : unitsIn) {
+                try {
+                    if (unit instanceof InfantryUnit) {
+                        returnList.add(new InfantryUnit(unit.getName(), unit.getHealth()));
+                    } else if (unit instanceof RangedUnit) {
+                        returnList.add(new RangedUnit(unit.getName(), unit.getHealth()));
+                    } else if (unit instanceof CavalryUnit) {
+                        if (unit instanceof CommanderUnit) {
+                            returnList.add(new CommanderUnit(unit.getName(), unit.getHealth()));
+                        } else {
+                            returnList.add(new CavalryUnit(unit.getName(), unit.getHealth()));
+                        }
                     }
-                    else {
-                        returnList.add(new CavalryUnit(unit.getName(),unit.getHealth()));
-                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
             }
-
         }
         return returnList;
     }

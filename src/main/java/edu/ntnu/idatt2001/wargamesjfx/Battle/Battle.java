@@ -22,8 +22,10 @@ public class Battle {
         else if (!armyTwo.hasUnits()){
             throw new IllegalArgumentException(armyTwo.getName() + " has no units");
         }
-        this.armyOne = armyOne;
-        this.armyTwo = armyTwo;
+        else {
+            this.armyOne = armyOne;
+            this.armyTwo = armyTwo;
+        }
     }
 
     /**

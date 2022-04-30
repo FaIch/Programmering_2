@@ -22,12 +22,7 @@ class ArmyTest {
     @DisplayName("Get number of units in Army")
     void getNumberOfUnits(){
         assertEquals(0,testArmy.getNumberOfUnits());
-        try {
             testArmy.addUnit(new CommanderUnit("Bob",180));
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-
         assertEquals(1,testArmy.getNumberOfUnits());
     }
 
@@ -35,11 +30,7 @@ class ArmyTest {
     @DisplayName("Add unit to army")
     void addUnit(){
         assertFalse(testArmy.hasUnits());
-        try {
-            testArmy.addUnit(new InfantryUnit("Per",1));
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
+        testArmy.addUnit(new InfantryUnit("Per",1));
         assertTrue(testArmy.hasUnits());
     }
 
@@ -47,20 +38,16 @@ class ArmyTest {
     @DisplayName("Add list of units to army")
     void addListOfUnits(){
         ArrayList<Unit> testList = new ArrayList<>();
-        try {
-            testList.add(new CommanderUnit("Bob", 180));
-            int i = 0;
-            for (i = 0; i < 50; i++) {
-                testList.add(new InfantryUnit("Footman", 100));
-            }
-            for (i = 0; i < 20; i++) {
-                testList.add(new RangedUnit("Archer", 100));
-            }
-            for (i = 0; i < 5; i++) {
-                testList.add(new CavalryUnit("Chad", 100));
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        testList.add(new CommanderUnit("Bob", 180));
+        int i = 0;
+        for (i = 0; i < 50; i++) {
+            testList.add(new InfantryUnit("Footman", 100));
+        }
+        for (i = 0; i < 20; i++) {
+            testList.add(new RangedUnit("Archer", 100));
+        }
+        for (i = 0; i < 5; i++) {
+            testList.add(new CavalryUnit("Chad", 100));
         }
 
         testArmy.addAllUnits(testList);
@@ -78,7 +65,6 @@ class ArmyTest {
     @DisplayName("Add null unit, throws IllegalArgumentException")
     void addNullUnitThrowsException(){
         assertThrows(IllegalArgumentException.class, () -> testArmy.addUnit(null));
-
     }
 
     @Test
@@ -93,11 +79,7 @@ class ArmyTest {
     @Test
     @DisplayName("Remove unit in army")
     void removeUnitInList(){
-        try {
-            testArmy.addUnit(new InfantryUnit("Footman",100));
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
+        testArmy.addUnit(new InfantryUnit("Footman",100));
         assertTrue(testArmy.hasUnits());
         Unit randomUnit = testArmy.getRandomUnit();
         testArmy.removeUnit(randomUnit);
@@ -116,11 +98,7 @@ class ArmyTest {
     void hasUnits() {
         assertFalse(testArmy.hasUnits());
         CommanderUnit commanderUnit = new CommanderUnit("Boy",1);
-        try {
-            testArmy.addUnit(commanderUnit);
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
+        testArmy.addUnit(commanderUnit);
         assertTrue(testArmy.hasUnits());
     }
 
@@ -134,20 +112,16 @@ class ArmyTest {
     @DisplayName("Get Infantry units in army")
     void getInfantryUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
-        try {
-            testList.add(new CommanderUnit("Bob",180));
-            int i = 0;
-            for (i = 0;i < 50;i++){
-                testList.add(new InfantryUnit("Footman",100));
-            }
-            for (i = 0; i < 20; i++){
-                testList.add(new RangedUnit("Archer",100));
-            }
-            for (i = 0; i < 5; i++){
-                testList.add(new CavalryUnit("Chad",100));
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
         }
         testArmy.addAllUnits(testList);
         assertEquals(50,testArmy.getInfantryUnits().size());
@@ -157,20 +131,16 @@ class ArmyTest {
     @DisplayName("Get Ranged units in army")
     void getRangedUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
-        try {
-            testList.add(new CommanderUnit("Bob",180));
-            int i = 0;
-            for (i = 0;i < 50;i++){
-                testList.add(new InfantryUnit("Footman",100));
-            }
-            for (i = 0; i < 20; i++){
-                testList.add(new RangedUnit("Archer",100));
-            }
-            for (i = 0; i < 5; i++){
-                testList.add(new CavalryUnit("Chad",100));
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
         }
         testArmy.addAllUnits(testList);
         assertEquals(20,testArmy.getRangedUnits().size());
@@ -180,20 +150,16 @@ class ArmyTest {
     @DisplayName("Get Cavalry units in army")
     void getCavalryUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
-        try {
-            testList.add(new CommanderUnit("Bob",180));
-            int i = 0;
-            for (i = 0;i < 50;i++){
-                testList.add(new InfantryUnit("Footman",100));
-            }
-            for (i = 0; i < 20; i++){
-                testList.add(new RangedUnit("Archer",100));
-            }
-            for (i = 0; i < 5; i++){
-                testList.add(new CavalryUnit("Chad",100));
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
         }
         testArmy.addAllUnits(testList);
         assertEquals(5,testArmy.getCavalryUnits().size());
@@ -203,22 +169,18 @@ class ArmyTest {
     @DisplayName("Get Commander units in army")
     void getCommanderUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
-        try {
-            testList.add(new CommanderUnit("Bob",180));
-            testList.add(new CommanderUnit("Bob",180));
-            testList.add(new CommanderUnit("Bob",180));
-            int i = 0;
-            for (i = 0;i < 50;i++){
-                testList.add(new InfantryUnit("Footman",100));
-            }
-            for (i = 0; i < 20; i++){
-                testList.add(new RangedUnit("Archer",100));
-            }
-            for (i = 0; i < 5; i++){
-                testList.add(new CavalryUnit("Chad",100));
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        testList.add(new CommanderUnit("Bob",180));
+        testList.add(new CommanderUnit("Bob",180));
+        testList.add(new CommanderUnit("Bob",180));
+        int i = 0;
+        for (i = 0;i < 50;i++){
+            testList.add(new InfantryUnit("Footman",100));
+        }
+        for (i = 0; i < 20; i++){
+            testList.add(new RangedUnit("Archer",100));
+        }
+        for (i = 0; i < 5; i++){
+            testList.add(new CavalryUnit("Chad",100));
         }
         testArmy.addAllUnits(testList);
         assertEquals(3,testArmy.getCommanderUnits().size());
