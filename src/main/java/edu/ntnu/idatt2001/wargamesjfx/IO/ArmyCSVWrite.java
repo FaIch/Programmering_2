@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class for writing an Army to a csv file.
@@ -32,7 +34,7 @@ public class ArmyCSVWrite {
      * @param file the file, the army should be written to. Could be an existing file or a new one.
      * @throws IOException throws IOException if any of the IO operations fail.
      */
-    public static void writeFile(Army army, File file) throws IOException{
+    public static void writeFile(Army army, File file, boolean bool) throws IOException{
         if (!file.getPath().startsWith(FileSystems.getDefault()
                 .getPath("src","main","resources").toString())){
             throw new IOException("Error, files must be written to src/main/resources/");
@@ -57,5 +59,13 @@ public class ArmyCSVWrite {
         }catch (IOException e){
             throw new IOException("Cannot write army to file:" + e.getMessage());
         }
+        if (bool) {
+            try (FileWriter fileWriter = new FileWriter("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/allArmies.csv", true)) {
+                fileWriter.write(line + NEWLINE);
+            } catch (IOException e) {
+                throw new IOException("Cannot write army name to file:" + e.getMessage());
+            }
+        }
     }
+
 }

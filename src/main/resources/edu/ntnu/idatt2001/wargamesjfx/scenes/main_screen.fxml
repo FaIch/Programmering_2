@@ -43,7 +43,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #031024;" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="backGround" prefHeight="462.0" prefWidth="1021.0" style="-fx-background-color: #031024;" stylesheets="@../css/Forest.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
+            <HBox fx:id="backGround" prefHeight="462.0" prefWidth="1021.0" style="-fx-background-color: #031024;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="462.0" prefWidth="258.0">
@@ -83,7 +83,7 @@
                               <HBox prefHeight="100.0" prefWidth="232.0">
                                  <children>
                                     <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets top="20.0" />
                                        </HBox.margin>

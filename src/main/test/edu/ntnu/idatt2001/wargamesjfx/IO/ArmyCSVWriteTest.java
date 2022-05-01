@@ -14,7 +14,7 @@ class ArmyCSVWriteTest {
 
     @Test
     void writeArmyToFile() {
-        Army army = new Army("Army1");
+        Army army = new Army("Human");
         ArrayList<Unit> testList = new ArrayList<>();
         testList.add(new CommanderUnit("Bob", 180));
         int i = 0;
@@ -29,7 +29,7 @@ class ArmyCSVWriteTest {
         }
         army.addAllUnits(testList);
         try {
-            ArmyCSVWrite.writeFile(army,new File("src/main/resources/Human.csv"));
+            ArmyCSVWrite.writeFile(army,new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/Human.csv"),false);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -40,20 +40,20 @@ class ArmyCSVWriteTest {
         Army army = new Army("WrongFileType");
         army.addUnit(new InfantryUnit("Roger",1));
         assertThrows(IOException.class, () -> ArmyCSVWrite.writeFile(army,
-                new File("src/main/resources/wrongFileType.txt")));
+                new File("src/main/resources/wrongFileType.txt"),false));
     }
 
     @Test
     void writeNullArmy() {
         Army army = null;
         assertThrows(IOException.class, () -> ArmyCSVWrite.writeFile(army,
-                new File("src/main/resources/nullArmy.csv")));
+                new File("src/main/resources/nullArmy.csv"),false));
     }
 
     @Test
     void writeWrongFilePath() {
         Army army = new Army("");
         assertThrows(IOException.class, () -> ArmyCSVWrite.writeFile(army,
-                new File("src/main/java/Battle/wrongFilePath.csv")));
+                new File("src/main/java/Battle/wrongFilePath.csv"),false));
     }
 }

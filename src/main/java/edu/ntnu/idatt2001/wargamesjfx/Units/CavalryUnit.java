@@ -1,4 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
+
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+
 /**
  * The type Cavalry unit.
  * Counter as a variable decides the attackBonus of the given unit, based on how many times the unit has attacked.
@@ -45,16 +48,23 @@ public class CavalryUnit extends Unit {
 
     /**
      * Method for attack bonus for CavalryUnits
-     * A cavalry unit will have an attack bonus of 6 on the first strike, afterwards it will be constant, at 2.
+     * A cavalry unit will have the highest attack bonus on the first strike, afterwards it will be constant.
+     * Attack bonus varies with terrain
      * @return the current attack bonus of the unit
      */
     @Override
     public int getAttackBonus() {
         int attackBonus = 0;
-        if (counter == 0){
+        if (counter == 0 && Battle.terrain.equals("Plains")){
+            attackBonus = 8;
+        }
+        else if (counter == 0){
             attackBonus = 6;
         }
-        else{
+        else if (Battle.terrain.equals("Plains")){
+            attackBonus = 4;
+        }
+        else {
             attackBonus = 2;
         }
         increaseCounter();
@@ -62,11 +72,14 @@ public class CavalryUnit extends Unit {
     }
 
     /**
-     * Resist bonus for this unit is constant, at 1.
+     * Resist bonus for this unit varies, in Forest it has no advantage
      * @return the resist bonus.
      */
     @Override
     public int getResistBonus() {
+        if (Battle.terrain.equals("Forest")){
+            return 0;
+        }
         return 1;
     }
 }

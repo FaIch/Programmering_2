@@ -40,7 +40,7 @@ public class ArmyCSVRead {
      * @return the army that is created upon reading the file
      * @throws IOException the io exceptions that are thrown if any of the operations fail.
      */
-    public Army readArmyFromCSV(File file) throws IOException {
+    public static Army readArmyFromCSV(File file) throws IOException {
         if (!file.getName().endsWith(".csv")) {
             throw new IOException("Only .csv files are supported");
         }
@@ -100,7 +100,7 @@ public class ArmyCSVRead {
         return army;
     }
 
-    public ArrayList<String> getArmies() {
+    public static ArrayList<String> getArmies() {
         ArrayList<String> returnList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
                 "wargamesjfx/files/allArmies.csv"))) {
@@ -115,7 +115,8 @@ public class ArmyCSVRead {
         }
         return returnList;
     }
-        public Army getExistingArmy(String armyName) {
+
+    public static Army getExistingArmy(String armyName) {
         Army returnArmy = null;
         try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
                 "wargamesjfx/files/allArmies.csv"))) {
@@ -132,5 +133,15 @@ public class ArmyCSVRead {
             e.printStackTrace();
         }
         return returnArmy;
+    }
+
+    public static boolean isNewArmy(Army army){
+        ArrayList<String> existingArmies = getArmies();
+        for (String existingArmy : existingArmies){
+            if (army.getName().equals(existingArmy)){
+                return false;
+            }
+        }
+        return true;
     }
 }

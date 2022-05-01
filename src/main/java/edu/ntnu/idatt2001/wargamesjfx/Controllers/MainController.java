@@ -85,7 +85,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void createNewArmy(ActionEvent event) throws IOException {
+    public void createNewArmy() throws IOException {
         ViewSwitcher.switchTo(View.NEWARMY);
     }
 }

@@ -1,5 +1,8 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+import javafx.scene.layout.Background;
+
 /**
  * The type Ranged unit.
  * Has a variable counter, used to determine what the resist bonus should be, based on how many times the unit has
@@ -43,13 +46,19 @@ public class RangedUnit extends Unit{
         counter++;
     }
 
+
     /**
-     * This unit has a constant attack bonus of 3.
+     * The attack bonus of this unit varies with terrain, advantage when attacking from Hill
+     * Disadvantage in Forest
      * @return the attack bonus of the unit
      */
     @Override
     public int getAttackBonus() {
-        return 3;
+        return switch (Battle.terrain) {
+            case "Forest" -> 1;
+            case "Hill" -> 5;
+            default -> 3;
+        };
     }
 
     /**

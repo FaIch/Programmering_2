@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+
 /**
  * The type Infantry unit.
  */
@@ -32,20 +34,26 @@ public class InfantryUnit extends Unit{
     }
 
     /**
-     * Static attack bonus of 2.
+     * bonus based on terrain, if terrain is Forest, increased bonus
      * @return The attack bonus of the unit
      */
     @Override
     public int getAttackBonus() {
+        if (Battle.terrain.equals("Forest")){
+            return 4;
+        }
         return 2;
     }
 
     /**
-     * Static resist bonus of 1.
+     * Resist bonus based on terrain, if terrain is Forest, increased bonus
      * @return the resist bonus of the unit.
      */
     @Override
     public int getResistBonus() {
+        if (Battle.terrain.equals("Forest")){
+            return 3;
+        }
         return 1;
     }
 

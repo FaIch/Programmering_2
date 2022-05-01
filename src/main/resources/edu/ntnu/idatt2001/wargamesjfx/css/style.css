@@ -1,0 +1,6 @@
+.jfx-button {
+    -fx-background-color: #222E44;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}

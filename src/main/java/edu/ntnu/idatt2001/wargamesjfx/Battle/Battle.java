@@ -7,7 +7,7 @@ import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 public class Battle {
     private final Army armyOne;
     private final Army armyTwo;
-
+    public static String terrain;
     /**
      * Instantiates a new Battle.
      *
@@ -15,7 +15,7 @@ public class Battle {
      * @param armyTwo the army two
      * @throws IllegalArgumentException if any of the armies are empty upon instantiation.
      */
-    public Battle(Army armyOne, Army armyTwo) throws IllegalArgumentException {
+    public Battle(Army armyOne, Army armyTwo, String terrain) throws IllegalArgumentException {
         if (!armyOne.hasUnits()){
             throw new IllegalArgumentException(armyOne.getName() + " has no units");
         }
@@ -25,6 +25,7 @@ public class Battle {
         else {
             this.armyOne = armyOne;
             this.armyTwo = armyTwo;
+            Battle.terrain = terrain;
         }
     }
 
@@ -79,6 +80,8 @@ public class Battle {
             System.out.println(e.getMessage());
         }
     }
+
+
 
 
     @Override
