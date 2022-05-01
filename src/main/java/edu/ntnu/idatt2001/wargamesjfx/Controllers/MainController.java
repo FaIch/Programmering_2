@@ -30,14 +30,12 @@ public class MainController implements Initializable {
     @FXML Label army1Ran;
     @FXML Label army1Cav;
     @FXML Label army1Com;
-    @FXML Label army1Dead;
     @FXML Label army2Name;
     @FXML Label army2Total;
     @FXML Label army2Inf;
     @FXML Label army2Ran;
     @FXML Label army2Cav;
     @FXML Label army2Com;
-    @FXML Label army2Dead;
     @FXML Button fight;
     @FXML Button reset;
 
@@ -53,32 +51,22 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void loadArmy1() throws IOException {
+    void loadArmy1() throws IOException {
         String armyChosen = existingArmies1.getValue().toString();
         armyOne = reader.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
                 "files/" + armyChosen + ".csv"));
-        army1Name.setText(armyOne.getName());
-        army1Total.setText(String.valueOf(armyOne.getNumberOfUnits()));
-        army1Inf.setText(String.valueOf(armyOne.getInfantryUnits().size()));
-        army1Ran.setText(String.valueOf(armyOne.getRangedUnits().size()));
-        army1Cav.setText(String.valueOf(armyOne.getCavalryUnits().size()));
-        army1Com.setText(String.valueOf(armyOne.getCommanderUnits().size()));
+        setTeamOneStats();
         if (armyTwo != null && terrain.getValue() != null){
             fight.setDisable(false);
         }
     }
 
     @FXML
-    public void loadArmy2() throws IOException {
+    void loadArmy2() throws IOException {
         String armyChosen = existingArmies2.getValue().toString();
         armyTwo = reader.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
                 "files/" + armyChosen + ".csv"));
-        army2Name.setText(armyTwo.getName());
-        army2Total.setText(String.valueOf(armyTwo.getNumberOfUnits()));
-        army2Inf.setText(String.valueOf(armyTwo.getInfantryUnits().size()));
-        army2Ran.setText(String.valueOf(armyTwo.getRangedUnits().size()));
-        army2Cav.setText(String.valueOf(armyTwo.getCavalryUnits().size()));
-        army2Com.setText(String.valueOf(armyTwo.getCommanderUnits().size()));
+        setTeamTwoStats();
         if (armyOne != null && terrain.getValue() != null){
             fight.setDisable(false);
         }
@@ -87,5 +75,41 @@ public class MainController implements Initializable {
     @FXML
     public void createNewArmy() throws IOException {
         ViewSwitcher.switchTo(View.NEWARMY);
+    }
+
+    @FXML
+    void fight(){
+        Battle battle = new Battle(armyOne,armyTwo,terrain.getValue().toString());
+        battle.simulate();
+        setTeamOneStats();
+        setTeamTwoStats();
+        fight.setDisable(true);
+        reset.setDisable(false);
+    }
+
+    @FXML
+    void reset() throws IOException {
+        loadArmy1();
+        loadArmy2();
+        fight.setDisable(false);
+        reset.setDisable(true);
+    }
+
+    private void setTeamOneStats(){
+        army1Name.setText(armyOne.getName());
+        army1Total.setText(String.valueOf(armyOne.getNumberOfUnits()));
+        army1Inf.setText(String.valueOf(armyOne.getInfantryUnits().size()));
+        army1Ran.setText(String.valueOf(armyOne.getRangedUnits().size()));
+        army1Cav.setText(String.valueOf(armyOne.getCavalryUnits().size()));
+        army1Com.setText(String.valueOf(armyOne.getCommanderUnits().size()));
+    }
+
+    private void setTeamTwoStats(){
+        army2Name.setText(armyTwo.getName());
+        army2Total.setText(String.valueOf(armyTwo.getNumberOfUnits()));
+        army2Inf.setText(String.valueOf(armyTwo.getInfantryUnits().size()));
+        army2Ran.setText(String.valueOf(armyTwo.getRangedUnits().size()));
+        army2Cav.setText(String.valueOf(armyTwo.getCavalryUnits().size()));
+        army2Com.setText(String.valueOf(armyTwo.getCommanderUnits().size()));
     }
 }

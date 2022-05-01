@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1187.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.MainController">
    <top>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="1187.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="91.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: #101100; -fx-border-color: black;">
+                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: black; -fx-border-color: black;">
                      <children>
                         <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS" />
                         <VBox prefHeight="100.0" prefWidth="245.0">
@@ -41,59 +41,43 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #031024;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #222E44;" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="backGround" prefHeight="462.0" prefWidth="1021.0" style="-fx-background-color: #031024;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
+            <HBox fx:id="backGround" prefHeight="462.0" prefWidth="1021.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
                <children>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="462.0" prefWidth="258.0">
                      <children>
                         <Pane prefHeight="0.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
-                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
+                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: #D3D2D4;" VBox.vgrow="NEVER">
                            <children>
-                              <Label fx:id="army1Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY1" textAlignment="CENTER" textFill="WHITE">
+                              <Label fx:id="army1Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" styleClass="jfx-label" text="ARMY1" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Total units:" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
-                              <Label fx:id="army1Inf" alignment="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Total" alignment="CENTER" layoutX="2.0" layoutY="60.0" prefHeight="17.0" prefWidth="231.0" text="0" textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Infantry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Ranged units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Cavalry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Commander units:" textFill="WHITE" />
+                              <Label fx:id="army1Inf" alignment="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
+                              <Label fx:id="army1Total" alignment="CENTER" layoutX="2.0" layoutY="60.0" prefHeight="17.0" prefWidth="231.0" styleClass="jfx-label" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="army1Ran" alignment="CENTER" layoutY="145.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Dead" alignment="CENTER" layoutY="262.0" prefWidth="232.0" text="0" textFill="WHITE" />
+                              <Label fx:id="army1Ran" alignment="CENTER" layoutY="145.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
+                              <Label fx:id="army1Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
+                              <Label fx:id="army1Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
                            </children>
                         </Pane>
                         <VBox prefWidth="232.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets top="20.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
                               <HBox prefHeight="100.0" prefWidth="232.0">
                                  <children>
                                     <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
@@ -112,6 +96,9 @@
                                     </Button>
                                     <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>
@@ -139,7 +126,7 @@
                         <HBox prefHeight="34.0" prefWidth="209.0">
                            <children>
                               <Pane prefHeight="100.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="fight" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="FIGHT" textFill="WHITE">
+                              <Button fx:id="fight" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#fight" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="FIGHT" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -156,7 +143,7 @@
                         <HBox prefHeight="41.0" prefWidth="209.0">
                            <children>
                               <Pane prefHeight="68.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="reset" alignment="CENTER" disable="true" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="RESET" textFill="WHITE">
+                              <Button fx:id="reset" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#reset" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="RESET" textFill="WHITE">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -167,61 +154,48 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <Pane prefHeight="200.0" prefWidth="209.0" VBox.vgrow="ALWAYS" />
+                        <Pane prefHeight="200.0" prefWidth="209.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="createNewArmy" layoutX="51.0" layoutY="194.0" mnemonicParsing="false" style="-fx-background-color: #941d1d;" text="Create new Army" textFill="WHITE" />
+                           </children></Pane>
                      </children>
                   </VBox>
                   <VBox prefHeight="462.0" prefWidth="258.0">
                      <children>
                         <Pane prefHeight="0.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
-                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
+                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: #D3D2D4;" VBox.vgrow="NEVER">
                            <children>
-                              <Label fx:id="army2Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY2" textAlignment="CENTER" textFill="WHITE">
+                              <Label fx:id="army2Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY2" textAlignment="CENTER" textFill="#222e44">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
+                              <Label alignment="CENTER" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Total units:" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
-                              <Label fx:id="army2Total" alignment="CENTER" layoutY="60.0" prefHeight="21.0" prefWidth="232.0" text="0" textFill="WHITE">
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Infantry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Ranged units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Cavalry units:" textFill="WHITE" />
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="Commander units:" textFill="WHITE" />
+                              <Label fx:id="army2Total" alignment="CENTER" layoutY="60.0" prefHeight="21.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="army2Inf" alignment="CENTER" contentDisplay="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE">
+                              <Label fx:id="army2Inf" alignment="CENTER" contentDisplay="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="army2Ran" alignment="CENTER" layoutY="142.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Dead" alignment="CENTER" layoutY="262.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
+                              <Label fx:id="army2Ran" alignment="CENTER" layoutY="142.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
+                              <Label fx:id="army2Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
+                              <Label fx:id="army2Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" styleClass="jfx-label" text="0" textFill="WHITE" />
                            </children>
                         </Pane>
                         <VBox VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets top="20.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
                               <HBox prefHeight="100.0" prefWidth="232.0">
                                  <children>
                                     <Pane prefHeight="100.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
@@ -230,7 +204,7 @@
                                           <Insets right="5.0" />
                                        </HBox.margin>
                                     </ChoiceBox>
-                                    <Button mnemonicParsing="false" onAction="#loadArmy2" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Load Army " textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#loadArmy2" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" styleClass="jfx-button" text="Load Army " textFill="WHITE">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -240,6 +214,9 @@
                                     </Button>
                                     <Pane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>

@@ -144,8 +144,8 @@ public class Army {
 
     public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn)throws IllegalArgumentException{
         ArrayList<Unit> returnList = new ArrayList<>();
-        if (unitsIn.isEmpty()){
-            throw new IllegalArgumentException("List can not be empty");
+        if (unitsIn == null){
+            throw new IllegalArgumentException("List can not be null");
         }
         else {
             for (Unit unit : unitsIn) {

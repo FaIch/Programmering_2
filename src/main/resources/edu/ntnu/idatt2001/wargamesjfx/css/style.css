@@ -4,3 +4,7 @@
     -fx-background-insets: 0;
     -fx-text-fill: white;
 }
+
+.jfx-label {
+    -fx-text-fill : #222E44;
+}

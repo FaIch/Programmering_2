@@ -18,30 +18,34 @@
          <children>
             <VBox prefHeight="85.0" prefWidth="1109.0" AnchorPane.bottomAnchor="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox prefHeight="256.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: black;" VBox.vgrow="NEVER">
+                  <VBox VBox.vgrow="NEVER">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
-                        <VBox prefHeight="69.0" prefWidth="527.0" HBox.hgrow="NEVER">
+                        <HBox prefHeight="256.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: black;" VBox.vgrow="NEVER">
                            <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
-                              <Label text="CREATE NEW ARMY" textFill="WHITE" VBox.vgrow="NEVER">
-                                 <font>
-                                    <Font name="Times New Roman" size="40.0" />
-                                 </font>
-                              </Label>
-                              <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
+                              <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
+                              <VBox prefHeight="69.0" prefWidth="527.0" HBox.hgrow="NEVER">
+                                 <children>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
+                                    <Label text="CREATE NEW ARMY" textFill="WHITE" VBox.vgrow="NEVER">
+                                       <font>
+                                          <Font name="Times New Roman" size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
+                                 </children>
+                              </VBox>
+                              <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
                            </children>
-                        </VBox>
-                        <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
             <HBox layoutY="85.0" prefHeight="611.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="1200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Pane prefHeight="66.0" prefWidth="1109.0" VBox.vgrow="NEVER" />
+                        <Pane prefHeight="100.0" prefWidth="1109.0" VBox.vgrow="ALWAYS" />
                         <HBox prefHeight="430.0" prefWidth="1109.0" style="-fx-background-color: #D3D2D4;">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #222E44;" HBox.hgrow="ALWAYS" />
@@ -133,6 +137,7 @@
                               <Pane prefHeight="430.0" prefWidth="251.0" style="-fx-background-color: #222E44;" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
+                        <Pane prefHeight="100.0" prefWidth="1109.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
