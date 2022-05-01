@@ -14,38 +14,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.CreateNewArmyController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #222E44;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="498.0" prefWidth="1109.0" style="-fx-background-color: #222E44;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="85.0" prefWidth="1109.0" AnchorPane.bottomAnchor="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox layoutY="-1.0" prefHeight="606.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox VBox.vgrow="NEVER">
+                  <VBox prefHeight="556.0" prefWidth="1109.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="256.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: black;" VBox.vgrow="NEVER">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
-                              <VBox prefHeight="69.0" prefWidth="527.0" HBox.hgrow="NEVER">
-                                 <children>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
-                                    <Label text="CREATE NEW ARMY" textFill="WHITE" VBox.vgrow="NEVER">
-                                       <font>
-                                          <Font name="Times New Roman" size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="NEVER" />
-                                 </children>
-                              </VBox>
-                              <Pane prefHeight="200.0" prefWidth="500.0" HBox.hgrow="ALWAYS" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <HBox layoutY="85.0" prefHeight="611.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="1200.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Pane prefHeight="100.0" prefWidth="1109.0" VBox.vgrow="ALWAYS" />
+                        <Pane prefHeight="100.0" prefWidth="1109.0" VBox.vgrow="NEVER" />
                         <HBox prefHeight="430.0" prefWidth="1109.0" style="-fx-background-color: #D3D2D4;">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #222E44;" HBox.hgrow="ALWAYS" />
@@ -111,7 +86,8 @@
                                        </cursor>
                                        <font>
                                           <Font size="15.0" />
-                                       </font></Button>
+                                       </font>
+                                    </Button>
                                     <Button fx:id="yesButton" disable="true" layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#onYesButtonPressed" prefHeight="25.0" prefWidth="51.0" styleClass="jfx-button" text="Yes" visible="false">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
@@ -127,7 +103,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="476.0" layoutY="391.0" mnemonicParsing="false" onAction="#setMainScreen" prefHeight="31.0" prefWidth="89.0" styleClass="jfx-button" text="Done">
+                                    <Button layoutX="476.0" layoutY="377.0" mnemonicParsing="false" onAction="#setMainScreen" prefHeight="31.0" prefWidth="89.0" styleClass="jfx-button" text="Done">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -144,4 +120,31 @@
             </HBox>
          </children></AnchorPane>
    </center>
+   <top>
+      <AnchorPane minWidth="-Infinity" prefHeight="91.0" prefWidth="1109.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="91.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: black; -fx-border-color: black;" VBox.vgrow="NEVER">
+                     <children>
+                        <Pane prefHeight="85.0" prefWidth="446.0" HBox.hgrow="ALWAYS" />
+                        <VBox prefHeight="89.0" prefWidth="491.0">
+                           <children>
+                              <Pane prefHeight="100.0" prefWidth="444.0" VBox.vgrow="ALWAYS" />
+                              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="1000.0" text="CREATE NEW ARMY" textFill="WHITE">
+                                 <font>
+                                    <Font name="Times New Roman" size="40.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="100.0" prefWidth="513.0" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="85.0" prefWidth="446.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>

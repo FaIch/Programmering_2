@@ -60,8 +60,8 @@ class BattleTest {
         Army armyOne = new Army("Boys");
         Army armyTwo = new Army("Girls");
 
-        armyOne.addUnit(GetUnitFactory.getUnit(UnitType.RANGED,"Gutten",100));
-        armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.INFANTRY,"Jenta",100,4));
+        armyOne.addUnit(GetUnitFactory.getUnit(UnitType.RangedUnit,"Gutten",100));
+        armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit,"Jenta",100,4));
 
         Battle testBattle = new Battle(armyOne,armyTwo,"Plains");
         assertEquals(1000,armyOne.getRandomUnit().getAttackBonus());

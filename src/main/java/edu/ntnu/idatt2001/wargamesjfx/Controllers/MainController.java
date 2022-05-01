@@ -1,18 +1,17 @@
 package edu.ntnu.idatt2001.wargamesjfx.Controllers;
 
-import com.dlsc.formsfx.model.validators.StringLengthValidator;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.*;
 import edu.ntnu.idatt2001.wargamesjfx.IO.*;
-import edu.ntnu.idatt2001.wargamesjfx.WarGames;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,6 @@ public class MainController implements Initializable {
     @FXML ChoiceBox terrain;
     @FXML ChoiceBox existingArmies1;
     @FXML ChoiceBox existingArmies2;
-    @FXML HBox backGround;
     @FXML Label army1Name;
     @FXML Label army1Total;
     @FXML Label army1Inf;
@@ -38,38 +36,62 @@ public class MainController implements Initializable {
     @FXML Label army2Com;
     @FXML Button fight;
     @FXML Button reset;
+    @FXML Label pathArmy1;
+    @FXML Label pathArmy2;
 
+    private Stage stage;
     private Army armyOne;
     private Army armyTwo;
-    private ArmyCSVRead reader = new ArmyCSVRead();
+    private FileChooser fileChooser = new FileChooser();
+    private String path1;
+    private String path2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         terrain.getItems().addAll("Hill", "Plains", "Forest", "Random");
-        existingArmies1.getItems().addAll(reader.getArmies());
-        existingArmies2.getItems().addAll(reader.getArmies());
+        existingArmies1.getItems().addAll(ArmyCSVRead.getArmies());
+        existingArmies2.getItems().addAll(ArmyCSVRead.getArmies());
     }
 
+
     @FXML
-    void loadArmy1() throws IOException {
+    void chooseExistingArmy1() throws IOException {
         String armyChosen = existingArmies1.getValue().toString();
-        armyOne = reader.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                "files/" + armyChosen + ".csv"));
-        setTeamOneStats();
-        if (armyTwo != null && terrain.getValue() != null){
-            fight.setDisable(false);
-        }
+        File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                "files/" + armyChosen + ".csv");
+        armyOne = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyOneStats();
+        path1 = file.getAbsolutePath();
+        pathArmy1.setText(path1);
     }
 
     @FXML
-    void loadArmy2() throws IOException {
+    void chooseExistingArmy2() throws IOException {
         String armyChosen = existingArmies2.getValue().toString();
-        armyTwo = reader.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                "files/" + armyChosen + ".csv"));
-        setTeamTwoStats();
-        if (armyOne != null && terrain.getValue() != null){
-            fight.setDisable(false);
-        }
+        File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                "files/" + armyChosen + ".csv");
+        armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyTwoStats();
+        path2 = file.getAbsolutePath();
+        pathArmy2.setText(path2);
+    }
+
+    @FXML
+    void loadArmyFromFile1() throws IOException {
+        File file = fileChooser.showOpenDialog(stage);
+        armyOne = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyOneStats();
+        path1 = file.getAbsolutePath();
+        pathArmy1.setText(path1);
+    }
+
+    @FXML
+    void loadArmyFromFile2() throws IOException {
+        File file = fileChooser.showOpenDialog(stage);
+        armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyTwoStats();
+        path2 = file.getAbsolutePath();
+        pathArmy2.setText(path2);
     }
 
     @FXML
@@ -79,23 +101,40 @@ public class MainController implements Initializable {
 
     @FXML
     void fight(){
+        if (armyOne == null || armyTwo == null){
+
+        }
         Battle battle = new Battle(armyOne,armyTwo,terrain.getValue().toString());
         battle.simulate();
-        setTeamOneStats();
-        setTeamTwoStats();
+        setArmyOneStats();
+        setArmyTwoStats();
         fight.setDisable(true);
         reset.setDisable(false);
     }
 
     @FXML
+    void setArmy1FromPath() throws IOException {
+        File file = new File(path1);
+        armyOne = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyOneStats();
+    }
+
+    @FXML
+    void setArmy2FromPath() throws IOException {
+        File file = new File(path2);
+        armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+        setArmyTwoStats();
+    }
+
+    @FXML
     void reset() throws IOException {
-        loadArmy1();
-        loadArmy2();
+        setArmy1FromPath();
+        setArmy2FromPath();
         fight.setDisable(false);
         reset.setDisable(true);
     }
 
-    private void setTeamOneStats(){
+    private void setArmyOneStats(){
         army1Name.setText(armyOne.getName());
         army1Total.setText(String.valueOf(armyOne.getNumberOfUnits()));
         army1Inf.setText(String.valueOf(armyOne.getInfantryUnits().size()));
@@ -104,7 +143,7 @@ public class MainController implements Initializable {
         army1Com.setText(String.valueOf(armyOne.getCommanderUnits().size()));
     }
 
-    private void setTeamTwoStats(){
+    private void setArmyTwoStats(){
         army2Name.setText(armyTwo.getName());
         army2Total.setText(String.valueOf(armyTwo.getNumberOfUnits()));
         army2Inf.setText(String.valueOf(armyTwo.getInfantryUnits().size()));

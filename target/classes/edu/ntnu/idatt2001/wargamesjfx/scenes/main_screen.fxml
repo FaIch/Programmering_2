@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -12,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1109.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.MainController">
    <top>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="1187.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="85.0" prefWidth="1109.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="91.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: #101100; -fx-border-color: black;">
+                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: black; -fx-border-color: black;">
                      <children>
                         <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS" />
-                        <VBox prefHeight="100.0" prefWidth="245.0">
+                        <VBox prefHeight="83.0" prefWidth="264.0">
                            <children>
                               <Pane prefHeight="100.0" prefWidth="444.0" VBox.vgrow="ALWAYS" />
                               <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="251.0" text="WARGAMES" textFill="WHITE">
@@ -41,211 +40,219 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #031024;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="backGround" prefHeight="462.0" prefWidth="1021.0" style="-fx-background-color: #031024;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="61.0">
+            <HBox prefHeight="100.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <VBox prefHeight="462.0" prefWidth="258.0">
+                  <VBox prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
                      <children>
-                        <Pane prefHeight="0.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
-                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
-                           <children>
-                              <Label fx:id="army1Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY1" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
-                              <Label fx:id="army1Inf" alignment="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Total" alignment="CENTER" layoutX="2.0" layoutY="60.0" prefHeight="17.0" prefWidth="231.0" text="0" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="army1Ran" alignment="CENTER" layoutY="145.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army1Dead" alignment="CENTER" layoutY="262.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                           </children>
-                        </Pane>
-                        <VBox prefWidth="232.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets top="20.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="195.0">
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ChoiceBox>
-                                    <Button mnemonicParsing="false" onAction="#loadArmy1" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Load Army" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="462.0" prefWidth="235.0" HBox.hgrow="NEVER">
-                     <children>
-                        <Pane prefHeight="0.0" prefWidth="209.0" VBox.vgrow="ALWAYS" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <VBox>
-                                 <children>
-                                    <Label text="Choose terrain" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial" size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <ChoiceBox fx:id="terrain" prefWidth="150.0" />
-                                 </children>
-                              </VBox>
-                              <Pane prefHeight="64.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="34.0" prefWidth="209.0">
-                           <children>
-                              <Pane prefHeight="100.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="fight" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#fight" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="FIGHT" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                           </children>
+                        <Label fx:id="army1Name" prefWidth="303.0" text="ARMY NAME">
+                           <font>
+                              <Font name="Times New Roman" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="Total Units:">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets top="30.0" />
                            </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="41.0" prefWidth="209.0">
-                           <children>
-                              <Pane prefHeight="68.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="reset" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#reset" prefWidth="100.0" style="-fx-background-color: #941d1d;" text="RESET" textFill="WHITE">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Pane prefHeight="68.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
-                           </children>
+                        </Label>
+                        <Label fx:id="army1Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label text="Infantry Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Ranged Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Cavalry Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Commander Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="27.0" prefWidth="303.0">
+                           <children>
+                              <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" />
+                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy1" prefHeight="25.0" prefWidth="148.0" text="Load existing army">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
                         </HBox>
-                        <Pane prefHeight="200.0" prefWidth="209.0" VBox.vgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile1" prefHeight="25.0" prefWidth="155.0" text="Load army from file">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="pathArmy1" text="Path: ">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="462.0" prefWidth="258.0">
+                  <VBox prefHeight="200.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Pane prefHeight="0.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
-                        <Pane prefHeight="350.0" prefWidth="232.0" style="-fx-background-color: BLACK;" VBox.vgrow="NEVER">
-                           <children>
-                              <Label fx:id="army2Name" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="231.0" text="ARMY2" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="17.0" prefWidth="232.0" text="Total units:" textFill="WHITE">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="85.0" prefHeight="17.0" prefWidth="232.0" text="Infantry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="125.0" prefHeight="17.0" prefWidth="232.0" text="Ranged units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutY="165.0" prefHeight="17.0" prefWidth="232.0" text="Cavalry units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="205.0" prefHeight="17.0" prefWidth="232.0" text="Commander units:" textFill="WHITE" />
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="245.0" prefHeight="17.0" prefWidth="232.0" text="Dead units:" textFill="WHITE" />
-                              <Label fx:id="army2Total" alignment="CENTER" layoutY="60.0" prefHeight="21.0" prefWidth="232.0" text="0" textFill="WHITE">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="army2Inf" alignment="CENTER" contentDisplay="CENTER" layoutY="102.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="army2Ran" alignment="CENTER" layoutY="142.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Cav" alignment="CENTER" layoutY="182.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Com" alignment="CENTER" layoutY="222.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                              <Label fx:id="army2Dead" alignment="CENTER" layoutY="262.0" prefHeight="17.0" prefWidth="232.0" text="0" textFill="WHITE" />
-                           </children>
-                        </Pane>
-                        <VBox VBox.vgrow="ALWAYS">
-                           <children>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="61.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Create new army" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets top="20.0" />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="52.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="232.0">
-                                 <children>
-                                    <Pane prefHeight="100.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                    <ChoiceBox fx:id="existingArmies2" prefWidth="195.0">
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </ChoiceBox>
-                                    <Button mnemonicParsing="false" onAction="#loadArmy2" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #941d1d;" text="Load Army " textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Pane prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#createNewArmy" text="Create new Army" />
+                        <Button fx:id="fight" mnemonicParsing="false" onAction="#fight" text="Fight" />
+                        <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" text="Reset" />
+                        <ChoiceBox fx:id="terrain" prefWidth="150.0" />
                      </children>
                   </VBox>
-                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Label fx:id="army2Name" alignment="CENTER_RIGHT" prefWidth="303.0" text="ARMY NAME">
+                           <font>
+                              <Font name="Times New Roman" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" text="Total Units:">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label text="Infantry Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Ranged Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Cavalry Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Commander Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="27.0" prefWidth="271.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
+                              <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" />
+                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy2" prefHeight="25.0" prefWidth="148.0" text="Load existing army">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile2" prefHeight="25.0" prefWidth="155.0" text="Load army from file">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="pathArmy2" text="Path:">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>

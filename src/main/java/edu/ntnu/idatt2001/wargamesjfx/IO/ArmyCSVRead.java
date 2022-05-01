@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.wargamesjfx.IO;
 
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.io.File;
@@ -68,25 +69,26 @@ public class ArmyCSVRead {
                     throw new IOException("Health must be integer");
                 }
                 String type = values[0];
+                UnitType unitType = UnitType.valueOf(type);
                 String name = values[1];
 
                 boolean existingType = false;
                 Unit unit = null;
 
-                switch (type) {
-                    case "InfantryUnit" -> {
+                switch (unitType) {
+                    case InfantryUnit -> {
                         unit = new InfantryUnit(name, health);
                         existingType = true;
                     }
-                    case "RangedUnit" -> {
+                    case RangedUnit -> {
                         unit = new RangedUnit(name, health);
                         existingType = true;
                     }
-                    case "CavalryUnit" -> {
+                    case CavalryUnit -> {
                         unit = new CavalryUnit(name, health);
                         existingType = true;
                     }
-                    case "CommanderUnit" -> {
+                    case CommanderUnit -> {
                         unit = new CommanderUnit(name, health);
                         existingType = true;
                     }
