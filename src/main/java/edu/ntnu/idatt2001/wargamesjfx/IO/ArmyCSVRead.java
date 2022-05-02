@@ -6,7 +6,6 @@ import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -77,19 +76,19 @@ public class ArmyCSVRead {
 
                 switch (unitType) {
                     case InfantryUnit -> {
-                        unit = new InfantryUnit(name, health);
+                        unit = new InfantryUnit(name);
                         existingType = true;
                     }
                     case RangedUnit -> {
-                        unit = new RangedUnit(name, health);
+                        unit = new RangedUnit(name);
                         existingType = true;
                     }
                     case CavalryUnit -> {
-                        unit = new CavalryUnit(name, health);
+                        unit = new CavalryUnit(name);
                         existingType = true;
                     }
                     case CommanderUnit -> {
-                        unit = new CommanderUnit(name, health);
+                        unit = new CommanderUnit(name);
                         existingType = true;
                     }
                 }

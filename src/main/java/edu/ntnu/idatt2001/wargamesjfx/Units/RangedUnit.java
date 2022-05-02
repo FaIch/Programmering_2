@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
-import javafx.scene.layout.Background;
 
 /**
  * The type Ranged unit.
@@ -29,12 +28,11 @@ public class RangedUnit extends Unit{
      * Instantiates a new Ranged unit.
      * Constructor 2
      * Constructor there the attack and armor of the unit is predetermined
+     *  @param name   the name of the unit set by user
      *
-     * @param name   the name of the unit set by user
-     * @param health the health of the unit set by user
      */
-    public RangedUnit(String name, int health){
-        super(name, health, 15, 8);
+    public RangedUnit(String name){
+        super(name, 100, 15, 8);
     }
 
     /**

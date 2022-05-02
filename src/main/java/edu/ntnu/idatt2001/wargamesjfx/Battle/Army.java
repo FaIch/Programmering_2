@@ -151,14 +151,14 @@ public class Army {
             for (Unit unit : unitsIn) {
                 try {
                     if (unit instanceof InfantryUnit) {
-                        returnList.add(new InfantryUnit(unit.getName(), unit.getHealth()));
+                        returnList.add(new InfantryUnit(unit.getName()));
                     } else if (unit instanceof RangedUnit) {
-                        returnList.add(new RangedUnit(unit.getName(), unit.getHealth()));
+                        returnList.add(new RangedUnit(unit.getName()));
                     } else if (unit instanceof CavalryUnit) {
                         if (unit instanceof CommanderUnit) {
-                            returnList.add(new CommanderUnit(unit.getName(), unit.getHealth()));
+                            returnList.add(new CommanderUnit(unit.getName()));
                         } else {
-                            returnList.add(new CavalryUnit(unit.getName(), unit.getHealth()));
+                            returnList.add(new CavalryUnit(unit.getName()));
                         }
                     }
                 } catch (IllegalArgumentException e) {

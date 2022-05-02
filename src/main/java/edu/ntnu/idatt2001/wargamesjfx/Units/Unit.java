@@ -111,5 +111,4 @@ public abstract class Unit {
      * @return the resist bonus of the unit
      */
     public abstract int getResistBonus();
-
 }

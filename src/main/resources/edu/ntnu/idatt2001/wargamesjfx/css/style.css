@@ -8,3 +8,7 @@
 .jfx-label {
     -fx-text-fill : #222E44;
 }
+
+.image {
+    -fx-background-radius: 50;
+}

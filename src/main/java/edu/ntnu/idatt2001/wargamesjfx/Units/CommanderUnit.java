@@ -22,11 +22,10 @@ public class CommanderUnit extends CavalryUnit{
      * Instantiates a new Commander unit.
      * Constructor 2
      * Inherits methods from CavalryUnit
+     *  @param name   the name
      *
-     * @param name   the name
-     * @param health the health
      */
-    public CommanderUnit(String name, int health) {
-        super(name, health, 25, 15);
+    public CommanderUnit(String name) {
+        super(name, 180, 15, 8);
     }
 }

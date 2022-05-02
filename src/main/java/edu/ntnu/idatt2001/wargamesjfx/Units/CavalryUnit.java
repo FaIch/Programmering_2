@@ -30,12 +30,11 @@ public class CavalryUnit extends Unit {
      * Inherits methods
      * Constructor that will see most use, where the user decides name and health of unit
      * and the attack and armor stats are already defined
+     *  @param name   the name of the unit
      *
-     * @param name   the name of the unit
-     * @param health the health of the unit
      */
-    public CavalryUnit(String name, int health){
-        super(name, health, 20,12);
+    public CavalryUnit(String name){
+        super(name, 100,20,12);
     }
 
     /**

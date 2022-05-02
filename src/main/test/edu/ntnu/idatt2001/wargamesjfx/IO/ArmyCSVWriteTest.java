@@ -16,16 +16,16 @@ class ArmyCSVWriteTest {
     void writeArmyToFile() {
         Army army = new Army("Human");
         ArrayList<Unit> testList = new ArrayList<>();
-        testList.add(new CommanderUnit("Bob", 180));
+        testList.add(new CommanderUnit("Bob"));
         int i = 0;
         for (i = 0; i < 50; i++) {
-            testList.add(new InfantryUnit("Footman", 100));
+            testList.add(new InfantryUnit("Footman"));
         }
         for (i = 0; i < 20; i++) {
-            testList.add(new RangedUnit("Archer", 100));
+            testList.add(new RangedUnit("Archer"));
         }
         for (i = 0; i < 5; i++) {
-            testList.add(new CavalryUnit("Chad", 100));
+            testList.add(new CavalryUnit("Chad"));
         }
         army.addAllUnits(testList);
         try {
@@ -38,7 +38,7 @@ class ArmyCSVWriteTest {
     @Test
     void writeWrongFileType() {
         Army army = new Army("WrongFileType");
-        army.addUnit(new InfantryUnit("Roger",1));
+        army.addUnit(new InfantryUnit("Roger"));
         assertThrows(IOException.class, () -> ArmyCSVWrite.writeFile(army,
                 new File("src/main/resources/wrongFileType.txt"),false));
     }

@@ -9,10 +9,10 @@ public class GetUnitFactory {
     public static Unit getUnit(UnitType unitType, String name, int health){
         Unit returnUnit = null;
         switch (unitType){
-            case InfantryUnit -> returnUnit = new InfantryUnit(name,health);
-            case RangedUnit -> returnUnit = new RangedUnit(name,health);
-            case CavalryUnit -> returnUnit = new CavalryUnit(name,health);
-            case CommanderUnit -> returnUnit = new CommanderUnit(name,health);
+            case InfantryUnit -> returnUnit = new InfantryUnit(name);
+            case RangedUnit -> returnUnit = new RangedUnit(name);
+            case CavalryUnit -> returnUnit = new CavalryUnit(name);
+            case CommanderUnit -> returnUnit = new CommanderUnit(name);
         }
         return returnUnit;
     }

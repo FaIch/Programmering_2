@@ -13,7 +13,7 @@ class BattleTest {
     void battleWithNoUnitsThrowsException(){
         Army emptyArmy = new Army("EmptyArmy");
         Army army = new Army("Army");
-        army.addUnit(new InfantryUnit("",1));
+        army.addUnit(new InfantryUnit(""));
         assertThrows(IllegalArgumentException.class, () ->{
             Battle dummyBattle = new Battle(army,emptyArmy,"");
         });
@@ -24,8 +24,8 @@ class BattleTest {
     void certainWinner() {
         Army loser = new Army("Loser");
         Army winner = new Army("Winner");
-        loser.addUnit(new InfantryUnit("",1));
-        winner.addUnit(new InfantryUnit("",1));
+        loser.addUnit(new InfantryUnit(""));
+        winner.addUnit(new InfantryUnit(""));
         Battle testBattle = new Battle(winner,loser,"");
         Unit randomUnit = loser.getRandomUnit();
         loser.removeUnit(randomUnit);
@@ -36,20 +36,20 @@ class BattleTest {
     void battleTest(){
         Army humanArmy = new Army("Human Army");
         Army orcArmy = new Army("Orc Army");
-        humanArmy.addUnit(new CommanderUnit("Anduin",180));
-        orcArmy.addUnit(new CommanderUnit("Garrosh",180));
+        humanArmy.addUnit(new CommanderUnit("Anduin"));
+        orcArmy.addUnit(new CommanderUnit("Garrosh"));
         int i;
         for (i = 0; i < 200; i++){
-            humanArmy.addUnit(new InfantryUnit("Footman",100));
-            orcArmy.addUnit(new InfantryUnit("Grunt",100));
+            humanArmy.addUnit(new InfantryUnit("Footman"));
+            orcArmy.addUnit(new InfantryUnit("Grunt"));
         }
         for (i = 0; i < 100; i++){
-            humanArmy.addUnit(new RangedUnit("Archer",100));
-            orcArmy.addUnit(new RangedUnit("Thrower",100));
+            humanArmy.addUnit(new RangedUnit("Archer"));
+            orcArmy.addUnit(new RangedUnit("Thrower"));
         }
         for (i = 0; i < 20; i++){
-            humanArmy.addUnit(new CavalryUnit("Knight", 100));
-            orcArmy.addUnit(new CavalryUnit("Hog rider",100));
+            humanArmy.addUnit(new CavalryUnit("Knight"));
+            orcArmy.addUnit(new CavalryUnit("Hog rider"));
         }
         Battle testBattle = new Battle(humanArmy,orcArmy,"");
         System.out.println(testBattle);
