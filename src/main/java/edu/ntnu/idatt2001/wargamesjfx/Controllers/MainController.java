@@ -173,6 +173,9 @@ public class MainController implements Initializable {
         army1Ran.setText(String.valueOf(armyOne.getRangedUnits().size()));
         army1Cav.setText(String.valueOf(armyOne.getCavalryUnits().size()));
         army1Com.setText(String.valueOf(armyOne.getCommanderUnits().size()));
+        army1Mage.setText(String.valueOf(armyOne.getMageUnits().size()));
+        army1Banner.setText(String.valueOf(armyOne.getBannerUnits().size()));
+        army1Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
     }
 
     private void setArmyTwoStats(){
@@ -182,5 +185,8 @@ public class MainController implements Initializable {
         army2Ran.setText(String.valueOf(armyTwo.getRangedUnits().size()));
         army2Cav.setText(String.valueOf(armyTwo.getCavalryUnits().size()));
         army2Com.setText(String.valueOf(armyTwo.getCommanderUnits().size()));
+        army2Mage.setText(String.valueOf(armyOne.getMageUnits().size()));
+        army2Banner.setText(String.valueOf(armyOne.getBannerUnits().size()));
+        army2Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
     }
 }

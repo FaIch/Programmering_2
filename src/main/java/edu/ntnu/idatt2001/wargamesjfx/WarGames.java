@@ -15,7 +15,7 @@ public class WarGames extends Application {
     public void start(Stage stage) throws IOException {
         Scene scene = new Scene(new Pane());
         ViewSwitcher.setScene(scene);
-        ViewSwitcher.switchTo(View.START);
+        ViewSwitcher.switchTo(View.MAIN);
         stage.setTitle("WARGAMES");
         stage.setScene(scene);
         stage.show();

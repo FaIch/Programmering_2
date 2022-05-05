@@ -4,5 +4,8 @@ public enum UnitType {
     InfantryUnit,
     RangedUnit,
     CavalryUnit,
-    CommanderUnit
+    CommanderUnit,
+    MageUnit,
+    BannerUnit,
+    DragonUnit
 }

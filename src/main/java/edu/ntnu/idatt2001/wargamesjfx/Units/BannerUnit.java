@@ -2,6 +2,10 @@ package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 public class BannerUnit extends Unit{
 
+    public BannerUnit(String name, int health, int attack, int armor) {
+        super(name, health, attack, armor);
+    }
+
     public BannerUnit (String name){super(name, 80, 0, 0);}
 
     @Override

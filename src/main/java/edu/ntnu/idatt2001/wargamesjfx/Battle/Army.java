@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 /**
@@ -77,26 +78,17 @@ public class Army {
             throw new IllegalArgumentException("Unit cannot be null");
         }
         else {
-            ArrayList<Unit> pushUnit = new ArrayList<>();
-            pushUnit.add(unit);
-            addAllUnits(pushUnit);
+            units.add(unit);
         }
     }
 
     /**
-     * Adds a list of units
-     *
-     * calls the deepCopyUnits method to get deep copies of each unit before it is added to the army.
+     * Adds a list of units to the army
      *
      * @param units1 an input list of units that will be added to the army.
      */
     public void addAllUnits(ArrayList<Unit> units1) throws IllegalArgumentException{
-        if (units1 == null || units1.isEmpty()){
-            throw new IllegalArgumentException("List cannot be empty/null");
-        }
-        else {
-            units.addAll(deepCopyUnits(units1));
-        }
+        units.addAll(units1);
     }
 
     /**
@@ -125,13 +117,13 @@ public class Army {
 
     /**
      * Get a list of all units in the army
-     * Deep copies every unit in the army, and adds it to a list
      *
-     * @return the array list of copied units from the army.
+     * @return the array list of units from the army.
      */
     public ArrayList<Unit> getAllUnits() {
-        return this.deepCopyUnits(units);
+        return units;
     }
+
 
     /**
      * Method for deep coping units.
@@ -141,7 +133,7 @@ public class Army {
      * @param unitsIn the list of units that needs to be deep copied
      * @return The input list deep copied.
      */
-
+    /*
     public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn)throws IllegalArgumentException{
         ArrayList<Unit> returnList = new ArrayList<>();
         if (unitsIn == null){
@@ -150,16 +142,10 @@ public class Army {
         else {
             for (Unit unit : unitsIn) {
                 try {
-                    if (unit instanceof InfantryUnit) {
-                        returnList.add(new InfantryUnit(unit.getName()));
-                    } else if (unit instanceof RangedUnit) {
-                        returnList.add(new RangedUnit(unit.getName()));
-                    } else if (unit instanceof CavalryUnit) {
-                        if (unit instanceof CommanderUnit) {
-                            returnList.add(new CommanderUnit(unit.getName()));
-                        } else {
-                            returnList.add(new CavalryUnit(unit.getName()));
-                        }
+                    UnitType type = UnitType.valueOf(unit.getClass().getSimpleName());
+                    switch (type){
+                        case InfantryUnit -> returnList.add(new InfantryUnit(unit.getName()));
+                        case RangedUnit -> returnList.add(new RangedUnit(unit.getName()));
                     }
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
@@ -168,6 +154,7 @@ public class Army {
         }
         return returnList;
     }
+    */
 
     /**
      * Get a random unit from the army.
@@ -232,6 +219,45 @@ public class Army {
                 .collect(Collectors.toList());
     }
 
+
+    /**
+     * Get list of MageUnits in the army
+     *
+     * Checks for instance of MageUnit, if so, adds it to the list
+     *
+     * @return the list of mage units
+     */
+    public ArrayList<Unit> getMageUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof MageUnit)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get list of BannerUnits in the army
+     *
+     * Checks for instance of BannerUnit, if so, adds it to the list
+     *
+     * @return the list of banner units
+     */
+    public ArrayList<Unit> getBannerUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof BannerUnit)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get list of DragonUnits in the army
+     *
+     * Checks for instance of DragonUnit, if so, adds it to the list
+     *
+     * @return the list of dragon units
+     */
+    public ArrayList<Unit> getDragonUnits(){
+        return (ArrayList<Unit>) getAllUnits().stream()
+                .filter(p -> p instanceof DragonUnit)
+                .collect(Collectors.toList());
+    }
     @Override
     public String toString() {
         return "Name of Army: " + this.name +
@@ -241,8 +267,7 @@ public class Army {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Army)) return false;
-        Army army = (Army) o;
+        if (!(o instanceof Army army)) return false;
         return Objects.equals(name, army.name) && Objects.equals(units, army.units);
     }
 

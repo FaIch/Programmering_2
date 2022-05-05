@@ -46,6 +46,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <Pane prefHeight="585.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
                      <children>
                         <Label fx:id="army1Name" prefWidth="303.0" text="ARMY NAME">
@@ -58,7 +59,7 @@
                               <Font name="Times New Roman" size="25.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army1Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -71,7 +72,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army1Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -84,7 +85,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army1Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -97,7 +98,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army1Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -110,10 +111,49 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army1Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Mage Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Mage" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Banner Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Banner" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Dragon Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army1Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
@@ -146,16 +186,16 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="550.0" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" prefWidth="550.0" HBox.hgrow="NEVER">
                      <children>
-                        <HBox>
+                        <HBox VBox.vgrow="NEVER">
                            <children>
                               <Pane prefHeight="0.0" prefWidth="147.0" />
                               <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="410.0" text="Create new Army" />
                               <Pane prefHeight="0.0" prefWidth="116.0" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="26.0" prefWidth="503.0">
+                        <HBox prefHeight="26.0" prefWidth="503.0" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -173,12 +213,12 @@
                               <Pane prefHeight="82.0" prefWidth="200.0" />
                            </children>
                         </HBox>
-                        <ImageView fx:id="image" fitHeight="300.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                        <ImageView fx:id="image" fitHeight="300.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true" styleClass="image" VBox.vgrow="NEVER">
                            <viewport>
                               <Rectangle2D height="300.0" width="503.0" />
                            </viewport>
                         </ImageView>
-                        <HBox prefHeight="28.0" prefWidth="503.0">
+                        <HBox prefHeight="28.0" prefWidth="503.0" VBox.vgrow="NEVER">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" />
                               <Button fx:id="fight" disable="true" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" text="Fight" />
@@ -193,7 +233,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <Label fx:id="warningLabel" alignment="CENTER" prefHeight="17.0" prefWidth="503.0">
+                        <Label fx:id="warningLabel" alignment="CENTER" prefHeight="17.0" prefWidth="503.0" VBox.vgrow="NEVER">
                            <font>
                               <Font name="Times New Roman" size="15.0" />
                            </font>
@@ -212,7 +252,7 @@
                               <Font name="Times New Roman" size="25.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army2Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -225,7 +265,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army2Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -238,7 +278,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army2Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -251,7 +291,7 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army2Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
@@ -264,10 +304,49 @@
                               <Font name="Times New Roman" size="20.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="army2Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Mage Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Mage" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Banner Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Banner" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Dragon Units:">
+                           <font>
+                              <Font name="Times New Roman" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="army2Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
                            <font>
                               <Font name="Times New Roman" size="20.0" />
                            </font>
@@ -301,6 +380,7 @@
                         </Label>
                      </children>
                   </VBox>
+                  <Pane prefHeight="585.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
