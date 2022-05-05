@@ -49,7 +49,14 @@ public class CreateNewArmyController {
     @FXML Label bannerOut;
     @FXML Label dragonOut;
     @FXML Label totalOut;
+    @FXML Label moneyOut;
     @FXML ImageView infantryInfo;
+    @FXML ImageView rangedInfo;
+    @FXML ImageView cavalryInfo;
+    @FXML ImageView commanderInfo;
+    @FXML ImageView mageInfo;
+    @FXML ImageView bannerInfo;
+    @FXML ImageView dragonInfo;
 
 
     private int nrOfInf = 0;
@@ -61,26 +68,34 @@ public class CreateNewArmyController {
     private int nrOfDragon = 0;
     private int totalUnits = 0;
     private int numberToRemove = 0;
+    private int numberToAdd = 0;
     private int money = 10000;
-    private int costOfInf = 0;
-    private int costOfRan = 0;
-    private int costOfCav = 0;
-    private int costOfCom = 0;
-    private int costOfMage = 0;
-    private int costOfBanner = 0;
-    private int costOfDragon = 0;
+    private final int costOfInf = 50;
+    private final int costOfRan = 60;
+    private final int costOfCav = 80;
+    private final int costOfCom = 100;
+    private final int costOfMage = 1000;
+    private final int costOfBanner = 2000;
+    private final int costOfDragon = 10;
 
+    ArrayList<ChoiceBox> boxes;
 
     @FXML
     public void initialize(){
         ArrayList<String> numbers = new ArrayList<>(Arrays.asList("1","5","10","25","50"));
-        ArrayList<ChoiceBox> boxes = new ArrayList<>(Arrays.asList(infNr,ranNr,cavNr,comNr,mageNr,bannerNr,
+        boxes = new ArrayList<>(Arrays.asList(infNr,ranNr,cavNr,comNr,mageNr,bannerNr,
                 dragonNr));
         for (ChoiceBox box : boxes){
             box.getItems().addAll(numbers);
         }
 
-        Tooltip.install(infantryInfo, new Tooltip("Health: 100, Attack : 15, Armor: 10, \n Bonus in forest"));
+        Tooltip.install(infantryInfo, new Tooltip("Health: 100, Attack : 15, Armor: 10 \n Bonus in Forest"));
+        Tooltip.install(rangedInfo,new Tooltip("Health: 100, Attack: 15, Armor: 8 \n Bonus in Hill, Lower attack in Forest"));
+        Tooltip.install(cavalryInfo, new Tooltip("Health: 100, Attack: 20, Armor: 12 \n Bonus in Plains, good against Infantry"));
+        Tooltip.install(mageInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD \n Glass cannon unit, Bonus in: TBD"));
+        Tooltip.install(bannerInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD \n Boosts attack for all units in Army by X%(Unique)"));
+        Tooltip.install(dragonInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD \n Immune to magic"));
+
 
     }
 
@@ -111,64 +126,119 @@ public class CreateNewArmyController {
             mageName.setText("");
             bannerName.setText("");
             dragonName.setText("");
+            nrOfInf = 0;
+            nrOfRan = 0;
+            nrOfCav = 0;
+            nrOfCom = 0;
+            nrOfMage = 0;
+            nrOfBanner = 0;
+            nrOfDragon = 0;
+            totalUnits = 0;
+            money = 10000;
+            for (ChoiceBox box : boxes) {
+                box.valueProperty().set(null);
+            }
             warningLabel.setText("Army added successfully");
+            setAllOut();
         }
     }
 
     @FXML
     void addInf(){
-        nrOfInf += Integer.parseInt(infNr.getValue().toString());
-        totalUnits += Integer.parseInt(infNr.getValue().toString());
-        money -= nrOfInf * costOfInf;
-        setAllOut();
+        numberToAdd = Integer.parseInt(infNr.getValue().toString());
+        if (numberToAdd * costOfInf <= money) {
+            nrOfInf += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfInf;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addRan(){
-        nrOfRan += Integer.parseInt(ranNr.getValue().toString());
-        totalUnits += Integer.parseInt(ranNr.getValue().toString());
-        money -= nrOfRan * costOfRan;
-        setAllOut();
+        numberToAdd = Integer.parseInt(ranNr.getValue().toString());
+        if (numberToAdd * costOfRan <= money) {
+            nrOfRan += numberToAdd;
+            totalUnits += Integer.parseInt(ranNr.getValue().toString());
+            money -= numberToAdd * costOfRan;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addCav(){
-        nrOfCav += Integer.parseInt(cavNr.getValue().toString());
-        totalUnits += Integer.parseInt(cavNr.getValue().toString());
-        money -= nrOfCav * costOfCav;
-        setAllOut();
+        numberToAdd = Integer.parseInt(cavNr.getValue().toString());
+        if (numberToAdd * costOfCav <= money) {
+            nrOfCav += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfCav;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addCom(){
-        nrOfCom += Integer.parseInt(comNr.getValue().toString());
-        totalUnits += Integer.parseInt(comNr.getValue().toString());
-        money -= nrOfCom * costOfCom;
-        setAllOut();
+        numberToAdd = Integer.parseInt(comNr.getValue().toString());
+        if (numberToAdd * costOfCom <= money) {
+            nrOfCom += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfCom;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addMage(){
-        nrOfMage += Integer.parseInt(mageNr.getValue().toString());
-        totalUnits += Integer.parseInt(mageNr.getValue().toString());
-        money -= nrOfMage * costOfMage;
-        setAllOut();
+        numberToAdd = Integer.parseInt(mageNr.getValue().toString());
+        if (numberToAdd * costOfMage <= money) {
+            nrOfMage += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfMage;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addBanner(){
-        nrOfBanner += Integer.parseInt(bannerNr.getValue().toString());
-        totalUnits += Integer.parseInt(bannerNr.getValue().toString());
-        money -= nrOfBanner * costOfBanner;
-        setAllOut();
+        numberToAdd = Integer.parseInt(bannerNr.getValue().toString());
+        if (numberToAdd * costOfBanner <= money) {
+            nrOfBanner += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfBanner;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
     void addDragon(){
-        nrOfDragon += Integer.parseInt(dragonNr.getValue().toString());
-        totalUnits += Integer.parseInt(dragonNr.getValue().toString());
-        money -= nrOfDragon * costOfDragon;
-        setAllOut();
+        numberToAdd = Integer.parseInt(dragonNr.getValue().toString());
+        if (numberToAdd * costOfDragon <= money) {
+            nrOfDragon += numberToAdd;
+            totalUnits += numberToAdd;
+            money -= numberToAdd * costOfDragon;
+            setAllOut();
+        }
+        else {
+            warningLabel.setText("Not enough money");
+        }
     }
 
     @FXML
@@ -192,12 +262,14 @@ public class CreateNewArmyController {
     void removeRan(){
         numberToRemove = Integer.parseInt(ranNr.getValue().toString());
         if (nrOfRan >= numberToRemove) {
+            money += numberToRemove * costOfRan;
             nrOfRan -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfRan;
+            money += nrOfRan * costOfRan;
             nrOfRan = 0;
             setAllOut();
         }
@@ -207,12 +279,14 @@ public class CreateNewArmyController {
     void removeCav(){
         numberToRemove = Integer.parseInt(cavNr.getValue().toString());
         if (nrOfCav >= numberToRemove) {
+            money += numberToRemove * costOfCav;
             nrOfCav -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfCav;
+            money += nrOfCav * costOfCav;
             nrOfCav = 0;
             setAllOut();
         }
@@ -222,12 +296,14 @@ public class CreateNewArmyController {
     void removeCom(){
         numberToRemove = Integer.parseInt(comNr.getValue().toString());
         if (nrOfCom >= numberToRemove) {
+            money += numberToRemove * costOfCom;
             nrOfCom -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfCom;
+            money += nrOfCav * costOfCav;
             nrOfCom = 0;
             setAllOut();
         }
@@ -237,12 +313,14 @@ public class CreateNewArmyController {
     void removeMage(){
         numberToRemove = Integer.parseInt(mageNr.getValue().toString());
         if (nrOfMage >= numberToRemove) {
+            money += numberToRemove * costOfMage;
             nrOfMage -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfMage;
+            money += nrOfMage * costOfMage;
             nrOfMage = 0;
             setAllOut();
         }
@@ -252,12 +330,14 @@ public class CreateNewArmyController {
     void removeBanner(){
         numberToRemove = Integer.parseInt(bannerNr.getValue().toString());
         if (nrOfBanner >= numberToRemove) {
+            money += numberToRemove * costOfBanner;
             nrOfBanner -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfBanner;
+            money += nrOfBanner * costOfBanner;
             nrOfBanner = 0;
             setAllOut();
         }
@@ -267,12 +347,14 @@ public class CreateNewArmyController {
     void removeDragon(){
         numberToRemove = Integer.parseInt(dragonNr.getValue().toString());
         if (nrOfDragon >= numberToRemove) {
+            money += numberToRemove * costOfDragon;
             nrOfDragon -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfDragon;
+            money += nrOfDragon * costOfDragon;
             nrOfDragon = 0;
             setAllOut();
         }
@@ -343,5 +425,7 @@ public class CreateNewArmyController {
         mageOut.setText(String.valueOf(nrOfMage));
         bannerOut.setText(String.valueOf(nrOfBanner));
         dragonOut.setText(String.valueOf(nrOfDragon));
+        moneyOut.setText(String.valueOf(money));
+        warningLabel.setText("");
     }
 }

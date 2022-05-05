@@ -19,13 +19,13 @@
          <children>
             <VBox prefHeight="91.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-background-color: black; -fx-border-color: black;">
+                  <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-border-color: black; -fx-background-color: white;">
                      <children>
                         <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS" />
                         <VBox prefHeight="83.0" prefWidth="264.0">
                            <children>
                               <Pane prefHeight="100.0" prefWidth="444.0" VBox.vgrow="ALWAYS" />
-                              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="251.0" text="WARGAMES" textFill="WHITE">
+                              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="251.0" text="WARGAMES">
                                  <font>
                                     <Font name="Times New Roman" size="40.0" />
                                  </font>
@@ -44,7 +44,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="1109.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="100.0" prefWidth="1109.0" style="-fx-background-color: #DBC4A0; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane prefHeight="585.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
@@ -160,8 +160,8 @@
                         </Label>
                         <HBox prefHeight="27.0" prefWidth="303.0">
                            <children>
-                              <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" />
-                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy1" prefHeight="25.0" prefWidth="148.0" text="Load existing army">
+                              <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
+                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy1" prefHeight="25.0" prefWidth="148.0" styleClass="jfx-button" text="Load existing army">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -171,7 +171,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile1" prefHeight="25.0" prefWidth="155.0" text="Load army from file">
+                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile1" prefHeight="25.0" prefWidth="155.0" styleClass="jfx-button" text="Load army from file">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -186,15 +186,8 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="550.0" HBox.hgrow="NEVER">
+                  <VBox prefHeight="589.0" prefWidth="477.0" HBox.hgrow="NEVER">
                      <children>
-                        <HBox VBox.vgrow="NEVER">
-                           <children>
-                              <Pane prefHeight="0.0" prefWidth="147.0" />
-                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="410.0" text="Create new Army" />
-                              <Pane prefHeight="0.0" prefWidth="116.0" />
-                           </children>
-                        </HBox>
                         <HBox prefHeight="26.0" prefWidth="503.0" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -209,20 +202,20 @@
                                     <Insets top="3.0" />
                                  </HBox.margin>
                               </Label>
-                              <ChoiceBox fx:id="terrain" prefWidth="150.0" />
+                              <ChoiceBox fx:id="terrain" prefWidth="150.0" styleClass="jfx-choice-box" />
                               <Pane prefHeight="82.0" prefWidth="200.0" />
                            </children>
                         </HBox>
-                        <ImageView fx:id="image" fitHeight="300.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true" styleClass="image" VBox.vgrow="NEVER">
+                        <ImageView fx:id="image" fitHeight="300.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true" styleClass="terrain-image" VBox.vgrow="NEVER">
                            <viewport>
-                              <Rectangle2D height="300.0" width="503.0" />
+                              <Rectangle2D height="300.0" />
                            </viewport>
                         </ImageView>
                         <HBox prefHeight="28.0" prefWidth="503.0" VBox.vgrow="NEVER">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Button fx:id="fight" disable="true" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" text="Fight" />
-                              <Button fx:id="reset" disable="true" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="150.0" text="Reset">
+                              <Button fx:id="fight" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Fight" />
+                              <Button fx:id="reset" disable="true" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Reset">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -238,6 +231,16 @@
                               <Font name="Times New Roman" size="15.0" />
                            </font>
                         </Label>
+                        <HBox VBox.vgrow="NEVER">
+                           <children>
+                              <Pane prefHeight="0.0" prefWidth="100.0" />
+                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="410.0" styleClass="jfx-button" text="Create new Army">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin></Button>
+                              <Pane prefHeight="0.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
@@ -354,8 +357,8 @@
                         <HBox prefHeight="27.0" prefWidth="271.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
-                              <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" />
-                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy2" prefHeight="25.0" prefWidth="148.0" text="Load existing army">
+                              <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
+                              <Button mnemonicParsing="false" onAction="#chooseExistingArmy2" prefHeight="25.0" prefWidth="148.0" styleClass="jfx-button" text="Load existing army">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -365,7 +368,7 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile2" prefHeight="25.0" prefWidth="155.0" text="Load army from file">
+                        <Button mnemonicParsing="false" onAction="#loadArmyFromFile2" prefHeight="25.0" prefWidth="155.0" styleClass="jfx-button" text="Load army from file">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>

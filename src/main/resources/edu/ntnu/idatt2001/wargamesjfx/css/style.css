@@ -1,16 +1,34 @@
 .jfx-button {
-    -fx-background-color: #222E44;
     -fx-background-radius: 30;
+    -fx-background-color: white;
     -fx-background-insets: 0;
-    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-radius: 30;
 }
 
 .jfx-label {
     -fx-text-fill : #222E44;
 }
 
-.coin-image {
-    -fx-background-size: 33px;
+.image-small {
+    -fx-background-size: 25px;
     -fx-background-repeat: no-repeat;
-    -fx-background-image: url("../images/coins.png");
+}
+
+.coin-image {
+    -fx-background-image: url("../images/two-coins.png");
+}
+
+.coin-total-image {
+    -fx-background-size: 45px;
+    -fx-background-image: url("../images/cash.png");
+    -fx-background-repeat: no-repeat;
+}
+
+.jfx-choice-box{
+    -fx-background-color: white;
+}
+
+.terrain-image{
+    -fx-background-size: 500px;
 }

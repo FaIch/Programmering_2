@@ -58,7 +58,7 @@ public class ArmyCSVRead {
                 String[] values = line.split(DELIMITER);
 
                 if (values.length != 2) {
-                    throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name', 'health'");
+                    throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name'");
                 }
 
 

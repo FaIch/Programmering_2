@@ -44,6 +44,8 @@ public class InfantryUnit extends Unit{
         return 2;
     }
 
+
+
     /**
      * Resist bonus based on terrain, if terrain is Forest, increased bonus
      * @return the resist bonus of the unit.

@@ -58,7 +58,6 @@ public class MainController implements Initializable {
     private String path2;
 
     //TODO Lage en oversikt over hvilke enheter, finne ut dette med å displaye navn
-    //TODO Lage create new army scenen ordentlig, innføre gull
     //TODO Implementere attack bonuser i forhold til enhet du angriper
 
     @Override
@@ -73,24 +72,34 @@ public class MainController implements Initializable {
 
     @FXML
     void chooseExistingArmy1() throws IOException {
-        String armyChosen = existingArmies1.getValue().toString();
-        File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                "files/" + armyChosen + ".csv");
-        armyOne = ArmyCSVRead.readArmyFromCSV(file);
-        setArmyOneStats();
-        path1 = file.getAbsolutePath();
-        pathArmy1.setText(path1);
+        if (existingArmies1.getValue() == null){
+            warningLabel.setText("You must choose an army");
+        }
+        else {
+            String armyChosen = existingArmies1.getValue().toString();
+            File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                    "files/" + armyChosen + ".csv");
+            armyOne = ArmyCSVRead.readArmyFromCSV(file);
+            setArmyOneStats();
+            path1 = file.getAbsolutePath();
+            pathArmy1.setText(path1);
+        }
     }
 
     @FXML
     void chooseExistingArmy2() throws IOException {
-        String armyChosen = existingArmies2.getValue().toString();
-        File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                "files/" + armyChosen + ".csv");
-        armyTwo = ArmyCSVRead.readArmyFromCSV(file);
-        setArmyTwoStats();
-        path2 = file.getAbsolutePath();
-        pathArmy2.setText(path2);
+        if (existingArmies2.getValue() == null) {
+            warningLabel.setText("You must choose an army");
+        }
+        else {
+            String armyChosen = existingArmies2.getValue().toString();
+            File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                    "files/" + armyChosen + ".csv");
+            armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+            setArmyTwoStats();
+            path2 = file.getAbsolutePath();
+            pathArmy2.setText(path2);
+        }
     }
 
     @FXML
@@ -98,7 +107,7 @@ public class MainController implements Initializable {
         File file = fileChooser.showOpenDialog(stage);
         try {
             armyOne = ArmyCSVRead.readArmyFromCSV(file);
-        }catch (IOException e){
+        }catch (Exception e){
             warningLabel.setText(e.getMessage());
         }
         setArmyOneStats();
