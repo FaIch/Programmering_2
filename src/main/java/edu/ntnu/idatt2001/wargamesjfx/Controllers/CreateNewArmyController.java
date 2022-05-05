@@ -61,6 +61,15 @@ public class CreateNewArmyController {
     private int nrOfDragon = 0;
     private int totalUnits = 0;
     private int numberToRemove = 0;
+    private int money = 10000;
+    private int costOfInf = 0;
+    private int costOfRan = 0;
+    private int costOfCav = 0;
+    private int costOfCom = 0;
+    private int costOfMage = 0;
+    private int costOfBanner = 0;
+    private int costOfDragon = 0;
+
 
     @FXML
     public void initialize(){
@@ -110,6 +119,7 @@ public class CreateNewArmyController {
     void addInf(){
         nrOfInf += Integer.parseInt(infNr.getValue().toString());
         totalUnits += Integer.parseInt(infNr.getValue().toString());
+        money -= nrOfInf * costOfInf;
         setAllOut();
     }
 
@@ -117,6 +127,7 @@ public class CreateNewArmyController {
     void addRan(){
         nrOfRan += Integer.parseInt(ranNr.getValue().toString());
         totalUnits += Integer.parseInt(ranNr.getValue().toString());
+        money -= nrOfRan * costOfRan;
         setAllOut();
     }
 
@@ -124,6 +135,7 @@ public class CreateNewArmyController {
     void addCav(){
         nrOfCav += Integer.parseInt(cavNr.getValue().toString());
         totalUnits += Integer.parseInt(cavNr.getValue().toString());
+        money -= nrOfCav * costOfCav;
         setAllOut();
     }
 
@@ -131,6 +143,7 @@ public class CreateNewArmyController {
     void addCom(){
         nrOfCom += Integer.parseInt(comNr.getValue().toString());
         totalUnits += Integer.parseInt(comNr.getValue().toString());
+        money -= nrOfCom * costOfCom;
         setAllOut();
     }
 
@@ -138,6 +151,7 @@ public class CreateNewArmyController {
     void addMage(){
         nrOfMage += Integer.parseInt(mageNr.getValue().toString());
         totalUnits += Integer.parseInt(mageNr.getValue().toString());
+        money -= nrOfMage * costOfMage;
         setAllOut();
     }
 
@@ -145,6 +159,7 @@ public class CreateNewArmyController {
     void addBanner(){
         nrOfBanner += Integer.parseInt(bannerNr.getValue().toString());
         totalUnits += Integer.parseInt(bannerNr.getValue().toString());
+        money -= nrOfBanner * costOfBanner;
         setAllOut();
     }
 
@@ -152,6 +167,7 @@ public class CreateNewArmyController {
     void addDragon(){
         nrOfDragon += Integer.parseInt(dragonNr.getValue().toString());
         totalUnits += Integer.parseInt(dragonNr.getValue().toString());
+        money -= nrOfDragon * costOfDragon;
         setAllOut();
     }
 
@@ -159,12 +175,14 @@ public class CreateNewArmyController {
     void removeInf(){
         numberToRemove = Integer.parseInt(infNr.getValue().toString());
         if (nrOfInf >= numberToRemove){
+            money += numberToRemove * costOfInf;
             nrOfInf -= numberToRemove;
             totalUnits -= numberToRemove;
             setAllOut();
         }
         else {
             totalUnits -= nrOfInf;
+            money += nrOfInf * costOfInf;
             nrOfInf = 0;
             setAllOut();
         }

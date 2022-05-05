@@ -9,6 +9,8 @@
     -fx-text-fill : #222E44;
 }
 
-.image {
-    -fx-background-radius: 50;
+.coin-image {
+    -fx-background-size: 33px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("../images/coins.png");
 }

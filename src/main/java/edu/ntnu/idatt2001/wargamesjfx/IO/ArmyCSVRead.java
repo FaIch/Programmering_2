@@ -57,20 +57,14 @@ public class ArmyCSVRead {
                 String line = scanner.nextLine();
                 String[] values = line.split(DELIMITER);
 
-                if (values.length != 3) {
+                if (values.length != 2) {
                     throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name', 'health'");
                 }
 
-                int health;
-                try {
-                    health = Integer.parseInt(values[2]);
-                } catch (NumberFormatException e) {
-                    throw new IOException("Health must be integer");
-                }
+
                 String type = values[0];
                 UnitType unitType = UnitType.valueOf(type);
                 String name = values[1];
-
                 boolean existingType = false;
                 Unit unit = null;
 
@@ -89,6 +83,18 @@ public class ArmyCSVRead {
                     }
                     case CommanderUnit -> {
                         unit = new CommanderUnit(name);
+                        existingType = true;
+                    }
+                    case MageUnit -> {
+                        unit = new MageUnit(name);
+                        existingType = true;
+                    }
+                    case BannerUnit -> {
+                        unit = new BannerUnit(name);
+                        existingType = true;
+                    }
+                    case DragonUnit -> {
+                        unit = new DragonUnit(name);
                         existingType = true;
                     }
                 }

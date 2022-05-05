@@ -50,8 +50,7 @@ public class ArmyCSVWrite {
             fileWriter.write(line + NEWLINE);
             army.getAllUnits().forEach(unit -> {
                 try {
-                    fileWriter.write(unit.getClass().getSimpleName() + DELIMITER + unit.getName() +
-                            DELIMITER + unit.getHealth() + NEWLINE);
+                    fileWriter.write(unit.getClass().getSimpleName() + DELIMITER + unit.getName() + NEWLINE);
                 }catch (IOException e){
                     e.printStackTrace();
                 }
