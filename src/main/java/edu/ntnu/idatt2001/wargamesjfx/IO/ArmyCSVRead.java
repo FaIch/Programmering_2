@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001.wargamesjfx.IO;
 
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.GetUnitFactory;
 import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
@@ -61,46 +62,14 @@ public class ArmyCSVRead {
                     throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type'");
                 }
 
-
                 String type = values[0];
-                UnitType unitType = UnitType.valueOf(type);
-                boolean existingType = false;
-                Unit unit = null;
-
-                switch (unitType) {
-                    case InfantryUnit -> {
-                        unit = new InfantryUnit();
-                        existingType = true;
-                    }
-                    case RangedUnit -> {
-                        unit = new RangedUnit();
-                        existingType = true;
-                    }
-                    case CavalryUnit -> {
-                        unit = new CavalryUnit();
-                        existingType = true;
-                    }
-                    case CommanderUnit -> {
-                        unit = new CommanderUnit();
-                        existingType = true;
-                    }
-                    case MageUnit -> {
-                        unit = new MageUnit();
-                        existingType = true;
-                    }
-                    case BannerUnit -> {
-                        unit = new BannerUnit();
-                        existingType = true;
-                    }
-                    case DragonUnit -> {
-                        unit = new DragonUnit();
-                        existingType = true;
-                    }
+                UnitType unitType;
+                try {
+                    unitType = UnitType.valueOf(type);
+                }catch (IllegalArgumentException e){
+                    throw new IllegalArgumentException(e.getMessage());
                 }
-                if (!existingType) {
-                    throw new IOException("Invalid unit type.");
-                }
-                army.addUnit(unit);
+                army.addUnit(GetUnitFactory.getUnit(unitType));
             }
         }
         return army;

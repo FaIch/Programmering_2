@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
+
 /**
  * The type Unit.
  */
@@ -32,8 +34,16 @@ public abstract class Unit {
      * @param opponent an opponent unit. Selected randomly
      */
     public void attack(Unit opponent){
-            opponent.health = opponent.health - (this.attack + this.getAttackBonus()) +
-                    (opponent.armor + opponent.getResistBonus());
+        UnitType unitAttack = UnitType.valueOf(this.getClass().getSimpleName());
+        UnitType unitDefend = UnitType.valueOf(opponent.getClass().getSimpleName());
+        int situationalBonus = SituationalBonus.getSituationalBonus(unitAttack,unitDefend);
+        int totalDamage = this.attack + this.getAttackBonus() + situationalBonus;
+        int totalResistance = opponent.getArmor() + opponent.getResistBonus();
+
+        if (totalDamage > totalResistance) {
+            opponent.health = opponent.health - totalDamage + totalResistance;
+        }
+
     }
 
 
