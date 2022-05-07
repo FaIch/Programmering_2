@@ -11,24 +11,22 @@ public class InfantryUnit extends Unit{
      * Instantiates a new Infantry unit.
      * Constructor 1
      *
-     * @param name   the name of the unit
      * @param health the health of the unit
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      */
-    public InfantryUnit(String name, int health, int attack, int armor) {
-        super(name, health, attack, armor);
+    public InfantryUnit(int health, int attack, int armor) {
+        super(health, attack, armor);
     }
 
     /**
      * Instantiates a new Infantry unit.
      * Constructor 2
      * Name and health set by user, attack and armor predetermined
-     *  @param name   the name of the unit
      *
      */
-    public InfantryUnit(String name){
-        super(name, 100,15,10);
+    public InfantryUnit(){
+        super(100,15,10);
 
     }
 

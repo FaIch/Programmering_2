@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -44,17 +45,17 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="1109.0" style="-fx-background-color: #DBC4A0; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox prefHeight="100.0" prefWidth="1109.0" style="-fx-background-color: #74776B; -fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Pane prefHeight="585.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
                   <VBox prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
                      <children>
-                        <Label fx:id="army1Name" prefWidth="303.0" text="ARMY NAME">
+                        <Label fx:id="army1Name" prefWidth="303.0" text="ARMY NAME" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="30.0" />
                            </font>
                         </Label>
-                        <Label text="Total Units:">
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="193.0" text="Total Units:" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="25.0" />
                            </font>
@@ -62,102 +63,139 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="army1Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                        <Label fx:id="army1Total" alignment="CENTER" prefHeight="34.0" prefWidth="188.0" text="0" textFill="WHITE">
                            <font>
-                              <Font name="Times New Roman" size="25.0" />
+                              <Font name="Times New Roman" size="30.0" />
                            </font>
                         </Label>
-                        <Label text="Infantry Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
+                        <HBox prefHeight="50.0" prefWidth="301.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="infantry-image" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Pane>
+                              <Label fx:id="army1Inf" alignment="CENTER" prefHeight="29.0" prefWidth="40.0" styleClass="unit-number-style" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Times New Roman" size="25.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="110.0" />
+                           </children>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Ranged Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Cavalry Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Commander Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Mage Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Mage" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Banner Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Banner" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Dragon Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army1Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="ranged-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Ran" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="cavalry-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Cav" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="commander-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Com" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="mage-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Mage" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="banner-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Banner" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="30.0" />
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="dragon-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Label fx:id="army1Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="110.0" />
+                           </children>
+                        </HBox>
                         <HBox prefHeight="27.0" prefWidth="303.0">
                            <children>
                               <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
@@ -233,24 +271,24 @@
                         </Label>
                         <HBox VBox.vgrow="NEVER">
                            <children>
-                              <Pane prefHeight="0.0" prefWidth="100.0" />
-                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="25.0" prefWidth="410.0" styleClass="jfx-button" text="Create new Army">
+                              <Pane prefHeight="0.0" prefWidth="150.0" />
+                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="27.0" prefWidth="211.0" styleClass="jfx-button" text="Create new Army">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin></Button>
-                              <Pane prefHeight="0.0" prefWidth="100.0" />
+                              <Pane prefHeight="0.0" prefWidth="150.0" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="350.0" HBox.hgrow="NEVER">
                      <children>
-                        <Label fx:id="army2Name" alignment="CENTER_RIGHT" prefWidth="303.0" text="ARMY NAME">
+                        <Label fx:id="army2Name" alignment="CENTER_RIGHT" prefWidth="303.0" text="ARMY NAME" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman" size="30.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" text="Total Units:">
+                        <Label prefHeight="29.0" prefWidth="183.0" text="Total Units:" textFill="WHITE" VBox.vgrow="NEVER">
                            <font>
                               <Font name="Times New Roman" size="25.0" />
                            </font>
@@ -258,102 +296,133 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="army2Total" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
+                        <Label fx:id="army2Total" prefHeight="34.0" prefWidth="133.0" text="0" textFill="WHITE" VBox.vgrow="NEVER">
                            <font>
-                              <Font name="Times New Roman" size="25.0" />
+                              <Font name="Times New Roman" size="30.0" />
                            </font>
                         </Label>
-                        <Label text="Infantry Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="42.0" prefWidth="126.0" />
+                              <Label fx:id="army2Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="infantry-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Inf" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Ranged Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Cavalry Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Commander Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Mage Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Mage" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Banner Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Banner" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label text="Dragon Units:">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="army2Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="0">
-                           <font>
-                              <Font name="Times New Roman" size="20.0" />
-                           </font>
-                        </Label>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Ran" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="ranged-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Cav" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="cavalry-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Com" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="commander-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Mage" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="mage-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Banner" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="banner-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0">
+                           <children>
+                              <Pane prefHeight="45.0" prefWidth="126.0" />
+                              <Label fx:id="army2Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="unit-number-style" text="0">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="45.0" prefWidth="45.0">
+                                 <styleClass>
+                                    <String fx:value="unit-image-style" />
+                                    <String fx:value="dragon-image" />
+                                 </styleClass>
+                              </Pane>
+                              <Pane prefHeight="45.0" prefWidth="30.0" />
+                           </children>
+                        </HBox>
                         <HBox prefHeight="27.0" prefWidth="271.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />

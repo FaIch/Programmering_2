@@ -12,7 +12,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -57,7 +56,6 @@ public class MainController implements Initializable {
     private String path1;
     private String path2;
 
-    //TODO Lage en oversikt over hvilke enheter, finne ut dette med å displaye navn
     //TODO Implementere attack bonuser i forhold til enhet du angriper
 
     @Override
@@ -194,8 +192,8 @@ public class MainController implements Initializable {
         army2Ran.setText(String.valueOf(armyTwo.getRangedUnits().size()));
         army2Cav.setText(String.valueOf(armyTwo.getCavalryUnits().size()));
         army2Com.setText(String.valueOf(armyTwo.getCommanderUnits().size()));
-        army2Mage.setText(String.valueOf(armyOne.getMageUnits().size()));
-        army2Banner.setText(String.valueOf(armyOne.getBannerUnits().size()));
-        army2Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
+        army2Mage.setText(String.valueOf(armyTwo.getMageUnits().size()));
+        army2Banner.setText(String.valueOf(armyTwo.getBannerUnits().size()));
+        army2Dragon.setText(String.valueOf(armyTwo.getDragonUnits().size()));
     }
 }

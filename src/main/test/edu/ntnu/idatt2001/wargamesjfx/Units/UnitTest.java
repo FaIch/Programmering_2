@@ -10,8 +10,8 @@ class UnitTest {
     @Test
     @DisplayName("Attack test")
     void attack() {
-        InfantryUnit infantryUnit1 = new InfantryUnit("");
-        InfantryUnit infantryUnit2 = new InfantryUnit("");
+        InfantryUnit infantryUnit1 = new InfantryUnit();
+        InfantryUnit infantryUnit2 = new InfantryUnit();
         infantryUnit1.attack(infantryUnit2);
         assertEquals(94,infantryUnit2.getHealth());
     }
@@ -19,7 +19,7 @@ class UnitTest {
     @Test
     @DisplayName("Set health test")
     void setHealth() {
-        InfantryUnit infantryUnit1 = new InfantryUnit("");
+        InfantryUnit infantryUnit1 = new InfantryUnit();
         assertEquals(10,infantryUnit1.getHealth());
         infantryUnit1.setHealth(50);
         assertEquals(50,infantryUnit1.getHealth());
@@ -28,7 +28,7 @@ class UnitTest {
     @Test
     @DisplayName("Set invalid health test")
     void setInvalidHealthThrowsException(){
-        InfantryUnit infantryUnit = new InfantryUnit("");
+        InfantryUnit infantryUnit = new InfantryUnit();
         assertThrows(IllegalArgumentException.class, () -> infantryUnit.setHealth(-50));
         assertThrows(IllegalArgumentException.class, () -> infantryUnit.setHealth(0));
     }
@@ -36,7 +36,7 @@ class UnitTest {
     @Test
     @DisplayName("Attack bonus test")
     void getAttackBonus() {
-        CommanderUnit commanderUnit = new CommanderUnit("");
+        CommanderUnit commanderUnit = new CommanderUnit();
         assertEquals(6,commanderUnit.getAttackBonus());
         assertEquals(2,commanderUnit.getAttackBonus());
         assertEquals(2,commanderUnit.getAttackBonus());
@@ -45,7 +45,7 @@ class UnitTest {
     @Test
     @DisplayName("Resist bonus test")
     void getResistBonus() {
-        RangedUnit rangedUnit = new RangedUnit("");
+        RangedUnit rangedUnit = new RangedUnit();
         assertEquals(6,rangedUnit.getResistBonus());
         assertEquals(4,rangedUnit.getResistBonus());
         assertEquals(2,rangedUnit.getResistBonus());

@@ -57,44 +57,43 @@ public class ArmyCSVRead {
                 String line = scanner.nextLine();
                 String[] values = line.split(DELIMITER);
 
-                if (values.length != 2) {
-                    throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type', 'name'");
+                if (values.length != 1) {
+                    throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type'");
                 }
 
 
                 String type = values[0];
                 UnitType unitType = UnitType.valueOf(type);
-                String name = values[1];
                 boolean existingType = false;
                 Unit unit = null;
 
                 switch (unitType) {
                     case InfantryUnit -> {
-                        unit = new InfantryUnit(name);
+                        unit = new InfantryUnit();
                         existingType = true;
                     }
                     case RangedUnit -> {
-                        unit = new RangedUnit(name);
+                        unit = new RangedUnit();
                         existingType = true;
                     }
                     case CavalryUnit -> {
-                        unit = new CavalryUnit(name);
+                        unit = new CavalryUnit();
                         existingType = true;
                     }
                     case CommanderUnit -> {
-                        unit = new CommanderUnit(name);
+                        unit = new CommanderUnit();
                         existingType = true;
                     }
                     case MageUnit -> {
-                        unit = new MageUnit(name);
+                        unit = new MageUnit();
                         existingType = true;
                     }
                     case BannerUnit -> {
-                        unit = new BannerUnit(name);
+                        unit = new BannerUnit();
                         existingType = true;
                     }
                     case DragonUnit -> {
-                        unit = new DragonUnit(name);
+                        unit = new DragonUnit();
                         existingType = true;
                     }
                 }

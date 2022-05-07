@@ -13,7 +13,7 @@ class BattleTest {
     void battleWithNoUnitsThrowsException(){
         Army emptyArmy = new Army("EmptyArmy");
         Army army = new Army("Army");
-        army.addUnit(new InfantryUnit(""));
+        army.addUnit(new InfantryUnit());
         assertThrows(IllegalArgumentException.class, () ->{
             Battle dummyBattle = new Battle(army,emptyArmy,"");
         });
@@ -24,8 +24,8 @@ class BattleTest {
     void certainWinner() {
         Army loser = new Army("Loser");
         Army winner = new Army("Winner");
-        loser.addUnit(new InfantryUnit(""));
-        winner.addUnit(new InfantryUnit(""));
+        loser.addUnit(new InfantryUnit());
+        winner.addUnit(new InfantryUnit());
         Battle testBattle = new Battle(winner,loser,"");
         Unit randomUnit = loser.getRandomUnit();
         loser.removeUnit(randomUnit);
@@ -36,20 +36,20 @@ class BattleTest {
     void battleTest(){
         Army humanArmy = new Army("Human Army");
         Army orcArmy = new Army("Orc Army");
-        humanArmy.addUnit(new CommanderUnit("Anduin"));
-        orcArmy.addUnit(new CommanderUnit("Garrosh"));
+        humanArmy.addUnit(new CommanderUnit());
+        orcArmy.addUnit(new CommanderUnit());
         int i;
         for (i = 0; i < 200; i++){
-            humanArmy.addUnit(new InfantryUnit("Footman"));
-            orcArmy.addUnit(new InfantryUnit("Grunt"));
+            humanArmy.addUnit(new InfantryUnit());
+            orcArmy.addUnit(new InfantryUnit());
         }
         for (i = 0; i < 100; i++){
-            humanArmy.addUnit(new RangedUnit("Archer"));
-            orcArmy.addUnit(new RangedUnit("Thrower"));
+            humanArmy.addUnit(new RangedUnit());
+            orcArmy.addUnit(new RangedUnit());
         }
         for (i = 0; i < 20; i++){
-            humanArmy.addUnit(new CavalryUnit("Knight"));
-            orcArmy.addUnit(new CavalryUnit("Hog rider"));
+            humanArmy.addUnit(new CavalryUnit());
+            orcArmy.addUnit(new CavalryUnit());
         }
         Battle testBattle = new Battle(humanArmy,orcArmy,"");
         System.out.println(testBattle);
@@ -60,8 +60,8 @@ class BattleTest {
         Army armyOne = new Army("Boys");
         Army armyTwo = new Army("Girls");
 
-        armyOne.addUnit(GetUnitFactory.getUnit(UnitType.RangedUnit,"Gutten"));
-        armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit,"Jenta", 4));
+        armyOne.addUnit(GetUnitFactory.getUnit(UnitType.RangedUnit));
+        armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 4));
 
         Battle testBattle = new Battle(armyOne,armyTwo,"Plains");
         assertEquals(1000,armyOne.getRandomUnit().getAttackBonus());

@@ -29,7 +29,7 @@
                         <HBox prefHeight="564.0" prefWidth="1109.0" style="-fx-background-color: #D3D2D4;">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: WHITE;" HBox.hgrow="ALWAYS" />
-                              <VBox prefHeight="563.0" prefWidth="610.0" style="-fx-background-color: #DBC4A0; -fx-border-color: black;" HBox.hgrow="NEVER">
+                              <VBox prefHeight="563.0" prefWidth="610.0" style="-fx-background-color: #74776B; -fx-border-color: black;" HBox.hgrow="NEVER">
                                  <children>
                                     <HBox prefHeight="68.0" prefWidth="610.0">
                                        <children>
@@ -41,7 +41,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </Pane>
-                                                <Label fx:id="moneyOut" prefHeight="34.0" prefWidth="84.0" text="10000">
+                                                <Label fx:id="moneyOut" prefHeight="34.0" prefWidth="84.0" text="10000" textFill="WHITE">
                                                    <font>
                                                       <Font name="Times New Roman" size="30.0" />
                                                    </font>
@@ -56,6 +56,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0">
                                        <children>
+                                          <Pane prefHeight="33.0" prefWidth="84.0" />
                                           <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -64,7 +65,7 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Army name:" wrappingWidth="177.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Army name:" wrappingWidth="117.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -72,15 +73,16 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="armyName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
-                                          <Label text="Total:">
+                                          <TextField fx:id="armyName" prefHeight="25.0" prefWidth="146.0" promptText="Type here" />
+                                          <Label text="Total:" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets left="227.0" top="10.0" />
+                                                <Insets left="113.0" top="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="33.0" prefWidth="69.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
@@ -88,6 +90,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="infantryInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -96,7 +99,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of infantry:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="infantry-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Infantry" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -104,7 +116,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="infantryName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -114,7 +125,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="50" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="50" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -133,7 +144,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeInf" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="infOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="infOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -141,6 +152,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -148,6 +160,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="rangedInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -156,7 +169,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of ranged:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="ranged-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ranged" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -164,7 +186,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="rangedName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -174,7 +195,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="60" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="60" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -193,7 +214,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeRan" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="ranOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="ranOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -201,6 +222,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -208,6 +230,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="cavalryInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -216,7 +239,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of cavarly:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="cavalry-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cavalry" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -224,7 +256,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="cavalryName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -234,7 +265,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="70" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="70" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -253,7 +284,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeCav" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="cavOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="cavOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -261,6 +292,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -268,6 +300,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="commanderInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -276,7 +309,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of commander:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="commander-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Commander" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -284,7 +326,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="commanderName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -294,7 +335,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="80" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="80" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -313,7 +354,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeCom" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="comOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="comOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -321,6 +362,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -328,6 +370,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0" prefWidth="200.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="mageInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -336,7 +379,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of mage:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="mage-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mage" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -344,7 +396,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="mageName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -354,7 +405,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="90" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="90" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -373,7 +424,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeMage" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="mageOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="mageOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -381,6 +432,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -388,6 +440,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0" prefWidth="200.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="bannerInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -396,7 +449,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of banner:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="banner-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Banner" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -404,7 +466,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="bannerName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -414,7 +475,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -433,7 +494,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeBanner" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="bannerOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="bannerOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -441,6 +502,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -448,6 +510,7 @@
                                     </HBox>
                                     <HBox prefHeight="40.0" prefWidth="200.0">
                                        <children>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                           <ImageView fx:id="dragonInfo" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../images/questionmark.png" />
@@ -456,7 +519,16 @@
                                                 <Insets left="1.0" top="3.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of dragon:" wrappingWidth="177.0">
+                                          <Pane prefHeight="31.0" prefWidth="31.0">
+                                             <styleClass>
+                                                <String fx:value="unit-image-small" />
+                                                <String fx:value="dragon-image" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Pane>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dragon" wrappingWidth="100.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -464,7 +536,6 @@
                                                 <Insets left="3.0" />
                                              </HBox.margin>
                                           </Text>
-                                          <TextField fx:id="dragonName" prefHeight="25.0" prefWidth="100.0" promptText="Type here" />
                                           <Pane prefHeight="25.0" prefWidth="26.0">
                                              <styleClass>
                                                 <String fx:value="coin-image" />
@@ -474,7 +545,7 @@
                                                 <Insets left="5.0" />
                                              </HBox.margin>
                                           </Pane>
-                                          <Text fill="#222e44" strokeType="OUTSIDE" strokeWidth="0.0" text="110" wrappingWidth="32.0">
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="110" wrappingWidth="32.0">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -493,7 +564,7 @@
                                              </HBox.margin>
                                           </Button>
                                           <Button mnemonicParsing="false" onAction="#removeDragon" styleClass="jfx-button" text="Remove" />
-                                          <Label fx:id="dragonOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="dragonOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>
@@ -501,6 +572,7 @@
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Label>
+                                          <Pane prefHeight="31.0" prefWidth="85.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="10.0" />
@@ -511,12 +583,12 @@
                                           <Insets bottom="10.0" top="10.0" />
                                        </VBox.margin>
                                        <children>
-                                          <Label fx:id="warningLabel" alignment="CENTER" prefHeight="25.0" prefWidth="530.0">
+                                          <Label fx:id="warningLabel" alignment="CENTER" prefHeight="25.0" prefWidth="485.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: black;" text="0">
+                                          <Label fx:id="totalOut" alignment="CENTER" prefHeight="25.0" prefWidth="34.0" style="-fx-border-color: white;" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="20.0" />
                                              </font>

@@ -8,14 +8,8 @@ import edu.ntnu.idatt2001.wargamesjfx.IO.ArmyCSVWrite;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,13 +17,6 @@ import java.util.Arrays;
 
 public class CreateNewArmyController {
     @FXML TextField armyName;
-    @FXML TextField infantryName;
-    @FXML TextField rangedName;
-    @FXML TextField cavalryName;
-    @FXML TextField commanderName;
-    @FXML TextField mageName;
-    @FXML TextField bannerName;
-    @FXML TextField dragonName;
     @FXML ChoiceBox infNr;
     @FXML ChoiceBox ranNr;
     @FXML ChoiceBox cavNr;
@@ -119,13 +106,6 @@ public class CreateNewArmyController {
                 warningLabel.setText(exception.getMessage());
             }
             armyName.setText("");
-            infantryName.setText("");
-            rangedName.setText("");
-            cavalryName.setText("");
-            commanderName.setText("");
-            mageName.setText("");
-            bannerName.setText("");
-            dragonName.setText("");
             nrOfInf = 0;
             nrOfRan = 0;
             nrOfCav = 0;
@@ -382,10 +362,6 @@ public class CreateNewArmyController {
             warningLabel.setText(exception.getMessage());
         }
         armyName.setText("");
-        infantryName.setText("");
-        rangedName.setText("");
-        cavalryName.setText("");
-        commanderName.setText("");
 
         warningLabel.setText("Army overwritten successfully");
     }
@@ -397,22 +373,14 @@ public class CreateNewArmyController {
 
     private Army getArmy(){
         String nameOfArmy = armyName.getText();
-        String nameOfInf = infantryName.getText();
-        String nameOfRan = rangedName.getText();
-        String nameOfCav = cavalryName.getText();
-        String nameOfCom = commanderName.getText();
-        String nameOfMage = mageName.getText();
-        String nameOfBanner = bannerName.getText();
-        String nameOfDragon = dragonName.getText();
-
         Army newArmy = new Army(nameOfArmy);
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit,nameOfInf, nrOfInf));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit,nameOfRan, nrOfRan));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit,nameOfCav, nrOfCav));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CommanderUnit,nameOfCom, nrOfCom));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.MageUnit,nameOfMage, nrOfMage));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.BannerUnit,nameOfBanner, nrOfBanner));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.DragonUnit,nameOfDragon, nrOfDragon));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, nrOfInf));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit,nrOfRan));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit,nrOfCav));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CommanderUnit,nrOfCom));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.MageUnit, nrOfMage));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.BannerUnit, nrOfBanner));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.DragonUnit, nrOfDragon));
         return newArmy;
     }
 

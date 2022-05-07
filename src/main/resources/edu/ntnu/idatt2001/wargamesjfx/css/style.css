@@ -32,3 +32,48 @@
 .terrain-image{
     -fx-background-size: 500px;
 }
+
+.unit-image-style {
+    -fx-background-size: 35px;
+    -fx-background-repeat: no-repeat;
+}
+
+.unit-image-small {
+    -fx-background-size: 31px;
+    -fx-background-repeat: no-repeat;
+}
+
+.unit-number-style{
+    -fx-font-size: 25px;
+    -fx-text-fill: white;
+}
+
+.infantry-image{
+    -fx-background-image: url("../images/infantry.png");
+}
+
+.ranged-image{
+    -fx-background-image: url("../images/ranged.png");
+}
+
+.cavalry-image{
+    -fx-background-image: url("../images/cavalry.png");
+}
+
+.commander-image{
+    -fx-background-image: url("../images/commander.png");
+}
+
+.mage-image{
+    -fx-background-image: url("../images/mage.png");
+}
+
+.banner-image{
+    -fx-background-image: url("../images/banner.png");
+}
+
+.dragon-image{
+    -fx-background-image: url("../images/dragon.png");
+}
+
+

@@ -4,7 +4,6 @@ package edu.ntnu.idatt2001.wargamesjfx.Units;
  * The type Unit.
  */
 public abstract class Unit {
-    private final String name;
     private int health;
     private final int attack;
     private final int armor;
@@ -12,14 +11,12 @@ public abstract class Unit {
     /**
      * Instantiates a new Unit.
      *
-     * @param name   the name of the unit
      * @param health the health of the unit
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      * @throws IllegalArgumentException if any of the int parameters given are below or equal to zero.
      */
-    public Unit(String name, int health, int attack, int armor) throws IllegalArgumentException {
-        this.name = name;
+    public Unit(int health, int attack, int armor) throws IllegalArgumentException {
         this.health = health;
         this.attack = attack;
         this.armor = armor;
@@ -39,14 +36,6 @@ public abstract class Unit {
                     (opponent.armor + opponent.getResistBonus());
     }
 
-    /**
-     * Gets name of the unit
-     *
-     * @return the name of the unit
-     */
-    public String getName() {
-        return name;
-    }
 
     /**
      * Gets health.
@@ -90,8 +79,7 @@ public abstract class Unit {
 
     @Override
     public String toString() {
-        return "Name: " + this.name +
-                "\nHealth: " + this.health +
+        return "Health: " + this.health +
                 "\nAttack: " + this.attack +
                 "\nArmor:" + this.armor + "\n";
     }
