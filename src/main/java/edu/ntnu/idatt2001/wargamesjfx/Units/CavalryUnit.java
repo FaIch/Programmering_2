@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 
 /**
  * The type Cavalry unit.
@@ -53,13 +54,13 @@ public class CavalryUnit extends Unit {
     @Override
     public int getAttackBonus() {
         int attackBonus = 0;
-        if (counter == 0 && Battle.terrain.equals("Plains")){
+        if (counter == 0 && Battle.terrain.equals(Terrain.Plains)){
             attackBonus = 8;
         }
         else if (counter == 0){
             attackBonus = 6;
         }
-        else if (Battle.terrain.equals("Plains")){
+        else if (Battle.terrain.equals(Terrain.Plains)){
             attackBonus = 4;
         }
         else {
@@ -75,7 +76,7 @@ public class CavalryUnit extends Unit {
      */
     @Override
     public int getResistBonus() {
-        if (Battle.terrain.equals("Forest")){
+        if (Battle.terrain.equals(Terrain.Forest)){
             return 0;
         }
         return 1;

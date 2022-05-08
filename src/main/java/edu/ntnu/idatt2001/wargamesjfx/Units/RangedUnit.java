@@ -53,8 +53,8 @@ public class RangedUnit extends Unit{
     @Override
     public int getAttackBonus() {
         return switch (Battle.terrain) {
-            case "Forest" -> 1;
-            case "Hill" -> 5;
+            case Forest -> 1;
+            case Hill -> 5;
             default -> 3;
         };
     }

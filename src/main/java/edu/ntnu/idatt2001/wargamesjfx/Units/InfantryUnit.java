@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 
 /**
  * The type Infantry unit.
@@ -38,7 +39,7 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getAttackBonus() {
-        if (Battle.terrain.equals("Forest")){
+        if (Battle.terrain.equals(Terrain.Forest)){
             return 4;
         }
         return 2;
@@ -52,7 +53,7 @@ public class InfantryUnit extends Unit{
      */
     @Override
     public int getResistBonus() {
-        if (Battle.terrain.equals("Forest")){
+        if (Battle.terrain.equals(Terrain.Forest)){
             return 3;
         }
         return 1;

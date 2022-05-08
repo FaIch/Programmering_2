@@ -21,7 +21,7 @@ public class CommanderUnit extends CavalryUnit{
      * Constructor 2
      * Inherits methods from CavalryUnit
      *
-     * @param name
+     * @param name the name of the unit
      */
     public CommanderUnit(String name) {
         super(180, name, 15, 8);

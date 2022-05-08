@@ -140,7 +140,7 @@ public class MainController implements Initializable {
         }
         Battle battle = null;
         try {
-            battle = new Battle(armyOne, armyTwo, terrain.getValue().toString());
+            battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
         } catch (Exception e) {
             warningLabel.setText(e.getMessage());
         }
