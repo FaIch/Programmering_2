@@ -2,13 +2,13 @@ package edu.ntnu.idatt2001.wargamesjfx.IO;
 
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
-
+import edu.ntnu.idatt2001.wargamesjfx.Units.Unit;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
 
 /**
  * Class for writing an Army to a csv file.
@@ -34,6 +34,8 @@ public class ArmyCSVWrite {
      * @param file the file, the army should be written to. Could be an existing file or a new one.
      * @throws IOException throws IOException if any of the IO operations fail.
      */
+
+    //TODO fix it so number shows after unit
     public static void writeFile(Army army, File file, boolean bool) throws IOException{
         if (!file.getPath().startsWith(FileSystems.getDefault()
                 .getPath("src","main","resources").toString())){
@@ -46,12 +48,15 @@ public class ArmyCSVWrite {
             throw new IOException("Army cannot be null");
         }
         String line = army.getName();
+        Map<Unit, Integer> unitsMapped = getMappedUnits(army.getAllUnits());
         try (FileWriter fileWriter = new FileWriter(file)){
             fileWriter.write(line + NEWLINE);
-            army.getAllUnits().forEach(unit -> {
-                try {
-                    fileWriter.write(unit.getClass().getSimpleName() + DELIMITER + NEWLINE);
-                }catch (IOException e){
+            unitsMapped.forEach((unit, number) -> {
+                try{
+                    fileWriter.write(unit.getClass().getSimpleName() + DELIMITER + unit.getName() + DELIMITER +
+                            number + NEWLINE);
+
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
@@ -65,5 +70,22 @@ public class ArmyCSVWrite {
                 throw new IOException("Cannot write army name to file:" + e.getMessage());
             }
         }
+    }
+
+
+    private static Map<Unit, Integer> getMappedUnits(List<Unit> list) throws IllegalArgumentException{
+        if (list == null || list.size() == 0){
+            throw new IllegalArgumentException("List cannot be empty/null");
+        }
+        Map<Unit, Integer> unitTypeAndNumberMapped = new HashMap<>();
+        for (Unit unit : list){
+            if (!unitTypeAndNumberMapped.containsKey(unit)){
+                unitTypeAndNumberMapped.put(unit, 1);
+            }
+            else {
+                unitTypeAndNumberMapped.put(unit, unitTypeAndNumberMapped.get(unit) + 1);
+            }
+        }
+        return unitTypeAndNumberMapped;
     }
 }

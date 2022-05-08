@@ -4,7 +4,6 @@ package edu.ntnu.idatt2001.wargamesjfx.IO;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
 import edu.ntnu.idatt2001.wargamesjfx.Factory.GetUnitFactory;
 import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
-import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,18 +57,20 @@ public class ArmyCSVRead {
                 String line = scanner.nextLine();
                 String[] values = line.split(DELIMITER);
 
-                if (values.length != 1) {
+                if (values.length != 3) {
                     throw new IOException("Invalid format. Ensure lines in .csv file is: 'Type'");
                 }
 
                 String type = values[0];
+                String name = values[1];
+                int number= Integer.parseInt(values[2]);
                 UnitType unitType;
                 try {
                     unitType = UnitType.valueOf(type);
                 }catch (IllegalArgumentException e){
                     throw new IllegalArgumentException(e.getMessage());
                 }
-                army.addUnit(GetUnitFactory.getUnit(unitType));
+                army.addAllUnits(GetUnitFactory.getXUnits(unitType, number, name));
             }
         }
         return army;

@@ -2,11 +2,14 @@ package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 
+import java.util.Objects;
+
 /**
  * The type Unit.
  */
 public abstract class Unit {
     private int health;
+    private final String name;
     private final int attack;
     private final int armor;
 
@@ -15,11 +18,13 @@ public abstract class Unit {
      *
      * @param health the health of the unit
      * @param attack the attack of the unit
-     * @param armor  the armor of the unit
+     * @param name the name of the unit
+     * @param armor the armor of the unit
      * @throws IllegalArgumentException if any of the int parameters given are below or equal to zero.
      */
-    public Unit(int health, int attack, int armor) throws IllegalArgumentException {
+    public Unit(int health, String name, int attack, int armor) throws IllegalArgumentException {
         this.health = health;
+        this.name = name;
         this.attack = attack;
         this.armor = armor;
         if (health <= 0){
@@ -54,6 +59,16 @@ public abstract class Unit {
      */
     public int getHealth() {
         return health;
+    }
+
+
+    /**
+     * Gets name.
+     *
+     * @return the name of the unit
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -109,4 +124,17 @@ public abstract class Unit {
      * @return the resist bonus of the unit
      */
     public abstract int getResistBonus();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Unit unit = (Unit) o;
+        return health == unit.health && attack == unit.attack && armor == unit.armor && Objects.equals(name, unit.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(health, name, attack, armor);
+    }
 }

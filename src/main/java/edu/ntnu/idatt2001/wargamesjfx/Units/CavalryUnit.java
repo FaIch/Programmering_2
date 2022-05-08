@@ -19,8 +19,8 @@ public class CavalryUnit extends Unit {
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      */
-    public CavalryUnit(int health, int attack, int armor) {
-        super( health, attack, armor);
+    public CavalryUnit(int health, String name, int attack, int armor) {
+        super(health, name, attack, armor);
     }
 
     /**
@@ -30,9 +30,10 @@ public class CavalryUnit extends Unit {
      * Constructor that will see most use, where the user decides name and health of unit
      * and the attack and armor stats are already defined
      *
+     * @param name
      */
-    public CavalryUnit(){
-        super(100,20,12);
+    public CavalryUnit(String name){
+        super(100, name, 20,12);
     }
 
     /**

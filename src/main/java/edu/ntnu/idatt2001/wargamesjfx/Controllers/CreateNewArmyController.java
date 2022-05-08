@@ -374,13 +374,13 @@ public class CreateNewArmyController {
     private Army getArmy(){
         String nameOfArmy = armyName.getText();
         Army newArmy = new Army(nameOfArmy);
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, nrOfInf));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit,nrOfRan));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit,nrOfCav));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CommanderUnit,nrOfCom));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.MageUnit, nrOfMage));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.BannerUnit, nrOfBanner));
-        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.DragonUnit, nrOfDragon));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, nrOfInf, "Infantry"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit,nrOfRan, "Ranged"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit,nrOfCav, "Cavalry"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CommanderUnit,nrOfCom, "Commander"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.MageUnit, nrOfMage, "Mage"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.BannerUnit, nrOfBanner, "Banner"));
+        newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.DragonUnit, nrOfDragon, "Dragon"));
         return newArmy;
     }
 

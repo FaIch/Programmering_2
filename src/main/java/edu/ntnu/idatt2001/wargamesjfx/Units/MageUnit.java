@@ -2,11 +2,11 @@ package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 public class MageUnit extends Unit{
 
-    public MageUnit(int health, int attack, int armor) {
-        super(health, attack, armor);
+    public MageUnit(int health, String name, int attack, int armor) {
+        super(health, name, attack, armor);
     }
 
-    public MageUnit(){super(70, 40, 5);}
+    public MageUnit(String name){super(70, name, 40, 5);}
 
     @Override
     public int getAttackBonus() {

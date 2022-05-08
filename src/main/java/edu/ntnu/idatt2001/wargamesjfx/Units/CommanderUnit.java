@@ -12,8 +12,8 @@ public class CommanderUnit extends CavalryUnit{
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      */
-    public CommanderUnit(int health, int attack, int armor) {
-        super(health, attack, armor);
+    public CommanderUnit(int health, String name, int attack, int armor) {
+        super(health, name, attack, armor);
     }
 
     /**
@@ -21,8 +21,9 @@ public class CommanderUnit extends CavalryUnit{
      * Constructor 2
      * Inherits methods from CavalryUnit
      *
+     * @param name
      */
-    public CommanderUnit() {
-        super(180, 15, 8);
+    public CommanderUnit(String name) {
+        super(180, name, 15, 8);
     }
 }

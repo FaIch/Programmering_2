@@ -10,10 +10,10 @@ public class DragonUnit extends Unit{
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      */
-    public DragonUnit(int health, int attack, int armor) {super(health, attack, armor);}
+    public DragonUnit(int health, String name, int attack, int armor) {super(health, name, attack, armor);}
 
-    public DragonUnit(){
-        super(200, 30, 20);
+    public DragonUnit(String name){
+        super(200, name, 30, 20);
 
     }
 

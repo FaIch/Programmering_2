@@ -6,29 +6,29 @@ import java.util.ArrayList;
 
 public class GetUnitFactory {
 
-    public static Unit getUnit(UnitType unitType){
+    public static Unit getUnit(UnitType unitType, String name){
         if (unitType == null){
             throw new IllegalArgumentException("UnitType can not be null");
         }
         else {
             Unit returnUnit = null;
             switch (unitType) {
-                case InfantryUnit -> returnUnit = new InfantryUnit();
-                case RangedUnit -> returnUnit = new RangedUnit();
-                case CavalryUnit -> returnUnit = new CavalryUnit();
-                case CommanderUnit -> returnUnit = new CommanderUnit();
-                case MageUnit -> returnUnit = new MageUnit();
-                case BannerUnit -> returnUnit = new BannerUnit();
-                case DragonUnit -> returnUnit = new DragonUnit();
+                case InfantryUnit -> returnUnit = new InfantryUnit(name);
+                case RangedUnit -> returnUnit = new RangedUnit(name);
+                case CavalryUnit -> returnUnit = new CavalryUnit(name);
+                case CommanderUnit -> returnUnit = new CommanderUnit(name);
+                case MageUnit -> returnUnit = new MageUnit(name);
+                case BannerUnit -> returnUnit = new BannerUnit(name);
+                case DragonUnit -> returnUnit = new DragonUnit(name);
             }
             return returnUnit;
         }
     }
 
-    public static ArrayList<Unit> getXUnits(UnitType unitType, int number) {
+    public static ArrayList<Unit> getXUnits(UnitType unitType, int number, String name) {
         ArrayList<Unit> returnList = new ArrayList<>();
         for (int i = 0; i < number; i++) {
-            returnList.add(getUnit(unitType));
+            returnList.add(getUnit(unitType, name));
         }
         return returnList;
     }

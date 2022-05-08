@@ -13,14 +13,14 @@ class GetUnitFactoryTest {
     @Test
     void getUnit() {
         ArrayList<Unit> testList = new ArrayList<>();
-        testList.add(GetUnitFactory.getUnit(InfantryUnit));
+        testList.add(GetUnitFactory.getUnit(InfantryUnit, ""));
         assertEquals(1,testList.size());
     }
 
     @Test
     void getXUnits() {
         ArrayList<Unit> testList = new ArrayList<>();
-        testList.addAll(GetUnitFactory.getXUnits(RangedUnit, 50));
+        testList.addAll(GetUnitFactory.getXUnits(RangedUnit, 50, ""));
         assertEquals(50,testList.size());
     }
 }

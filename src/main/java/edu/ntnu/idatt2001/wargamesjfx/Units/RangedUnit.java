@@ -16,11 +16,12 @@ public class RangedUnit extends Unit{
      * Constructor where the user decides all stats for the unit
      *
      * @param health the health of the unit
+     * @param name the name of the unit
      * @param attack the attack of the unit
      * @param armor  the armor of the unit
      */
-    public RangedUnit(int health, int attack, int armor) {
-        super(health, attack, armor);
+    public RangedUnit(int health, String name, int attack, int armor) {
+        super(health, name, attack, armor);
     }
 
     /**
@@ -28,9 +29,10 @@ public class RangedUnit extends Unit{
      * Constructor 2
      * Constructor there the attack and armor of the unit is predetermined
      *
+     * @param name
      */
-    public RangedUnit(){
-        super(100, 15, 8);
+    public RangedUnit(String name){
+        super(100, name, 15, 8);
     }
 
     /**
