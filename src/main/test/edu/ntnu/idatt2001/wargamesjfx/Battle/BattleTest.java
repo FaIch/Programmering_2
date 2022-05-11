@@ -15,7 +15,7 @@ class BattleTest {
         Army army = new Army("Army");
         army.addUnit(new InfantryUnit(""));
         assertThrows(IllegalArgumentException.class, () ->{
-            Battle dummyBattle = new Battle(army,emptyArmy,"");
+            Battle dummyBattle = new Battle(army,emptyArmy,Terrain.Forest);
         });
     }
 
@@ -26,7 +26,7 @@ class BattleTest {
         Army winner = new Army("Winner");
         loser.addUnit(new InfantryUnit(""));
         winner.addUnit(new InfantryUnit(""));
-        Battle testBattle = new Battle(winner,loser,"");
+        Battle testBattle = new Battle(winner,loser,Terrain.Forest);
         Unit randomUnit = loser.getRandomUnit();
         loser.removeUnit(randomUnit);
         assertEquals(winner, testBattle.simulate());
@@ -51,7 +51,7 @@ class BattleTest {
             humanArmy.addUnit(new CavalryUnit(""));
             orcArmy.addUnit(new CavalryUnit(""));
         }
-        Battle testBattle = new Battle(humanArmy,orcArmy,"");
+        Battle testBattle = new Battle(humanArmy,orcArmy,Terrain.Forest);
         System.out.println(testBattle);
     }
 
@@ -63,7 +63,7 @@ class BattleTest {
         armyOne.addUnit(GetUnitFactory.getUnit(UnitType.RangedUnit, "Gutten"));
         armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 4, "Jenta"));
 
-        Battle testBattle = new Battle(armyOne,armyTwo,"Plains");
-        assertEquals(1000,armyOne.getRandomUnit().getAttackBonus());
+        Battle testBattle = new Battle(armyOne,armyTwo,Terrain.Plains);
+        assertEquals(1000,armyOne.getRandomUnit().getAttackBonus(armyTwo.getRandomUnit(), Terrain.Forest));
     }
 }

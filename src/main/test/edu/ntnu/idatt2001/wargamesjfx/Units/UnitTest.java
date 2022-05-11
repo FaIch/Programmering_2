@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ class UnitTest {
     void attack() {
         InfantryUnit infantryUnit1 = new InfantryUnit("");
         InfantryUnit infantryUnit2 = new InfantryUnit("");
-        infantryUnit1.attack(infantryUnit2);
+        infantryUnit1.attack(infantryUnit2, Terrain.Forest);
         assertEquals(94,infantryUnit2.getHealth());
     }
 
@@ -37,18 +38,21 @@ class UnitTest {
     @DisplayName("Attack bonus test")
     void getAttackBonus() {
         CommanderUnit commanderUnit = new CommanderUnit("");
-        assertEquals(6,commanderUnit.getAttackBonus());
-        assertEquals(2,commanderUnit.getAttackBonus());
-        assertEquals(2,commanderUnit.getAttackBonus());
+        InfantryUnit dummyUnit = new InfantryUnit("");
+        Terrain terrain = Terrain.Forest;
+        assertEquals(6,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(2,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(2,commanderUnit.getAttackBonus(dummyUnit, terrain));
     }
 
     @Test
     @DisplayName("Resist bonus test")
     void getResistBonus() {
+        Terrain terrain = Terrain.Forest;
         RangedUnit rangedUnit = new RangedUnit("");
-        assertEquals(6,rangedUnit.getResistBonus());
-        assertEquals(4,rangedUnit.getResistBonus());
-        assertEquals(2,rangedUnit.getResistBonus());
-        assertEquals(2,rangedUnit.getResistBonus());
+        assertEquals(6,rangedUnit.getResistBonus(terrain));
+        assertEquals(4,rangedUnit.getResistBonus(terrain));
+        assertEquals(2,rangedUnit.getResistBonus(terrain));
+        assertEquals(2,rangedUnit.getResistBonus(terrain));
     }
 }

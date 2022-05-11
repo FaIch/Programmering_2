@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 
 /**
  * The type Ranged unit.
@@ -49,10 +50,12 @@ public class RangedUnit extends Unit{
      * The attack bonus of this unit varies with terrain, advantage when attacking from Hill
      * Disadvantage in Forest
      * @return the attack bonus of the unit
+     * @param enemyUnit
+     * @param terrain
      */
     @Override
-    public int getAttackBonus() {
-        return switch (Battle.terrain) {
+    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
+        return switch (terrain) {
             case Forest -> 1;
             case Hill -> 5;
             default -> 3;
@@ -63,9 +66,10 @@ public class RangedUnit extends Unit{
      * Variable resist bonus. Depends on number of times the unit has been attacked.
      * Starts at 6, and decreases by 2 each time the unit is attacked, until the bonus is at 2, where it is locked
      * @return the current resist bonus of the unit.
+     * @param terrain
      */
     @Override
-    public int getResistBonus() {
+    public int getResistBonus(Terrain terrain) {
         int resistBonus = 0;
         if (this.counter == 0){
             resistBonus = 6;

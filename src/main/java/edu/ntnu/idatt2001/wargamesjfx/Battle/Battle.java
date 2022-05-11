@@ -7,7 +7,7 @@ import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 public class Battle {
     private final Army armyOne;
     private final Army armyTwo;
-    public static Terrain terrain;
+    public Terrain terrain;
     /**
      * Instantiates a new Battle.
      *
@@ -25,7 +25,7 @@ public class Battle {
         else {
             this.armyOne = armyOne;
             this.armyTwo = armyTwo;
-            Battle.terrain = terrain;
+            this.terrain = terrain;
         }
     }
 
@@ -63,14 +63,14 @@ public class Battle {
         try {
             if (army.equals(armyTwo)) {
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
-                armyTwo.getRandomUnit().attack(armyOneRandomUnit);
+                armyTwo.getRandomUnit().attack(armyOneRandomUnit, this.terrain);
 
                 if (armyOneRandomUnit.getHealth() <= 0) {
                     armyOne.removeUnit(armyOneRandomUnit);
                 }
             } else {
                 Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
-                armyOne.getRandomUnit().attack(armyTwoRandomUnit);
+                armyOne.getRandomUnit().attack(armyTwoRandomUnit, this.terrain);
 
                 if (armyTwoRandomUnit.getHealth() <= 0) {
                     armyTwo.removeUnit(armyTwoRandomUnit);

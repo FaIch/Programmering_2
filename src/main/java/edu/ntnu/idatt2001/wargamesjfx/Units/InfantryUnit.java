@@ -36,10 +36,12 @@ public class InfantryUnit extends Unit{
     /**
      * bonus based on terrain, if terrain is Forest, increased bonus
      * @return The attack bonus of the unit
+     * @param enemyUnit
+     * @param terrain
      */
     @Override
-    public int getAttackBonus() {
-        if (Battle.terrain.equals(Terrain.Forest)){
+    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
+        if (terrain.equals(Terrain.Forest)){
             return 4;
         }
         return 2;
@@ -50,10 +52,11 @@ public class InfantryUnit extends Unit{
     /**
      * Resist bonus based on terrain, if terrain is Forest, increased bonus
      * @return the resist bonus of the unit.
+     * @param terrain
      */
     @Override
-    public int getResistBonus() {
-        if (Battle.terrain.equals(Terrain.Forest)){
+    public int getResistBonus(Terrain terrain) {
+        if (terrain.equals(Terrain.Forest)){
             return 3;
         }
         return 1;

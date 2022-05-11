@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
-import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 
 import java.util.Objects;
 
@@ -38,17 +38,13 @@ public abstract class Unit {
      *
      * @param opponent an opponent unit. Selected randomly
      */
-    public void attack(Unit opponent){
-        UnitType unitAttack = UnitType.valueOf(this.getClass().getSimpleName());
-        UnitType unitDefend = UnitType.valueOf(opponent.getClass().getSimpleName());
-        int situationalBonus = SituationalBonus.getSituationalBonus(unitAttack,unitDefend);
-        int totalDamage = this.attack + this.getAttackBonus() + situationalBonus;
-        int totalResistance = opponent.getArmor() + opponent.getResistBonus();
+    public void attack(Unit opponent, Terrain terrain){
+        int totalDamage = this.attack + this.getAttackBonus(opponent, terrain);
+        int totalResistance = opponent.getArmor() + opponent.getResistBonus(terrain);
 
         if (totalDamage > totalResistance) {
             opponent.health = opponent.health - totalDamage + totalResistance;
         }
-
     }
 
 
@@ -114,16 +110,19 @@ public abstract class Unit {
      * All classes that inherit this class, must implement this method
      *
      * @return the attack bonus of the unit
+     * @param enemyUnit
+     * @param terrain
      */
-    public abstract int getAttackBonus();
+    public abstract int getAttackBonus(Unit enemyUnit, Terrain terrain);
 
     /**
      * Abstract method for retrieving the resist bonus of a unit.
      * All subclasses implement this method
      *
      * @return the resist bonus of the unit
+     * @param terrain
      */
-    public abstract int getResistBonus();
+    public abstract int getResistBonus(Terrain terrain);
 
     @Override
     public boolean equals(Object o) {

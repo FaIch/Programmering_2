@@ -50,17 +50,19 @@ public class CavalryUnit extends Unit {
      * A cavalry unit will have the highest attack bonus on the first strike, afterwards it will be constant.
      * Attack bonus varies with terrain
      * @return the current attack bonus of the unit
+     * @param enemyUnit
+     * @param terrain
      */
     @Override
-    public int getAttackBonus() {
+    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
         int attackBonus = 0;
-        if (counter == 0 && Battle.terrain.equals(Terrain.Plains)){
+        if (counter == 0 && terrain.equals(Terrain.Plains)){
             attackBonus = 8;
         }
         else if (counter == 0){
             attackBonus = 6;
         }
-        else if (Battle.terrain.equals(Terrain.Plains)){
+        else if (terrain.equals(Terrain.Plains)){
             attackBonus = 4;
         }
         else {
@@ -73,10 +75,11 @@ public class CavalryUnit extends Unit {
     /**
      * Resist bonus for this unit varies, in Forest it has no advantage
      * @return the resist bonus.
+     * @param terrain
      */
     @Override
-    public int getResistBonus() {
-        if (Battle.terrain.equals(Terrain.Forest)){
+    public int getResistBonus(Terrain terrain) {
+        if (terrain.equals(Terrain.Forest)){
             return 0;
         }
         return 1;
