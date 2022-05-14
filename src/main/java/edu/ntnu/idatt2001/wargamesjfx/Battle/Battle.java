@@ -63,14 +63,16 @@ public class Battle {
         try {
             if (army.equals(armyTwo)) {
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
-                armyTwo.getRandomUnit().attack(armyOneRandomUnit, this.terrain);
+                armyTwo.getRandomUnit().attack(armyOneRandomUnit, this.terrain,
+                        armyTwo.getBannerUnits().size() > 0);
 
                 if (armyOneRandomUnit.getHealth() <= 0) {
                     armyOne.removeUnit(armyOneRandomUnit);
                 }
             } else {
                 Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
-                armyOne.getRandomUnit().attack(armyTwoRandomUnit, this.terrain);
+                armyOne.getRandomUnit().attack(armyTwoRandomUnit, this.terrain,
+                        armyOne.getBannerUnits().size() > 0);
 
                 if (armyTwoRandomUnit.getHealth() <= 0) {
                     armyTwo.removeUnit(armyTwoRandomUnit);

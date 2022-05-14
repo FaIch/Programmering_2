@@ -1,14 +1,14 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
-import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Interface.TerrainBonus;
 
 /**
  * The type Ranged unit.
  * Has a variable counter, used to determine what the resist bonus should be, based on how many times the unit has
  * been attacked
  */
-public class RangedUnit extends Unit{
+public class RangedUnit extends Unit implements TerrainBonus {
     private int counter;
 
     /**
@@ -55,11 +55,7 @@ public class RangedUnit extends Unit{
      */
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
-        return switch (terrain) {
-            case Forest -> 1;
-            case Hill -> 5;
-            default -> 3;
-        };
+        return 3 + getTerrainAttackBonus(terrain);
     }
 
     /**
@@ -82,5 +78,19 @@ public class RangedUnit extends Unit{
         }
         increaseCounter();
         return resistBonus;
+    }
+
+    @Override
+    public int getTerrainAttackBonus(Terrain terrain) {
+        return switch (terrain) {
+            case Forest -> -2;
+            case Hill -> 2;
+            default -> 0;
+        };
+    }
+
+    @Override
+    public int getTerrainArmorBonus(Terrain terrain) {
+        return 0;
     }
 }

@@ -57,13 +57,13 @@ public class CreateNewArmyController {
     private int numberToRemove = 0;
     private int numberToAdd = 0;
     private int money = 10000;
-    private final int costOfInf = 50;
-    private final int costOfRan = 60;
-    private final int costOfCav = 80;
-    private final int costOfCom = 100;
-    private final int costOfMage = 1000;
-    private final int costOfBanner = 2000;
-    private final int costOfDragon = 10;
+    private final int costOfInf = 125;
+    private final int costOfRan = 125;
+    private final int costOfCav = 140;
+    private final int costOfCom = 200;
+    private final int costOfMage = 115;
+    private final int costOfBanner = 175;
+    private final int costOfDragon = 250;
 
     ArrayList<ChoiceBox> boxes;
 

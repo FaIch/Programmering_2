@@ -1,8 +1,9 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Interface.TerrainBonus;
 
-public class DragonUnit extends Unit{
+public class DragonUnit extends Unit implements TerrainBonus {
 
 
     /**
@@ -21,11 +22,24 @@ public class DragonUnit extends Unit{
 
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
-        return 0;
+        return 3;
     }
 
     @Override
     public int getResistBonus(Terrain terrain) {
+        return 3;
+    }
+
+    @Override
+    public int getTerrainAttackBonus(Terrain terrain) {
+        if (terrain.equals(Terrain.Forest)){
+            return -10;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTerrainArmorBonus(Terrain terrain) {
         return 0;
     }
 }

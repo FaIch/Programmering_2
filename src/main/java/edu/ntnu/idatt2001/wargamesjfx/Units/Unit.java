@@ -37,9 +37,13 @@ public abstract class Unit {
      * Takes into account all the stats a unit has
      *
      * @param opponent an opponent unit. Selected randomly
+     * @param hasBanner
      */
-    public void attack(Unit opponent, Terrain terrain){
+    public void attack(Unit opponent, Terrain terrain, boolean hasBanner){
         int totalDamage = this.attack + this.getAttackBonus(opponent, terrain);
+        if (hasBanner){
+            totalDamage += Math.abs(totalDamage * 0.2);
+        }
         int totalResistance = opponent.getArmor() + opponent.getResistBonus(terrain);
 
         if (totalDamage > totalResistance) {

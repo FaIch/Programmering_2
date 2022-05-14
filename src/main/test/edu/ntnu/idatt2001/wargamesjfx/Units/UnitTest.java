@@ -13,7 +13,7 @@ class UnitTest {
     void attack() {
         InfantryUnit infantryUnit1 = new InfantryUnit("");
         InfantryUnit infantryUnit2 = new InfantryUnit("");
-        infantryUnit1.attack(infantryUnit2, Terrain.Forest);
+        infantryUnit1.attack(infantryUnit2, Terrain.Forest, false);
         assertEquals(94,infantryUnit2.getHealth());
     }
 
