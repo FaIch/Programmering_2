@@ -52,7 +52,7 @@
                      <children>
                         <Label fx:id="army1Name" prefWidth="303.0" text="ARMY NAME" textFill="WHITE">
                            <font>
-                              <Font name="Times New Roman" size="30.0" />
+                              <Font name="Times New Roman" size="40.0" />
                            </font>
                         </Label>
                         <Label alignment="CENTER" prefHeight="29.0" prefWidth="193.0" text="Total Units:" textFill="WHITE">
@@ -272,7 +272,7 @@
                         <HBox VBox.vgrow="NEVER">
                            <children>
                               <Pane prefHeight="0.0" prefWidth="150.0" />
-                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="27.0" prefWidth="211.0" styleClass="jfx-button" text="Create new Army">
+                              <Button mnemonicParsing="false" onAction="#createNewArmy" prefHeight="27.0" prefWidth="211.0" styleClass="jfx-button" text="Create new Army / Edit Army">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin></Button>
@@ -285,7 +285,7 @@
                      <children>
                         <Label fx:id="army2Name" alignment="CENTER_RIGHT" prefWidth="303.0" text="ARMY NAME" textFill="WHITE">
                            <font>
-                              <Font name="Times New Roman" size="30.0" />
+                              <Font name="Times New Roman" size="40.0" />
                            </font>
                         </Label>
                         <Label prefHeight="29.0" prefWidth="183.0" text="Total Units:" textFill="WHITE" VBox.vgrow="NEVER">

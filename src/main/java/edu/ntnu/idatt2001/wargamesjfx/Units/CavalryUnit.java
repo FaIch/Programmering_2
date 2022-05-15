@@ -1,13 +1,14 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Interface.SituationalBonus;
 import edu.ntnu.idatt2001.wargamesjfx.Interface.TerrainBonus;
 
 /**
  * The type Cavalry unit.
  * Counter as a variable decides the attackBonus of the given unit, based on how many times the unit has attacked.
  */
-public class CavalryUnit extends Unit implements TerrainBonus {
+public class CavalryUnit extends Unit implements TerrainBonus, SituationalBonus {
     private int counter;
 
     /**
@@ -63,7 +64,7 @@ public class CavalryUnit extends Unit implements TerrainBonus {
             attackBonus = 2;
         }
         increaseCounter();
-        return  attackBonus +getTerrainAttackBonus(terrain);
+        return  attackBonus + getTerrainAttackBonus(terrain) + getSituationalAttackBonus(enemyUnit);
     }
 
     /**
@@ -88,6 +89,14 @@ public class CavalryUnit extends Unit implements TerrainBonus {
     public int getTerrainArmorBonus(Terrain terrain) {
         if (terrain.equals(Terrain.Forest)){
             return -1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getSituationalAttackBonus(Unit unit) {
+        if (unit.getClass().getSimpleName().equals("InfantryUnit")){
+            return 2;
         }
         return 0;
     }

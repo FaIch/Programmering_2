@@ -1,2 +1,6 @@
 Test1
+MageUnit,Mage,9
 InfantryUnit,Infantry,1
+RangedUnit,Ranged,10
+DragonUnit,Dragon,5
+CavalryUnit,Cavalry,40

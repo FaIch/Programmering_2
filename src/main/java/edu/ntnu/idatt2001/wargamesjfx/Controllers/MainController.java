@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -52,11 +53,10 @@ public class MainController implements Initializable {
     private Stage stage;
     private Army armyOne;
     private Army armyTwo;
-    private FileChooser fileChooser = new FileChooser();
+    private final FileChooser fileChooser = new FileChooser();
     private String path1;
     private String path2;
 
-    //TODO Implementere attack bonuser i forhold til enhet du angriper
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,6 +81,7 @@ public class MainController implements Initializable {
             setArmyOneStats();
             path1 = file.getAbsolutePath();
             pathArmy1.setText(path1);
+            warningLabel.setText("");
         }
     }
 
@@ -97,6 +98,7 @@ public class MainController implements Initializable {
             setArmyTwoStats();
             path2 = file.getAbsolutePath();
             pathArmy2.setText(path2);
+            warningLabel.setText("");
         }
     }
 
@@ -111,6 +113,7 @@ public class MainController implements Initializable {
         setArmyOneStats();
         path1 = file.getAbsolutePath();
         pathArmy1.setText(path1);
+        warningLabel.setText("Unbalanced battles may take place when loading external armies");
     }
 
     @FXML
@@ -124,6 +127,7 @@ public class MainController implements Initializable {
         setArmyTwoStats();
         path2 = file.getAbsolutePath();
         pathArmy2.setText(path2);
+        warningLabel.setText("Unbalanced battles may take place when loading external armies");
     }
 
     @FXML
@@ -144,7 +148,7 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             warningLabel.setText(e.getMessage());
         }
-        battle.simulate();
+        Objects.requireNonNull(battle).simulate();
         setArmyOneStats();
         setArmyTwoStats();
         fight.setDisable(true);

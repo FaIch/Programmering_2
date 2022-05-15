@@ -41,10 +41,10 @@ public class Battle {
         int counter = 0;
         while (armyOne.hasUnits() && armyTwo.hasUnits()) {
             if (counter % 2 == 0) {
-                attack(armyTwo);
+                armyAttack(armyTwo);
             }
             else {
-                attack(armyOne);
+                armyAttack(armyOne);
             }
             counter++;
         }
@@ -59,7 +59,7 @@ public class Battle {
      * if the health of the unit that is attacked is below or equal zero, the unit is removed from the army.
      * @param army the army that is attacked, decided by the counter in the simulate method.
      */
-    public void attack(Army army){
+    public void armyAttack(Army army){
         try {
             if (army.equals(armyTwo)) {
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
