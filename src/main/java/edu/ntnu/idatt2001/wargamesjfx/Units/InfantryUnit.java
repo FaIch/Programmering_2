@@ -1,13 +1,13 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
-import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
-import edu.ntnu.idatt2001.wargamesjfx.Interface.TerrainBonus;
+import edu.ntnu.idatt2001.wargamesjfx.Interfaces.*;
+
 
 /**
  * The type Infantry unit.
  */
-public class InfantryUnit extends Unit implements TerrainBonus {
+public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDefenceBonus {
 
     /**
      * Instantiates a new Infantry unit.
@@ -53,7 +53,7 @@ public class InfantryUnit extends Unit implements TerrainBonus {
      */
     @Override
     public int getResistBonus(Terrain terrain) {
-        return 1 + getTerrainArmorBonus(terrain);
+        return 1 + getTerrainDefenceBonus(terrain);
     }
 
     @Override
@@ -64,8 +64,7 @@ public class InfantryUnit extends Unit implements TerrainBonus {
         return 0;
     }
 
-    @Override
-    public int getTerrainArmorBonus(Terrain terrain) {
+    public int getTerrainDefenceBonus(Terrain terrain) {
         if (terrain == Terrain.Forest) {
             return 2;
         }

@@ -1,5 +1,5 @@
 package edu.ntnu.idatt2001.wargamesjfx.Battle;
-import edu.ntnu.idatt2001.wargamesjfx.Interface.BattleListener;
+import edu.ntnu.idatt2001.wargamesjfx.Interfaces.BattleListener;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.util.ArrayList;
@@ -75,9 +75,9 @@ public class Battle {
                 if (armyOneRandomUnit.getHealth() <= 0) {
                     armyOne.removeUnit(armyOneRandomUnit);
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(75);
                     }catch (InterruptedException e){
-                        // Do something???
+                        throw new InterruptedException(e.getMessage());
                     }
                     fireUpdate();
                 }
@@ -89,9 +89,9 @@ public class Battle {
                 if (armyTwoRandomUnit.getHealth() <= 0) {
                     armyTwo.removeUnit(armyTwoRandomUnit);
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(75);
                     }catch (InterruptedException e){
-                        // Do something???
+                        throw new InterruptedException(e.getMessage());
                     }
                     fireUpdate();
                 }

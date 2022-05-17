@@ -20,59 +20,17 @@ import java.util.List;
 
 public class CreateNewArmyController {
     @FXML TextField armyName;
-    @FXML Text costOfInfantryOut;
-    @FXML Text costOfRangedOut;
-    @FXML Text costOfCavalryOut;
-    @FXML Text costOfCommanderOut;
-    @FXML Text costOfMageOut;
-    @FXML Text costOfBannerOut;
-    @FXML Text costOfDragonOut;
-    @FXML ChoiceBox infNr;
-    @FXML ChoiceBox ranNr;
-    @FXML ChoiceBox cavNr;
-    @FXML ChoiceBox comNr;
-    @FXML ChoiceBox mageNr;
-    @FXML ChoiceBox bannerNr;
-    @FXML ChoiceBox dragonNr;
-    @FXML Label warningLabel;
-    @FXML Label infOut;
-    @FXML Label ranOut;
-    @FXML Label cavOut;
-    @FXML Label comOut;
-    @FXML Label mageOut;
-    @FXML Label bannerOut;
-    @FXML Label dragonOut;
-    @FXML Label totalOut;
-    @FXML Label moneyOut;
-    @FXML ImageView infantryInfo;
-    @FXML ImageView rangedInfo;
-    @FXML ImageView cavalryInfo;
-    @FXML ImageView commanderInfo;
-    @FXML ImageView mageInfo;
-    @FXML ImageView bannerInfo;
-    @FXML ImageView dragonInfo;
-    @FXML ImageView nameInfo;
-    @FXML Button addInfantryBtn;
-    @FXML Button addRangedBtn;
-    @FXML Button addCavalryBtn;
-    @FXML Button addCommanderBtn;
-    @FXML Button addMageBtn;
-    @FXML Button addBannerBtn;
-    @FXML Button addDragonBtn;
-    @FXML Button removeInfantryBtn;
-    @FXML Button removeRangedBtn;
-    @FXML Button removeCavalryBtn;
-    @FXML Button removeCommanderBtn;
-    @FXML Button removeMageBtn;
-    @FXML Button removeBannerBtn;
-    @FXML Button removeDragonBtn;
-    @FXML Button checkNameBtn;
-    @FXML Button createNewArmyButton;
-    @FXML Button yesButton;
-    @FXML Button noButton;
+    @FXML Text costOfInfantryOut, costOfRangedOut, costOfCavalryOut, costOfCommanderOut, costOfMageOut, costOfBannerOut,
+                costOfDragonOut;
+    @FXML ChoiceBox infNr, ranNr, cavNr, comNr, mageNr, bannerNr, dragonNr;
+    @FXML Label warningLabel, infOut, ranOut, cavOut, comOut, mageOut, bannerOut, dragonOut, totalOut, moneyOut;
+    @FXML ImageView infantryInfo, rangedInfo, cavalryInfo, commanderInfo, mageInfo, bannerInfo, dragonInfo, nameInfo;
+    @FXML Button addInfantryBtn, addRangedBtn, addCavalryBtn, addCommanderBtn, addMageBtn, addBannerBtn, addDragonBtn,
+                removeInfantryBtn, removeRangedBtn, removeCavalryBtn, removeCommanderBtn, removeMageBtn, removeBannerBtn
+                ,removeDragonBtn, checkNameBtn, createNewArmyButton, yesButton, noButton;
 
     private int totalUnits = 0;
-    private int money = 10000;
+    private int money = 100000;
     private final int costOfInf = 125;
     private final int costOfRan = 125;
     private final int costOfCav = 140;
@@ -84,7 +42,7 @@ public class CreateNewArmyController {
             costOfCom, costOfMage, costOfBanner, costOfDragon));
     private final List<Integer> numberOfXUnitList = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
 
-    List<ChoiceBox> boxes;
+    List<ChoiceBox> numberOfUnitChoiceBoxes;
     List<Button> addButtons;
     List<Button> removeButtons;
     List<Text> costOutList;
@@ -92,10 +50,10 @@ public class CreateNewArmyController {
     @FXML
     public void initialize(){
         List<String> numbers = new ArrayList<>(Arrays.asList("1","5","10","25","50"));
-        boxes = new ArrayList<>(Arrays.asList(infNr,ranNr,cavNr,comNr,mageNr,bannerNr,
+        numberOfUnitChoiceBoxes = new ArrayList<>(Arrays.asList(infNr,ranNr,cavNr,comNr,mageNr,bannerNr,
                 dragonNr));
 
-        for (ChoiceBox box : boxes){
+        for (ChoiceBox box : numberOfUnitChoiceBoxes){
             box.getItems().addAll(numbers);
         }
         addButtons = new ArrayList<>(Arrays.asList(addInfantryBtn, addRangedBtn, addCavalryBtn, addCommanderBtn,
@@ -106,7 +64,7 @@ public class CreateNewArmyController {
 
         costOutList = new ArrayList<>(Arrays.asList(costOfInfantryOut, costOfRangedOut, costOfCavalryOut,
                 costOfCommanderOut, costOfMageOut, costOfBannerOut, costOfDragonOut));
-
+        moneyOut.setText(String.valueOf(money));
         for (int i = 0; i < addButtons.size(); i++){
             int finalI = i;
             addButtons.get(i).setOnAction(e -> addUnit(finalI));
@@ -142,22 +100,25 @@ public class CreateNewArmyController {
     @FXML
     void checkName(){
         Army armyNameCheck = new Army(armyName.getText());
-        if (!ArmyCSVRead.isNewArmy(armyNameCheck)){
-            warningLabel.setText("Army name taken, do you wish to edit existing army?");
-            yesButton.setDisable(false);
-            yesButton.setVisible(true);
-            noButton.setVisible(true);
-            noButton.setDisable(false);
-            createNewArmyButton.setDisable(true);
-        }
-        else{
-            for (int i = 0; i < boxes.size(); i++){
-                boxes.get(i).setDisable(false);
-                addButtons.get(i).setDisable(false);
-                removeButtons.get(i).setDisable(false);
-                createNewArmyButton.setDisable(false);
-                warningLabel.setText("This name is available");
+        try {
+            if (!ArmyCSVRead.isNewArmy(armyNameCheck)){
+                warningLabel.setText("Army name taken, do you wish to edit existing army?");
+                yesButton.setDisable(false);
+                yesButton.setVisible(true);
+                noButton.setVisible(true);
+                noButton.setDisable(false);
+                createNewArmyButton.setDisable(true);
+            } else{
+                for (int i = 0; i < numberOfUnitChoiceBoxes.size(); i++){
+                    numberOfUnitChoiceBoxes.get(i).setDisable(false);
+                    addButtons.get(i).setDisable(false);
+                    removeButtons.get(i).setDisable(false);
+                    createNewArmyButton.setDisable(false);
+                    warningLabel.setText("This name is available");
+                }
             }
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
         }
     }
 
@@ -166,20 +127,10 @@ public class CreateNewArmyController {
         Army army = getArmy();
         File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/" + army.getName()
                 + ".csv");
-
-        if (!ArmyCSVRead.isNewArmy(army)){
-            try {
-                ArmyCSVWrite.writeFile(army, file, false);
-            } catch (IOException e) {
-                warningLabel.setText(e.getMessage());
-            }
-        }
-        else {
-            try {
-                ArmyCSVWrite.writeFile(army,file,true);
-            }catch (IOException exception){
-                warningLabel.setText(exception.getMessage());
-            }
+        try {
+            ArmyCSVWrite.writeFile(army, file, ArmyCSVRead.isNewArmy(army));
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
         }
         armyName.setText("");
         armyName.setDisable(false);
@@ -189,7 +140,7 @@ public class CreateNewArmyController {
 
         for (int i = 0; i < numberOfXUnitList.size(); i++){
             numberOfXUnitList.set(i,0);
-            boxes.get(i).setDisable(true);
+            numberOfUnitChoiceBoxes.get(i).setDisable(true);
             addButtons.get(i).setDisable(true);
             removeButtons.get(i).setDisable(true);
         }
@@ -197,7 +148,7 @@ public class CreateNewArmyController {
         totalUnits = 0;
         money = 10000;
 
-        for (ChoiceBox box : boxes) {
+        for (ChoiceBox box : numberOfUnitChoiceBoxes) {
             box.valueProperty().set(null);
         }
 
@@ -206,7 +157,7 @@ public class CreateNewArmyController {
     }
 
     void addUnit(int index){
-        int numberToAdd = Integer.parseInt(boxes.get(index).getValue().toString());
+        int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
 
         if (numberToAdd * costList.get(index) <= money){
             int value = numberOfXUnitList.get(index);
@@ -222,7 +173,7 @@ public class CreateNewArmyController {
     }
 
     void removeUnit(int index){
-        int numberToRemove = Integer.parseInt(boxes.get(index).getValue().toString());
+        int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
 
         if (numberOfXUnitList.get(index) >= numberToRemove){
             money += numberToRemove * costList.get(index);
@@ -267,7 +218,7 @@ public class CreateNewArmyController {
         for (int i = 0; i < addButtons.size(); i++) {
             addButtons.get(i).setDisable(false);
             removeButtons.get(i).setDisable(false);
-            boxes.get(i).setDisable(false);
+            numberOfUnitChoiceBoxes.get(i).setDisable(false);
             totalUnits += numberOfXUnitList.get(i);
         }
 

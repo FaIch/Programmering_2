@@ -41,7 +41,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </Pane>
-                                                <Label fx:id="moneyOut" prefHeight="34.0" prefWidth="84.0" text="10000" textFill="WHITE">
+                                                <Label fx:id="moneyOut" prefHeight="34.0" prefWidth="99.0" text="100000" textFill="WHITE">
                                                    <font>
                                                       <Font name="Times New Roman" size="30.0" />
                                                    </font>

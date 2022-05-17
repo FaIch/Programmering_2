@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001.wargamesjfx.Interface;
+package edu.ntnu.idatt2001.wargamesjfx.Interfaces;
 
 import edu.ntnu.idatt2001.wargamesjfx.Units.Unit;
 

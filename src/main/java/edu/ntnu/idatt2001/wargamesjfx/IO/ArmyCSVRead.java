@@ -76,7 +76,7 @@ public class ArmyCSVRead {
         return army;
     }
 
-    public static ArrayList<String> getArmies() {
+    public static ArrayList<String> getArmies() throws IOException {
         ArrayList<String> returnList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
                 "wargamesjfx/files/allArmies.csv"))) {
@@ -87,7 +87,7 @@ public class ArmyCSVRead {
                 returnList.add(scanner.nextLine());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
         return returnList;
     }
@@ -111,12 +111,16 @@ public class ArmyCSVRead {
         return returnArmy;
     }
 
-    public static boolean isNewArmy(Army army){
-        ArrayList<String> existingArmies = getArmies();
-        for (String existingArmy : existingArmies){
-            if (army.getName().equals(existingArmy)){
-                return false;
+    public static boolean isNewArmy(Army army) throws IOException {
+        try {
+            ArrayList<String> existingArmies = getArmies();
+            for (String existingArmy : existingArmies){
+                if (army.getName().equals(existingArmy)){
+                    return false;
+                }
             }
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
         }
         return true;
     }

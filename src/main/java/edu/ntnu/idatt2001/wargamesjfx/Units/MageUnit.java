@@ -1,8 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
-import edu.ntnu.idatt2001.wargamesjfx.Interface.SituationalBonus;
-import edu.ntnu.idatt2001.wargamesjfx.Interface.TerrainBonus;
+import edu.ntnu.idatt2001.wargamesjfx.Interfaces.SituationalBonus;
 
 public class MageUnit extends Unit implements SituationalBonus {
 
