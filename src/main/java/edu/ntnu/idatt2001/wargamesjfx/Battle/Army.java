@@ -1,18 +1,15 @@
 package edu.ntnu.idatt2001.wargamesjfx.Battle;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 /**
  * The type Army.
  */
-public class Army {
+public class Army{
     private final String name;
-    private final ArrayList<Unit> units;
+    private final List<Unit> units;
 
 
     /**
@@ -36,7 +33,7 @@ public class Army {
      * pose any direct problem creating an army with an empty list. It uses the deepCopyUnits method, this method
      * cannot have an empty list when called. Therefore, it is more structured to call the exception in the constructor.
      */
-    public Army(String name, ArrayList<Unit> newUnits) throws IllegalArgumentException{
+    public Army(String name, List<Unit> newUnits) throws IllegalArgumentException{
         if (newUnits == null || newUnits.isEmpty()){
             throw new IllegalArgumentException("List cannot be empty/null");
         }
@@ -87,7 +84,7 @@ public class Army {
      *
      * @param units1 an input list of units that will be added to the army.
      */
-    public void addAllUnits(ArrayList<Unit> units1) throws IllegalArgumentException{
+    public void addAllUnits(List<Unit> units1) throws IllegalArgumentException{
         units.addAll(units1);
     }
 
@@ -120,41 +117,10 @@ public class Army {
      *
      * @return the array list of units from the army.
      */
-    public ArrayList<Unit> getAllUnits() {
+    public List<Unit> getAllUnits() {
         return units;
     }
 
-
-    /**
-     * Method for deep coping units.
-     * Checks what type of unit the unit is. then instantiates a new unit of that type.
-     * Creates lower coupling between classes
-     *
-     * @param unitsIn the list of units that needs to be deep copied
-     * @return The input list deep copied.
-     */
-    /*
-    public ArrayList<Unit> deepCopyUnits(ArrayList<Unit> unitsIn)throws IllegalArgumentException{
-        ArrayList<Unit> returnList = new ArrayList<>();
-        if (unitsIn == null){
-            throw new IllegalArgumentException("List can not be null");
-        }
-        else {
-            for (Unit unit : unitsIn) {
-                try {
-                    UnitType type = UnitType.valueOf(unit.getClass().getSimpleName());
-                    switch (type){
-                        case InfantryUnit -> returnList.add(new InfantryUnit(unit.getName()));
-                        case RangedUnit -> returnList.add(new RangedUnit(unit.getName()));
-                    }
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
-        return returnList;
-    }
-    */
 
     /**
      * Get a random unit from the army.
@@ -173,8 +139,8 @@ public class Army {
      *
      * @return An array list consisting of infantryunits in the army.
      */
-    public ArrayList<Unit> getInfantryUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getInfantryUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof InfantryUnit)
                 .collect(Collectors.toList());
     }
@@ -186,8 +152,8 @@ public class Army {
      *
      * @return the array list consisting of ranged units in the army
      */
-    public ArrayList<Unit> getRangedUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getRangedUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof RangedUnit)
                 .collect(Collectors.toList());
     }
@@ -199,8 +165,8 @@ public class Army {
      *
      * @return the list of cavalry units in the army.
      */
-    public ArrayList<Unit> getCavalryUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getCavalryUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof CavalryUnit)
                 .filter(p -> !(p instanceof  CommanderUnit))
                 .collect(Collectors.toList());
@@ -213,8 +179,8 @@ public class Army {
      *
      * @return the list of commanderunits in the army.
      */
-    public ArrayList<Unit> getCommanderUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getCommanderUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof CommanderUnit)
                 .collect(Collectors.toList());
     }
@@ -227,8 +193,8 @@ public class Army {
      *
      * @return the list of mage units
      */
-    public ArrayList<Unit> getMageUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getMageUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof MageUnit)
                 .collect(Collectors.toList());
     }
@@ -240,8 +206,8 @@ public class Army {
      *
      * @return the list of banner units
      */
-    public ArrayList<Unit> getBannerUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getBannerUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof BannerUnit)
                 .collect(Collectors.toList());
     }
@@ -253,8 +219,8 @@ public class Army {
      *
      * @return the list of dragon units
      */
-    public ArrayList<Unit> getDragonUnits(){
-        return (ArrayList<Unit>) getAllUnits().stream()
+    public List<Unit> getDragonUnits(){
+        return getAllUnits().stream()
                 .filter(p -> p instanceof DragonUnit)
                 .collect(Collectors.toList());
     }

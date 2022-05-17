@@ -2,16 +2,24 @@ package edu.ntnu.idatt2001.wargamesjfx.Controllers;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.*;
 import edu.ntnu.idatt2001.wargamesjfx.IO.*;
+import edu.ntnu.idatt2001.wargamesjfx.Interface.BattleListener;
 import edu.ntnu.idatt2001.wargamesjfx.Utilities;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -49,6 +57,8 @@ public class MainController implements Initializable {
     @FXML Label pathArmy2;
     @FXML Label warningLabel;
     @FXML ImageView image;
+    @FXML VBox army1Box;
+    @FXML VBox army2Box;
 
     private Stage stage;
     private Army armyOne;
@@ -56,6 +66,8 @@ public class MainController implements Initializable {
     private final FileChooser fileChooser = new FileChooser();
     private String path1;
     private String path2;
+    private Battle battle;
+
 
 
     @Override
@@ -81,7 +93,7 @@ public class MainController implements Initializable {
             setArmyOneStats();
             path1 = file.getAbsolutePath();
             pathArmy1.setText(path1);
-            warningLabel.setText("");
+            warningLabel.setText("Army chosen");
         }
     }
 
@@ -98,7 +110,7 @@ public class MainController implements Initializable {
             setArmyTwoStats();
             path2 = file.getAbsolutePath();
             pathArmy2.setText(path2);
-            warningLabel.setText("");
+            warningLabel.setText("Army chosen");
         }
     }
 
@@ -136,23 +148,41 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void fight() {
+    void fight() throws InterruptedException {
         if (terrain.getValue() == null) {
             warningLabel.setText("You must choose terrain");
         } else if (armyOne == null || armyTwo == null) {
             warningLabel.setText("You must choose armies");
         }
-        Battle battle = null;
-        try {
-            battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
-        } catch (Exception e) {
-            warningLabel.setText(e.getMessage());
+        else {
+            try {
+                battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
+                battle.addListener(() -> updateArmies());
+                new Thread(() -> {
+                    try {
+                        battle.simulate();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (armyOne.hasUnits()){
+                        army1Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                    }else{
+                        army2Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                    }
+                }).start();
+            }catch (Exception e){
+                warningLabel.setText(e.getMessage());
+            }
+            fight.setDisable(true);
+            reset.setDisable(false);
         }
-        Objects.requireNonNull(battle).simulate();
-        setArmyOneStats();
-        setArmyTwoStats();
-        fight.setDisable(true);
-        reset.setDisable(false);
+    }
+
+    private void updateArmies() {
+        Platform.runLater(() -> {
+            setArmyOneStats();
+            setArmyTwoStats();
+        });
     }
 
     @FXML
@@ -175,6 +205,8 @@ public class MainController implements Initializable {
         setArmy2FromPath();
         fight.setDisable(false);
         reset.setDisable(true);
+        army1Box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+        army2Box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     private void setArmyOneStats(){

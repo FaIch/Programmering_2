@@ -21,7 +21,7 @@ class BattleTest {
 
     @Test
     @DisplayName("Certain winner")
-    void certainWinner() {
+    void certainWinner() throws InterruptedException {
         Army loser = new Army("Loser");
         Army winner = new Army("Winner");
         loser.addUnit(new InfantryUnit(""));

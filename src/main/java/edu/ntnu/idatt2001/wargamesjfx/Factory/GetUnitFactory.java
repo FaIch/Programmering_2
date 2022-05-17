@@ -3,6 +3,7 @@ package edu.ntnu.idatt2001.wargamesjfx.Factory;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GetUnitFactory {
 
@@ -25,7 +26,7 @@ public class GetUnitFactory {
         }
     }
 
-    public static ArrayList<Unit> getXUnits(UnitType unitType, int number, String name) {
+    public static List<Unit> getXUnits(UnitType unitType, int number, String name) {
         ArrayList<Unit> returnList = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             returnList.add(getUnit(unitType, name));
