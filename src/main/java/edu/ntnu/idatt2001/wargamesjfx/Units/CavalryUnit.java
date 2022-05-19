@@ -6,6 +6,7 @@ import edu.ntnu.idatt2001.wargamesjfx.Interfaces.*;
 /**
  * The type Cavalry unit.
  * Counter as a variable decides the attackBonus of the given unit, based on how many times the unit has attacked.
+ * Implements the interfaces TerrainAttackBonus, TerrainDefenceBonus and SituationalBonus to calculate bonuses
  */
 public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefenceBonus, SituationalBonus {
     private int counter;
@@ -27,11 +28,9 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
     /**
      * Instantiates a new Cavalry unit.
      * Constructor 2
-     * Inherits methods
-     * Constructor that will see most use, where the user decides name and health of unit
-     * and the attack and armor stats are already defined
+     * Stats are predetermined, only name is set by user
      *
-     * @param name
+     * @param name of the unit
      */
     public CavalryUnit(String name){
         super(100, name, 20,12);
@@ -46,12 +45,14 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
     }
 
     /**
-     * Method for attack bonus for CavalryUnits
+     * Method for getting attack bonus for CavalryUnits
      * A cavalry unit will have the highest attack bonus on the first strike, afterwards it will be constant.
-     * Attack bonus varies with terrain
+     *
+     * Attack bonus varies with terrain and what unit is being attacked
+     *
      * @return the current attack bonus of the unit
-     * @param enemyUnit
-     * @param terrain
+     * @param enemyUnit the unit that is being attacked
+     * @param terrain the terrain the attack is happening in
      */
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
@@ -67,16 +68,20 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
     }
 
     /**
-     * Resist bonus for this unit varies, in Forest it has no advantage
+     * Resist bonus for this unit varies, in Forest the unit loses bonus
      * @return the resist bonus.
-     * @param terrain
+     * @param terrain the terrain the unit is being attacked in
      */
     @Override
     public int getResistBonus(Terrain terrain) {
         return 1 + getTerrainDefenceBonus(terrain);
     }
 
-    @Override
+    /**
+     * Calculates attack bonus based on terrain, gains 2 points of damage in Plains
+     * @param terrain the terrain the unit is attacking in
+     * @return the attack bonus from terrain
+     */
     public int getTerrainAttackBonus(Terrain terrain) {
         if (terrain.equals(Terrain.Plains)){
             return 2;
@@ -84,6 +89,11 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
         return 0;
     }
 
+    /**
+     * Calculates resist bonus based on terrain, loses 1 point of resist in Forest
+     * @param terrain the terrain the unit is being attacked in
+     * @return the resist bonus from terrain
+     */
     public int getTerrainDefenceBonus(Terrain terrain) {
         if (terrain.equals(Terrain.Forest)){
             return -1;
@@ -91,9 +101,13 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
         return 0;
     }
 
-    @Override
-    public int getSituationalAttackBonus(Unit unit) {
-        if (unit.getClass().getSimpleName().equals("InfantryUnit")){
+    /**
+     * Attack bonus based on what unitType the unit is attacking, gains 2 points of damage if attacking an InfantryUnit
+     * @param enemyUnit that is being attacked
+     * @return bonus from situation
+     */
+    public int getSituationalAttackBonus(Unit enemyUnit) {
+        if (enemyUnit.getClass().getSimpleName().equals("InfantryUnit")){
             return 2;
         }
         return 0;

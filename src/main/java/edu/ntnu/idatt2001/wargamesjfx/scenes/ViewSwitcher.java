@@ -6,19 +6,34 @@ import javafx.scene.Scene;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The type View switcher.
+ * Used for easy scene switching
+ */
 public class ViewSwitcher {
 
     private static Scene scene;
 
+    /**
+     * Sets scene.
+     *
+     * @param scene the scene
+     */
     public static void setScene(Scene scene) {ViewSwitcher.scene = scene;}
 
+    /**
+     * Switch to the chosen scene
+     * sets root
+     *
+     * @param view the view to be set
+     * @throws IOException the io exception
+     */
     public static void switchTo(View view) throws IOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(ViewSwitcher.class.getResource(view.getFileName())));
             scene.setRoot(root);
-
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
     }
 }

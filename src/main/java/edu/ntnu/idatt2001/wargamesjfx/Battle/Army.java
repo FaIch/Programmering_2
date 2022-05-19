@@ -25,17 +25,15 @@ public class Army{
 
     /**
      * Instantiates a new Army by name and a list of units.
-     * calls addAllUnits method to deep copy the units before adding.
+     * calls addAllUnits method to add the units
      *
      * @param name     the name of the army
      * @param newUnits A list of units that the army will have
-     * @throws IllegalArgumentException if the list is empty or null, this needs to be here, although it does not
-     * pose any direct problem creating an army with an empty list. It uses the deepCopyUnits method, this method
-     * cannot have an empty list when called. Therefore, it is more structured to call the exception in the constructor.
+     * @throws IllegalArgumentException if the list is null
      */
     public Army(String name, List<Unit> newUnits) throws IllegalArgumentException{
-        if (newUnits == null || newUnits.isEmpty()){
-            throw new IllegalArgumentException("List cannot be empty/null");
+        if (newUnits == null){
+            throw new IllegalArgumentException("List cannot be null");
         }
         else {
             this.name = name;
@@ -64,8 +62,6 @@ public class Army{
 
     /**
      * Add unit to army
-     *
-     * Creates a list of the one unit to use the addAllUnits method to add a deep copy version of the input unit.
      *
      * @param unit A unit of any type that will be added to the army.
      * @throws IllegalArgumentException if the parameter unit equals null.
@@ -136,11 +132,11 @@ public class Army{
     }
 
     /**
-     * Get all infantryunits in the Army.
+     * Get all infantry units in the Army.
      *
      * Checks if the unit in army is an instance of InfantryUnit
      *
-     * @return An array list consisting of infantryunits in the army.
+     * @return A list consisting of infantry units in the army.
      */
     public List<Unit> getInfantryUnits(){
         return units.stream()
@@ -153,7 +149,7 @@ public class Army{
      *
      * checks if the unit is an instance of ranged unit
      *
-     * @return the array list consisting of ranged units in the army
+     * @return the list consisting of ranged units in the army
      */
     public List<Unit> getRangedUnits(){
         return units.stream()
@@ -164,7 +160,7 @@ public class Army{
     /**
      * Get cavalry units in the army.
      *
-     * Checks if the unit is an instance of cavalry unit
+     * Checks if the unit is an instance of cavalry unit and not an instance of commander
      *
      * @return the list of cavalry units in the army.
      */
@@ -176,11 +172,11 @@ public class Army{
     }
 
     /**
-     * Get list of the commanderunits in the army.
+     * Get list of the commander units in the army.
      *
-     * Checks if the unit is an instance of cavalryunit, and an instance of commanderunit.
+     * Checks if the unit is an instance of cavalry unit, and an instance of commander unit.
      *
-     * @return the list of commanderunits in the army.
+     * @return the list of commander units in the army.
      */
     public List<Unit> getCommanderUnits(){
         return units.stream()

@@ -20,7 +20,7 @@ public abstract class Unit {
      * @param attack the attack of the unit
      * @param name the name of the unit
      * @param armor the armor of the unit
-     * @throws IllegalArgumentException if any of the int parameters given are below or equal to zero.
+     * @throws IllegalArgumentException if health is below or equal to zero.
      */
     public Unit(int health, String name, int attack, int armor) throws IllegalArgumentException {
         this.health = health;
@@ -34,10 +34,11 @@ public abstract class Unit {
 
     /**
      * Method for attacking another unit
-     * Takes into account all the stats a unit has
+     * Takes into account all the stats a unit has, as well as bonus if the army has at least one banner unit
      *
      * @param opponent an opponent unit. Selected randomly
-     * @param hasBanner
+     * @param hasBanner a boolean for whether the army the unit is in has a bannerUnit or not. If so, the damage to the
+     *                  unit is increased by 20%
      */
     public void attack(Unit opponent, Terrain terrain, boolean hasBanner){
         int totalDamage = this.attack + this.getAttackBonus(opponent, terrain);
@@ -102,13 +103,6 @@ public abstract class Unit {
         this.health = health;
     }
 
-    @Override
-    public String toString() {
-        return "Health: " + this.health +
-                "\nAttack: " + this.attack +
-                "\nArmor:" + this.armor + "\n";
-    }
-
     /**
      * Abstract method for retrieving the attack bonus of a unit.
      * All classes that inherit this class, must implement this method
@@ -127,6 +121,14 @@ public abstract class Unit {
      * @param terrain
      */
     public abstract int getResistBonus(Terrain terrain);
+
+    @Override
+    public String toString() {
+        return "Health: " + this.health +
+                "\nAttack: " + this.attack +
+                "\nArmor:" + this.armor + "\n";
+    }
+
 
     @Override
     public boolean equals(Object o) {

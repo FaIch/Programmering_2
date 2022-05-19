@@ -7,6 +7,8 @@ import edu.ntnu.idatt2001.wargamesjfx.Interfaces.TerrainAttackBonus;
  * The type Ranged unit.
  * Has a variable counter, used to determine what the resist bonus should be, based on how many times the unit has
  * been attacked
+ *
+ * Implements TerrainAttackBonus to calculate attack bonus based on terrain
  */
 public class RangedUnit extends Unit implements TerrainAttackBonus {
     private int counter;
@@ -28,9 +30,9 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
     /**
      * Instantiates a new Ranged unit.
      * Constructor 2
-     * Constructor there the attack and armor of the unit is predetermined
+     * Constructor where the health, attack and armor of the unit is predetermined
      *
-     * @param name
+     * @param name of the unit
      */
     public RangedUnit(String name){
         super(100, name, 15, 8);
@@ -50,8 +52,8 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      * The attack bonus of this unit varies with terrain, advantage when attacking from Hill
      * Disadvantage in Forest
      * @return the attack bonus of the unit
-     * @param enemyUnit
-     * @param terrain
+     * @param enemyUnit the unit that is being attacked
+     * @param terrain the terrain the attack is happening in
      */
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
@@ -62,7 +64,7 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      * Variable resist bonus. Depends on number of times the unit has been attacked.
      * Starts at 6, and decreases by 2 each time the unit is attacked, until the bonus is at 2, where it is locked
      * @return the current resist bonus of the unit.
-     * @param terrain
+     * @param terrain the terrain the attack is taking place in
      */
     @Override
     public int getResistBonus(Terrain terrain) {
@@ -80,7 +82,12 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
         return resistBonus;
     }
 
-    @Override
+    /**
+     * Method for calculating attack bonus based on terrain
+     * If the terrain is Forest, the unit loses 2 points of damage, if the terrain is Hill, the unit gains 2 points of damage
+     * @param terrain the terrain the attack is taking place in
+     * @return the calculated attack bonus
+     */
     public int getTerrainAttackBonus(Terrain terrain) {
         return switch (terrain) {
             case Forest -> -2;

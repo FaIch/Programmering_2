@@ -28,14 +28,18 @@ public class ArmyCSVWrite {
      * The actual method for writing the army to a file.
      * Checks that the path of the file is correct, that it is in the correct format. i.e '.csv'
      * Uses FileWriter to write strings to files. First line being the army name, and the lines after being
-     * a single unit.
+     * a unit, and how many of that certain unit the army has
+     *
+     * This method calls the getMappedUnits method, which puts the unit into a hashmap to calculate how many of each
+     * unit the army has
+     *
+     * The method also writes to the allArmies file if the file does not already exist
      *
      * @param army the army that will be written to a file
      * @param file the file, the army should be written to. Could be an existing file or a new one.
      * @throws IOException throws IOException if any of the IO operations fail.
      */
 
-    //TODO fix it so number shows after unit
     public static void writeFile(Army army, File file, boolean bool) throws IOException{
         if (!file.getPath().startsWith(FileSystems.getDefault()
                 .getPath("src","main","resources").toString())){
@@ -48,6 +52,7 @@ public class ArmyCSVWrite {
             throw new IOException("Army cannot be null");
         }
         String line = army.getName();
+        //Gets the unit in a map. forEach is then used for writing the unit and the number of that specific unit to the file
         Map<Unit, Integer> unitsMapped = getMappedUnits(army.getAllUnits());
         try (FileWriter fileWriter = new FileWriter(file)){
             fileWriter.write(line + NEWLINE);
@@ -63,6 +68,7 @@ public class ArmyCSVWrite {
         }catch (IOException e){
             throw new IOException("Cannot write army to file:" + e.getMessage());
         }
+        //if the army is a new army, the file name is written to the allArmies file
         if (bool) {
             try (FileWriter fileWriter = new FileWriter("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/allArmies.csv", true)) {
                 fileWriter.write(line + NEWLINE);
@@ -72,7 +78,13 @@ public class ArmyCSVWrite {
         }
     }
 
-
+    /**
+     * Method used for mapping all units in the army
+     *
+     * @param list of units in the army
+     * @return the units mapped in the format: unit, number of given unit
+     * @throws IllegalArgumentException if the list of units is null or empty
+     */
     private static Map<Unit, Integer> getMappedUnits(List<Unit> list) throws IllegalArgumentException{
         if (list == null || list.size() == 0){
             throw new IllegalArgumentException("List cannot be empty/null");

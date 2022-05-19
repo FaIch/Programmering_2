@@ -4,7 +4,6 @@ import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * The type Battle.
@@ -20,6 +19,7 @@ public class Battle{
      *
      * @param armyOne the army one
      * @param armyTwo the army two
+     * @param terrain the terrain the battle is taking place in
      * @throws IllegalArgumentException if any of the armies are empty upon instantiation.
      */
     public Battle(Army armyOne, Army armyTwo, Terrain terrain) throws IllegalArgumentException {
@@ -42,6 +42,8 @@ public class Battle{
      * Uses modulus to decide which player who should attack, armyOne attacks if the number is even
      * while armyTwo attacks if the number is odd.
      *
+     * calls armyAttack method
+     *
      * @return the winning army of the battle.
      */
 
@@ -56,7 +58,7 @@ public class Battle{
             }
             counter++;
         }
-        if (armyOne.getNumberOfUnits() > 0){
+        if (armyOne.hasUnits()){
             return armyOne;
         }
         return armyTwo;
@@ -66,6 +68,9 @@ public class Battle{
     /**
      * Method for attacking, a random unit from one army attacks a random unit from the other,
      * if the health of the unit that is attacked is below or equal zero, the unit is removed from the army.
+     *
+     * When a unit is removed, the thread sleeps for 70 milliseconds and calls the fireUpdate method for updating GUI
+     *
      * @param army the army that is attacked, decided by the counter in the simulate method.
     */
 
@@ -75,11 +80,11 @@ public class Battle{
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
                 armyTwo.getRandomUnit().attack(armyOneRandomUnit, this.terrain,
                         armyTwo.getBannerUnits().size() > 0);
-
+                //removes unit if health is zero or lower after attack
                 if (armyOneRandomUnit.getHealth() <= 0) {
                     armyOne.removeUnit(armyOneRandomUnit);
                     try {
-                        Thread.sleep(75);
+                        Thread.sleep(70);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
@@ -89,11 +94,11 @@ public class Battle{
                 Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
                 armyOne.getRandomUnit().attack(armyTwoRandomUnit, this.terrain,
                         armyOne.getBannerUnits().size() > 0);
-
+                //removes unit if health is zero or lower after attack
                 if (armyTwoRandomUnit.getHealth() <= 0) {
                     armyTwo.removeUnit(armyTwoRandomUnit);
                     try {
-                        Thread.sleep(75);
+                        Thread.sleep(70);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
@@ -105,13 +110,20 @@ public class Battle{
         }
     }
 
+    /**
+     * Calls the update method for all listeners
+     */
     private void fireUpdate() {
         for (BattleListener listener : listeners){
             listener.update();
         }
     }
 
-
+    /**
+     * Adds listener to the battle
+     * @param listener the listener to be added
+     * @throws IllegalArgumentException if the listener is null
+     */
     public void addListener(BattleListener listener){
         if (listener == null){
             throw new IllegalArgumentException("Listener cannot be null");
@@ -130,13 +142,5 @@ public class Battle{
             e.printStackTrace();
         }
         return returnString;
-    }
-
-    public Army getArmyOne() {
-        return armyOne;
-    }
-
-    public Army getArmyTwo() {
-        return armyTwo;
     }
 }

@@ -3,27 +3,61 @@ package edu.ntnu.idatt2001.wargamesjfx.Units;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
 import edu.ntnu.idatt2001.wargamesjfx.Interfaces.SituationalBonus;
 
+/**
+ * The type Mage unit.
+ * Implements situationalBonus to calculate attack based on what type the unit is attacking
+ */
 public class MageUnit extends Unit implements SituationalBonus {
 
+    /**
+     * Instantiates a new Mage unit.
+     *
+     * @param health the health of the unit
+     * @param name   the name of the unit
+     * @param attack the attack of the unit
+     * @param armor  the armor of the unit
+     */
     public MageUnit(int health, String name, int attack, int armor) {
         super(health, name, attack, armor);
     }
 
+    /**
+     * Instantiates a new Mage unit.
+     * Predetermined stats
+     *
+     * @param name the name of the unit
+     */
     public MageUnit(String name){super(70, name, 35, 5);}
 
+    /**
+     * Default bonus of 3, calculates bonus based on what type the unit is attacking
+     * @param enemyUnit the enemy unit the unit is attacking
+     * @param terrain the terrain the attack is happening in
+     * @return the attack bonus of the unit
+     */
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
         return 3 + getSituationalAttackBonus(enemyUnit);
     }
 
+    /**
+     * Default resist bonus
+     * @param terrain the terrain the unit is being attacked in
+     * @return the resist bonus of the unit
+     */
     @Override
     public int getResistBonus(Terrain terrain) {
         return 1;
     }
 
-    @Override
-    public int getSituationalAttackBonus(Unit unit) {
-        if (unit.getClass().getSimpleName().equals("DragonUnit")){
+    /**
+     * Calculates attack based on what enemy the unit is attacking, if the unit is a Dragon, the unit loses all attack
+     * since Dragons are immune to magic
+     * @param enemyUnit the enemy the unit is attacking
+     * @return the situational attack bonus
+     */
+    public int getSituationalAttackBonus(Unit enemyUnit) {
+        if (enemyUnit.getClass().getSimpleName().equals("DragonUnit")){
             return -50;
         }
         return 0;

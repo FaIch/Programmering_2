@@ -5,7 +5,7 @@ import edu.ntnu.idatt2001.wargamesjfx.Interfaces.*;
 
 
 /**
- * The type Infantry unit.
+ * The type Infantry unit, implements the interfaces TerrainAttackBonus and TerrainDefenceBonus to calculate bonuses
  */
 public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDefenceBonus {
 
@@ -25,7 +25,7 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
     /**
      * Instantiates a new Infantry unit.
      * Constructor 2
-     * Name set by user, health, attack and armor predetermined
+     * Name set by user. Health, attack and armor predetermined
      *
      * @param name of the unit
      */
@@ -35,10 +35,10 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
     }
 
     /**
-     * bonus based on terrain, if terrain is Forest, increased bonus
+     * Has a default bonus, gets bonus attack bonus at certain terrain
      * @return The attack bonus of the unit
-     * @param enemyUnit
-     * @param terrain
+     * @param enemyUnit the unit that is being attacked
+     * @param terrain the terrain the attack is happening in
      */
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
@@ -47,16 +47,21 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
 
 
     /**
-     * Resist bonus based on terrain, if terrain is Forest, increased bonus
+     * Default resist bonus, additional bonus in certain terrain
      * @return the resist bonus of the unit.
-     * @param terrain
+     * @param terrain the terrain the attack is happening in
      */
     @Override
     public int getResistBonus(Terrain terrain) {
         return 1 + getTerrainDefenceBonus(terrain);
     }
 
-    @Override
+    /**
+     * Gets attack bonus based on what terrain the unit is in
+     * If the attack is happening in Forest, the unit has an additional attack bonus of 2
+     * @param terrain the current terrain
+     * @return bonus based on terrain
+     */
     public int getTerrainAttackBonus(Terrain terrain) {
         if (terrain == Terrain.Forest) {
             return 2;
@@ -64,6 +69,12 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
         return 0;
     }
 
+    /**
+     * Gets resist bonus based on what terrain the unit is in
+     * If the attack is happening in Forest, the unit has an additional resist bonus of 2
+     * @param terrain the current terrain
+     * @return bonus based on terrain
+     */
     public int getTerrainDefenceBonus(Terrain terrain) {
         if (terrain == Terrain.Forest) {
             return 2;
