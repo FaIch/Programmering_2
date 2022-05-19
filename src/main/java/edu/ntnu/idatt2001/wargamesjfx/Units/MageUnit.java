@@ -9,7 +9,7 @@ public class MageUnit extends Unit implements SituationalBonus {
         super(health, name, attack, armor);
     }
 
-    public MageUnit(String name){super(70, name, 40, 5);}
+    public MageUnit(String name){super(70, name, 35, 5);}
 
     @Override
     public int getAttackBonus(Unit enemyUnit, Terrain terrain) {

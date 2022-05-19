@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1109.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ntnu.idatt2001.wargamesjfx.Controllers.MainController">
    <top>
@@ -80,7 +81,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Pane>
-                              <Label fx:id="army1Infantry" alignment="CENTER" prefHeight="29.0" prefWidth="40.0" styleClass="unit-number-style" text="0" textFill="WHITE">
+                              <Label fx:id="army1Infantry" alignment="CENTER" prefHeight="36.0" prefWidth="45.0" styleClass="unit-number-style" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="Times New Roman" size="25.0" />
                                  </font>
@@ -103,7 +104,7 @@
                                     <String fx:value="ranged-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Ranged" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Ranged" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -120,7 +121,7 @@
                                     <String fx:value="cavalry-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Cavalry" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Cavalry" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -137,7 +138,7 @@
                                     <String fx:value="commander-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Commander" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Commander" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -154,7 +155,7 @@
                                     <String fx:value="mage-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Mage" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Mage" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -171,7 +172,7 @@
                                     <String fx:value="banner-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Banner" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Banner" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -188,7 +189,7 @@
                                     <String fx:value="dragon-image" />
                                  </styleClass>
                               </Pane>
-                              <Label fx:id="army1Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="40.0" styleClass="unit-number-style" text="0">
+                              <Label fx:id="army1Dragon" alignment="CENTER" prefHeight="23.0" prefWidth="45.0" styleClass="unit-number-style" text="0">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
@@ -196,32 +197,44 @@
                               <Pane prefHeight="200.0" prefWidth="110.0" />
                            </children>
                         </HBox>
+                        <HBox>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose army: ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
                         <HBox prefHeight="27.0" prefWidth="303.0">
                            <children>
                               <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
-                              <Button mnemonicParsing="false" onAction="#chooseArmy1FromExisting" prefHeight="25.0" prefWidth="148.0" styleClass="jfx-button" text="Load existing army">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Button>
                            </children>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#loadArmy1FromFile" prefHeight="25.0" prefWidth="155.0" styleClass="jfx-button" text="Load army from file">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Label fx:id="pathArmy1" alignment="TOP_LEFT" prefHeight="57.0" prefWidth="305.0">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Or:">
                            <font>
-                              <Font name="Times New Roman" size="10.0" />
+                              <Font size="17.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
-                        </Label>
+                        </Text>
+                        <Button mnemonicParsing="false" onAction="#loadArmy1FromFile" prefHeight="27.0" prefWidth="133.0" styleClass="jfx-button" text="Load army from file">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="army1PathButton" disable="true" mnemonicParsing="false" onAction="#viewArmy1Path" styleClass="jfx-button" text="View Army Path">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                   <VBox prefHeight="589.0" prefWidth="477.0" HBox.hgrow="NEVER">
@@ -253,7 +266,7 @@
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" />
                               <Button fx:id="fight" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Fight" />
-                              <Button fx:id="reset" disable="true" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Reset">
+                              <Button fx:id="reset" disable="true" mnemonicParsing="false" onAction="#resetArmies" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Reset">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -426,33 +439,49 @@
                               <Pane prefHeight="45.0" prefWidth="30.0" />
                            </children>
                         </HBox>
+                        <HBox>
+                           <children>
+                              <Pane prefHeight="0.0" prefWidth="194.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose army: " textAlignment="RIGHT">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
                         <HBox prefHeight="27.0" prefWidth="271.0">
                            <children>
                               <Pane prefHeight="200.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
-                              <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
-                              <Button mnemonicParsing="false" onAction="#chooseArmy2FromExisting" prefHeight="25.0" prefWidth="148.0" styleClass="jfx-button" text="Load existing army">
+                              <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box">
                                  <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Button>
+                                    <Insets />
+                                 </HBox.margin></ChoiceBox>
                            </children>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#loadArmy2FromFile" prefHeight="25.0" prefWidth="155.0" styleClass="jfx-button" text="Load army from file">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Or:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Button mnemonicParsing="false" onAction="#loadArmy2FromFile" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-button" text="Load army from file">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="army2PathButton" disable="true" mnemonicParsing="false" onAction="#viewArmy2Path" styleClass="jfx-button" text="View Army Path">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="pathArmy2" alignment="TOP_RIGHT" prefHeight="67.0" prefWidth="225.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="Times New Roman" size="10.0" />
-                           </font>
-                        </Label>
                      </children>
                   </VBox>
                   <Pane prefHeight="585.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />

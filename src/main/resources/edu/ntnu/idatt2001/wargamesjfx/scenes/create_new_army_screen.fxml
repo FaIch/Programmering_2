@@ -588,7 +588,7 @@
                                           <Insets bottom="10.0" top="10.0" />
                                        </VBox.margin>
                                        <children>
-                                          <Label fx:id="warningLabel" alignment="CENTER" prefHeight="25.0" prefWidth="485.0">
+                                          <Label fx:id="warningLabel" alignment="CENTER" prefHeight="25.0" prefWidth="485.0" textFill="WHITE">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>

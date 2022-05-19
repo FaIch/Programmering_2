@@ -16,7 +16,7 @@ public class DragonUnit extends Unit implements TerrainAttackBonus {
     public DragonUnit(int health, String name, int attack, int armor) {super(health, name, attack, armor);}
 
     public DragonUnit(String name){
-        super(200, name, 30, 20);
+        super(200, name, 30, 12);
 
     }
 

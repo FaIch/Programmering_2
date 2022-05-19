@@ -82,10 +82,13 @@ public class Army{
     /**
      * Adds a list of units to the army
      *
-     * @param units1 an input list of units that will be added to the army.
+     * @param unitsToBeAdded an input list of units that will be added to the army.
      */
-    public void addAllUnits(List<Unit> units1) throws IllegalArgumentException{
-        units.addAll(units1);
+    public void addAllUnits(List<Unit> unitsToBeAdded) throws IllegalArgumentException{
+        if (unitsToBeAdded == null || unitsToBeAdded.isEmpty()){
+            throw new IllegalArgumentException("List of units cannot be null");
+        }
+        units.addAll(unitsToBeAdded);
     }
 
     /**
@@ -140,7 +143,7 @@ public class Army{
      * @return An array list consisting of infantryunits in the army.
      */
     public List<Unit> getInfantryUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof InfantryUnit)
                 .collect(Collectors.toList());
     }
@@ -153,7 +156,7 @@ public class Army{
      * @return the array list consisting of ranged units in the army
      */
     public List<Unit> getRangedUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof RangedUnit)
                 .collect(Collectors.toList());
     }
@@ -166,7 +169,7 @@ public class Army{
      * @return the list of cavalry units in the army.
      */
     public List<Unit> getCavalryUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof CavalryUnit)
                 .filter(p -> !(p instanceof  CommanderUnit))
                 .collect(Collectors.toList());
@@ -180,7 +183,7 @@ public class Army{
      * @return the list of commanderunits in the army.
      */
     public List<Unit> getCommanderUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof CommanderUnit)
                 .collect(Collectors.toList());
     }
@@ -194,7 +197,7 @@ public class Army{
      * @return the list of mage units
      */
     public List<Unit> getMageUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof MageUnit)
                 .collect(Collectors.toList());
     }
@@ -207,7 +210,7 @@ public class Army{
      * @return the list of banner units
      */
     public List<Unit> getBannerUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof BannerUnit)
                 .collect(Collectors.toList());
     }
@@ -220,7 +223,7 @@ public class Army{
      * @return the list of dragon units
      */
     public List<Unit> getDragonUnits(){
-        return getAllUnits().stream()
+        return units.stream()
                 .filter(p -> p instanceof DragonUnit)
                 .collect(Collectors.toList());
     }

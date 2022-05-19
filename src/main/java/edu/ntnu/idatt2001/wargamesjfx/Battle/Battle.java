@@ -4,11 +4,12 @@ import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The type Battle.
  */
-public class Battle {
+public class Battle{
     private final Army armyOne;
     private final Army armyTwo;
     public Terrain terrain;
@@ -43,6 +44,7 @@ public class Battle {
      *
      * @return the winning army of the battle.
      */
+
     public Army simulate() throws InterruptedException {
         int counter = 0;
         while (armyOne.hasUnits() && armyTwo.hasUnits()) {
@@ -60,11 +62,13 @@ public class Battle {
         return armyTwo;
     }
 
+
     /**
      * Method for attacking, a random unit from one army attacks a random unit from the other,
      * if the health of the unit that is attacked is below or equal zero, the unit is removed from the army.
      * @param army the army that is attacked, decided by the counter in the simulate method.
-     */
+    */
+
     private void armyAttack(Army army){
         try {
             if (army.equals(armyTwo)) {
@@ -107,12 +111,12 @@ public class Battle {
         }
     }
 
+
     public void addListener(BattleListener listener){
         if (listener == null){
             throw new IllegalArgumentException("Listener cannot be null");
-        } else {
-            listeners.add(listener);
         }
+        listeners.add(listener);
     }
 
 

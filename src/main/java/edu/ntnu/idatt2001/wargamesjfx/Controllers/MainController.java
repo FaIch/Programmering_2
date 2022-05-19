@@ -3,38 +3,29 @@ package edu.ntnu.idatt2001.wargamesjfx.Controllers;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.*;
 import edu.ntnu.idatt2001.wargamesjfx.IO.*;
 
-import edu.ntnu.idatt2001.wargamesjfx.Utilities;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+
+public class MainController{
     @FXML ChoiceBox terrain, existingArmies1, existingArmies2;
 
-    @FXML Label army1Name, army1Total, army1Infantry, army1Ranged, army1Cavalry, army1Commander, army1Mage, army1Banner, army1Dragon,
-            army2Name, army2Total, army2Infantry, army2Ranged, army2Cavalry, army2Commander, army2Mage, army2Banner, army2Dragon,
-            pathArmy1, pathArmy2, warningLabel;
+    @FXML Label army1Name, army1Total, army1Infantry, army1Ranged, army1Cavalry, army1Commander, army1Mage, army1Banner,
+            army1Dragon, army2Name, army2Total, army2Infantry, army2Ranged, army2Cavalry, army2Commander, army2Mage,
+            army2Banner, army2Dragon, warningLabel;
 
-    @FXML Button fight, reset;
+    @FXML Button fight, reset, army1PathButton, army2PathButton;
     @FXML ImageView image;
     @FXML VBox army1Box, army2Box;
 
@@ -48,11 +39,16 @@ public class MainController implements Initializable {
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    public void initialize() {
         terrain.getItems().addAll("Hill", "Plains", "Forest");
         terrain.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue)->
-                image.setImage(new Image(Utilities.getImagePath((String) newValue)))));
+                image.setImage(new Image("file:src/main/resources/edu/ntnu/idatt2001/wargamesjfx/images/" + newValue
+                        + ".jpg"))));
+        existingArmies1.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
+                chooseArmy1FromExisting((String) newValue)));
+        existingArmies2.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
+                chooseArmy2FromExisting((String) newValue)));
         try {
             existingArmies1.getItems().addAll(ArmyCSVRead.getArmies());
             existingArmies2.getItems().addAll(ArmyCSVRead.getArmies());
@@ -61,61 +57,18 @@ public class MainController implements Initializable {
         }
     }
 
-
-    @FXML
-    void chooseArmy1FromExisting() {
-        if (existingArmies1.getValue() == null){
-            warningLabel.setText("You must choose an army");
-        }
-        else {
-            String armyChosen = existingArmies1.getValue().toString();
-            try {
-                File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                        "files/" + armyChosen + ".csv");
-                armyOne = ArmyCSVRead.readArmyFromCSV(file);
-                setArmyOneStats();
-                path1 = file.getAbsolutePath();
-                pathArmy1.setText(path1);
-            }catch (IOException e){
-                warningLabel.setText(e.getMessage());
-            }
-            warningLabel.setText("Army chosen");
-        }
-    }
-
-    @FXML
-    void chooseArmy2FromExisting() {
-        if (existingArmies2.getValue() == null) {
-            warningLabel.setText("You must choose an army");
-        }
-        else {
-            try {
-                String armyChosen = existingArmies2.getValue().toString();
-                File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
-                        "files/" + armyChosen + ".csv");
-                armyTwo = ArmyCSVRead.readArmyFromCSV(file);
-                setArmyTwoStats();
-                path2 = file.getAbsolutePath();
-                pathArmy2.setText(path2);
-                warningLabel.setText("Army chosen");
-            }catch (Exception e){
-                warningLabel.setText(e.getMessage());
-            }
-        }
-    }
-
     @FXML
     void loadArmy1FromFile() {
         File file = fileChooser.showOpenDialog(stage);
         try {
             armyOne = ArmyCSVRead.readArmyFromCSV(file);
+            setArmyOneStats();
+            path1 = file.getAbsolutePath();
+            warningLabel.setText("Unbalanced battles may take place when loading external armies");
+            army1PathButton.setDisable(false);
         }catch (Exception e){
             warningLabel.setText(e.getMessage());
         }
-        setArmyOneStats();
-        path1 = file.getAbsolutePath();
-        pathArmy1.setText(path1);
-        warningLabel.setText("Unbalanced battles may take place when loading external armies");
     }
 
     @FXML
@@ -123,13 +76,13 @@ public class MainController implements Initializable {
         File file = fileChooser.showOpenDialog(stage);
         try {
             armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+            setArmyTwoStats();
+            path2 = file.getAbsolutePath();
+            warningLabel.setText("Unbalanced battles may take place when loading external armies");
+            army2PathButton.setDisable(false);
         }catch (IOException e){
             warningLabel.setText(e.getMessage());
         }
-        setArmyTwoStats();
-        path2 = file.getAbsolutePath();
-        pathArmy2.setText(path2);
-        warningLabel.setText("Unbalanced battles may take place when loading external armies");
     }
 
     @FXML
@@ -148,19 +101,14 @@ public class MainController implements Initializable {
             try {
                 battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
                 battle.addListener(this::updateArmies);
+                warningLabel.setText("Battle is ongoing!");
                 new Thread(() -> {
                     try {
                         battle.simulate();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (armyOne.hasUnits()){
-                        army1Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-                        warningLabel.setText(armyOne.getName() + " won the battle!");
-                    }else{
-                        army2Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-                        warningLabel.setText(armyTwo.getName() + " won the battle!");
-                    }
+                    setWinner();
                 }).start();
             }catch (Exception e){
                 warningLabel.setText(e.getMessage());
@@ -168,13 +116,6 @@ public class MainController implements Initializable {
             fight.setDisable(true);
             reset.setDisable(false);
         }
-    }
-
-    private void updateArmies() {
-        Platform.runLater(() -> {
-            setArmyOneStats();
-            setArmyTwoStats();
-        });
     }
 
     @FXML
@@ -192,6 +133,16 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    void viewArmy1Path(){
+        viewPath(path1, armyOne.getName());
+    }
+
+    @FXML
+    void viewArmy2Path(){
+        viewPath(path2, armyTwo.getName());
+    }
+
+    @FXML
     void resetArmies() throws IOException {
         setArmy1FromPath();
         setArmy2FromPath();
@@ -199,6 +150,73 @@ public class MainController implements Initializable {
         reset.setDisable(true);
         army1Box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
         army2Box.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+        warningLabel.setText("Armies have been reset!");
+    }
+
+    private void chooseArmy1FromExisting(String armyName) {
+        if (armyName == null){
+            warningLabel.setText("You must choose an army");
+        }
+        else {
+            try {
+                File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                        "files/" + armyName + ".csv");
+                armyOne = ArmyCSVRead.readArmyFromCSV(file);
+                setArmyOneStats();
+                path1 = file.getAbsolutePath();
+                warningLabel.setText("Army chosen");
+                army1PathButton.setDisable(false);
+            }catch (IOException e){
+                warningLabel.setText(e.getMessage());
+            }
+        }
+    }
+
+    private void chooseArmy2FromExisting(String armyName) {
+        if (armyName == null) {
+            warningLabel.setText("You must choose an army");
+        }
+        else {
+            try {
+                File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/" +
+                        "files/" + armyName + ".csv");
+                armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+                setArmyTwoStats();
+                path2 = file.getAbsolutePath();
+                warningLabel.setText("Army chosen");
+                army2PathButton.setDisable(false);
+            }catch (Exception e){
+                warningLabel.setText(e.getMessage());
+            }
+        }
+    }
+
+    private void viewPath(String path, String armyName){
+        warningLabel.setText("");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Army Path");
+        alert.setHeaderText(armyName);
+        alert.setContentText("Path: \n" + path);
+        alert.showAndWait();
+    }
+
+    private void updateArmies() {
+        Platform.runLater(() -> {
+            setArmyTwoStats();
+            setArmyOneStats();
+        });
+    }
+
+    private void setWinner(){
+        Platform.runLater(() -> {
+            if (armyOne.hasUnits()){
+                army1Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                warningLabel.setText(armyOne.getName() + " won the battle!");
+            }else{
+                army2Box.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+                warningLabel.setText(armyTwo.getName() + " won the battle!");
+            }
+        });
     }
 
     private void setArmyOneStats(){

@@ -1,22 +1,17 @@
 package edu.ntnu.idatt2001.wargamesjfx.Controllers;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Army;
-import edu.ntnu.idatt2001.wargamesjfx.Factory.GetUnitFactory;
-import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
-import edu.ntnu.idatt2001.wargamesjfx.IO.ArmyCSVRead;
-import edu.ntnu.idatt2001.wargamesjfx.IO.ArmyCSVWrite;
-import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
-import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.*;
+import edu.ntnu.idatt2001.wargamesjfx.IO.*;
+import edu.ntnu.idatt2001.wargamesjfx.scenes.*;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class CreateNewArmyController {
     @FXML TextField armyName;
@@ -32,12 +27,12 @@ public class CreateNewArmyController {
     private int totalUnits = 0;
     private int money = 100000;
     private final int costOfInf = 125;
-    private final int costOfRan = 125;
-    private final int costOfCav = 140;
-    private final int costOfCom = 200;
-    private final int costOfMage = 115;
-    private final int costOfBanner = 175;
-    private final int costOfDragon = 250;
+    private final int costOfRan = 130;
+    private final int costOfCav = 170;
+    private final int costOfCom = 225;
+    private final int costOfMage = 150;
+    private final int costOfBanner = 250;
+    private final int costOfDragon = 500;
     private final List<Integer> costList = new ArrayList<>(Arrays.asList(costOfInf, costOfRan, costOfCav,
             costOfCom, costOfMage, costOfBanner, costOfDragon));
     private final List<Integer> numberOfXUnitList = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
@@ -72,29 +67,25 @@ public class CreateNewArmyController {
             costOutList.get(i).setText(String.valueOf(costList.get(i)));
         }
 
+        createToolTip(infantryInfo,"Health: 100, Attack : 15, Armor: 10 \n Bonus in Forest");
 
-        Tooltip.install(infantryInfo, new Tooltip("Health: 100, Attack : 15, Armor: 10 " +
-                "\n Bonus in Forest"));
+        createToolTip(rangedInfo,"Health: 100, Attack: 15, Armor: 8 " +
+                "\n attack bonus in Hill, lower attack in Forest");
 
-        Tooltip.install(rangedInfo,new Tooltip("Health: 100, Attack: 15, Armor: 8 " +
-                "\n Bonus in Hill, Lower attack in Forest"));
+        createToolTip(cavalryInfo, "Health: 100, Attack: 20, Armor: 12 " +
+                "\n Bonus in Plains, good against Infantry");
 
-        Tooltip.install(cavalryInfo, new Tooltip("Health: 100, Attack: 20, Armor: 12 " +
-                "\n Bonus in Plains, good against Infantry"));
+        createToolTip(mageInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
+                "\n Glass cannon unit, Bonus in: TBD");
 
-        Tooltip.install(mageInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD " +
-                "\n Glass cannon unit, Bonus in: TBD"));
+        createToolTip(bannerInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
+                "\n Boosts attack for all units in Army by 20%(Unique)");
 
-        Tooltip.install(bannerInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD " +
-                "\n Boosts attack for all units in Army by X%(Unique)"));
+        createToolTip(dragonInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
+                "\n Immune to magic, disadvantage in forest, advantage in plains");
 
-        Tooltip.install(dragonInfo,new Tooltip("Health: TBD, Attack: TBD, Armor: TBD " +
-                "\n Immune to magic, disadvantage in forest, advantage in plains"));
-
-        Tooltip.install(nameInfo, new Tooltip("Name of army " +
-                "\n To edit army: Type already existing army name"));
-
-
+        createToolTip(nameInfo,"Name of army " +
+                "\n To edit army: Type already existing army name");
     }
 
     @FXML
@@ -108,14 +99,11 @@ public class CreateNewArmyController {
                 noButton.setVisible(true);
                 noButton.setDisable(false);
                 createNewArmyButton.setDisable(true);
+                setDisableBoxesAndButtons(true);
             } else{
-                for (int i = 0; i < numberOfUnitChoiceBoxes.size(); i++){
-                    numberOfUnitChoiceBoxes.get(i).setDisable(false);
-                    addButtons.get(i).setDisable(false);
-                    removeButtons.get(i).setDisable(false);
-                    createNewArmyButton.setDisable(false);
-                    warningLabel.setText("This name is available");
-                }
+                setDisableBoxesAndButtons(false);
+                warningLabel.setText("This name is available");
+
             }
         }catch (IOException e){
             warningLabel.setText(e.getMessage());
@@ -146,49 +134,19 @@ public class CreateNewArmyController {
         }
 
         totalUnits = 0;
-        money = 10000;
+        money = 100000;
 
         for (ChoiceBox box : numberOfUnitChoiceBoxes) {
             box.valueProperty().set(null);
         }
 
-        warningLabel.setText("Army added successfully");
         setAllOut();
+        warningLabel.setText("Army added successfully");
     }
 
-    void addUnit(int index){
-        int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
-
-        if (numberToAdd * costList.get(index) <= money){
-            int value = numberOfXUnitList.get(index);
-            value += numberToAdd;
-            numberOfXUnitList.set(index, value);
-            totalUnits += numberToAdd;
-            money -= numberToAdd * costList.get(index);
-            setAllOut();
-        }
-        else {
-            warningLabel.setText("Not enough money to add that number of units");
-        }
-    }
-
-    void removeUnit(int index){
-        int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
-
-        if (numberOfXUnitList.get(index) >= numberToRemove){
-            money += numberToRemove * costList.get(index);
-            int value = numberOfXUnitList.get(index);
-            value -= numberToRemove;
-            numberOfXUnitList.set(index, value);
-            totalUnits -= numberToRemove;
-            setAllOut();
-        }
-        else {
-            totalUnits -= numberOfXUnitList.get(index);
-            money += numberOfXUnitList.get(index) * costList.get(index);
-            numberOfXUnitList.set(index, 0);
-            setAllOut();
-        }
+    @FXML
+    void setMainScreen() throws IOException {
+        ViewSwitcher.switchTo(View.MAIN);
     }
 
     @FXML
@@ -216,11 +174,9 @@ public class CreateNewArmyController {
         numberOfXUnitList.set(6, existingArmy.getDragonUnits().size());
 
         for (int i = 0; i < addButtons.size(); i++) {
-            addButtons.get(i).setDisable(false);
-            removeButtons.get(i).setDisable(false);
-            numberOfUnitChoiceBoxes.get(i).setDisable(false);
             totalUnits += numberOfXUnitList.get(i);
         }
+        setDisableBoxesAndButtons(false);
 
         setAllOut();
 
@@ -235,10 +191,58 @@ public class CreateNewArmyController {
         warningLabel.setText("Displaying existing army stats");
     }
 
-    @FXML
-    void setMainScreen() throws IOException {
-        ViewSwitcher.switchTo(View.MAIN);
+    private void setDisableBoxesAndButtons(Boolean bool){
+        for (int i = 0; i < numberOfUnitChoiceBoxes.size(); i++){
+            numberOfUnitChoiceBoxes.get(i).setDisable(bool);
+            addButtons.get(i).setDisable(bool);
+            removeButtons.get(i).setDisable(bool);
+            createNewArmyButton.setDisable(bool);
+        }
     }
+
+    private void addUnit(int index){
+        if (checkValidNumberChoice(index)) {
+            int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
+            if (numberToAdd * costList.get(index) <= money) {
+                int value = numberOfXUnitList.get(index);
+                value += numberToAdd;
+                numberOfXUnitList.set(index, value);
+                totalUnits += numberToAdd;
+                money -= numberToAdd * costList.get(index);
+                setAllOut();
+            } else {
+                warningLabel.setText("Not enough money to add that number of units");
+            }
+        }else {
+            warningLabel.setText("Please choose a number to add");
+        }
+    }
+
+    private void removeUnit(int index){
+        if (checkValidNumberChoice(index)) {
+            int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
+            if (numberOfXUnitList.get(index) >= numberToRemove) {
+                money += numberToRemove * costList.get(index);
+                int value = numberOfXUnitList.get(index);
+                value -= numberToRemove;
+                numberOfXUnitList.set(index, value);
+                totalUnits -= numberToRemove;
+                setAllOut();
+            } else {
+                totalUnits -= numberOfXUnitList.get(index);
+                money += numberOfXUnitList.get(index) * costList.get(index);
+                numberOfXUnitList.set(index, 0);
+                setAllOut();
+            }
+        }else {
+            warningLabel.setText("Please choose a number to add");
+        }
+    }
+
+    private boolean checkValidNumberChoice(int index){
+        return numberOfUnitChoiceBoxes.get(index).getValue() != null;
+    }
+
 
     private Army getArmy(){
         String nameOfArmy = armyName.getText();
@@ -268,5 +272,11 @@ public class CreateNewArmyController {
 
         moneyOut.setText(String.valueOf(money));
         warningLabel.setText("");
+    }
+
+    private void createToolTip(Node node, String text){
+        Tooltip tooltip = new Tooltip(text);
+        tooltip.setStyle("-fx-font: 14px Arial;");
+        Tooltip.install(node, tooltip);
     }
 }

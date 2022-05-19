@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BattleTest {
-
     @Test
     @DisplayName("Battle with no units, throws IllegalArgumentException")
     void battleWithNoUnitsThrowsException(){
@@ -64,6 +63,7 @@ class BattleTest {
         armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 4, "Jenta"));
 
         Battle testBattle = new Battle(armyOne,armyTwo,Terrain.Plains);
-        assertEquals(1000,armyOne.getRandomUnit().getAttackBonus(armyTwo.getRandomUnit(), Terrain.Forest));
+        assertEquals(1,armyOne.getRandomUnit().getAttackBonus(armyTwo.getRandomUnit(), Terrain.Forest));
     }
 }
+

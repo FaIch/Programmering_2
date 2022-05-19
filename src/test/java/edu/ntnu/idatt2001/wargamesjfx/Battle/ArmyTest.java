@@ -105,7 +105,7 @@ class ArmyTest {
     @Test
     @DisplayName("Get an empty list of InfantryUnits, throws exception")
     void getEmptyUnitList(){
-        assertThrows(IllegalArgumentException.class, () -> testArmy.getInfantryUnits());
+        assertEquals(0, testArmy.getInfantryUnits().size());
     }
 
     @Test

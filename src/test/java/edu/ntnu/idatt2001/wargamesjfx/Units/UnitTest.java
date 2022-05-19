@@ -21,7 +21,7 @@ class UnitTest {
     @DisplayName("Set health test")
     void setHealth() {
         InfantryUnit infantryUnit1 = new InfantryUnit("");
-        assertEquals(10,infantryUnit1.getHealth());
+        assertEquals(100,infantryUnit1.getHealth());
         infantryUnit1.setHealth(50);
         assertEquals(50,infantryUnit1.getHealth());
     }
@@ -40,9 +40,9 @@ class UnitTest {
         CommanderUnit commanderUnit = new CommanderUnit("");
         InfantryUnit dummyUnit = new InfantryUnit("");
         Terrain terrain = Terrain.Forest;
-        assertEquals(6,commanderUnit.getAttackBonus(dummyUnit, terrain));
-        assertEquals(2,commanderUnit.getAttackBonus(dummyUnit, terrain));
-        assertEquals(2,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(8,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(4,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(4,commanderUnit.getAttackBonus(dummyUnit, terrain));
     }
 
     @Test
