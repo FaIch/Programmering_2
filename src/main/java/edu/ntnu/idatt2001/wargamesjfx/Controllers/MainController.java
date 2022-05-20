@@ -38,7 +38,9 @@ public class MainController{
     private Battle battle;
 
 
-
+    /**
+     * Upon initializing the scene, the choiceboxes are set with correct values, and listeners are added to the objects
+     */
     @FXML
     public void initialize() {
         terrain.getItems().addAll("Hill", "Plains", "Forest");
@@ -57,6 +59,10 @@ public class MainController{
         }
     }
 
+    /**
+     * Opens up file explorer for the user, if the file matches the allowed file format, the army is loaded
+     * Stores the path of the file for easy resetting of the army
+     */
     @FXML
     void loadArmy1FromFile() {
         File file = fileChooser.showOpenDialog(stage);
@@ -71,6 +77,10 @@ public class MainController{
         }
     }
 
+    /**
+     * Opens up file explorer for the user, if the file matches the allowed file format, the army is loaded
+     * Stores the path of the file for easy resetting of the army
+     */
     @FXML
     void loadArmy2FromFile() {
         File file = fileChooser.showOpenDialog(stage);
@@ -85,11 +95,26 @@ public class MainController{
         }
     }
 
+    /**
+     * Switches scene to createNewArmy scene
+     */
     @FXML
-    public void createNewArmy() throws IOException {
-        ViewSwitcher.switchTo(View.NEWARMY);
+    public void createNewArmy() {
+        try {
+            ViewSwitcher.switchTo(View.NEWARMY);
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
+        }
     }
 
+    /**
+     * The method for simulating a fight between the armies. Checks that all required data is set and creates a battle
+     *
+     * The simulation is done on a new thread, and is communicating with the UI thread by using observer design pattern
+     * and the JavaFX method: Platform.runLater
+     *
+     * When the fight is done, a winner is set and is displayed to the user
+     */
     @FXML
     void fight() {
         if (terrain.getValue() == null) {
@@ -99,6 +124,7 @@ public class MainController{
         }
         else {
             try {
+                //Observer pattern credit: https://www.youtube.com/watch?v=a2aB9n472U0
                 battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
                 battle.addListener(this::updateArmies);
                 warningLabel.setText("Battle is ongoing!");
@@ -118,32 +144,57 @@ public class MainController{
         }
     }
 
+    /**
+     * Sets army from stored path. Used when resetting armies
+     */
     @FXML
-    void setArmy1FromPath() throws IOException {
+    void setArmy1FromPath() {
         File file = new File(path1);
-        armyOne = ArmyCSVRead.readArmyFromCSV(file);
-        setArmyOneStats();
+        try {
+            armyOne = ArmyCSVRead.readArmyFromCSV(file);
+            setArmyOneStats();
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
+        }
+
+
     }
 
+    /**
+     * Sets army from stored path. Used when resetting armies
+     */
     @FXML
-    void setArmy2FromPath() throws IOException {
+    void setArmy2FromPath() {
         File file = new File(path2);
-        armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+        try {
+            armyTwo = ArmyCSVRead.readArmyFromCSV(file);
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
+        }
         setArmyTwoStats();
     }
 
+    /**
+     * Method for letting the user see the path of the file the army is stored from
+     */
     @FXML
     void viewArmy1Path(){
         viewPath(path1, armyOne.getName());
     }
 
+    /**
+     * Method for letting the user see the path of the file the army is stored from
+     */
     @FXML
     void viewArmy2Path(){
         viewPath(path2, armyTwo.getName());
     }
 
+    /**
+     * Resets the armies, and enables correct buttons. Also resets the color for displaying winner.
+     */
     @FXML
-    void resetArmies() throws IOException {
+    void resetArmies() {
         setArmy1FromPath();
         setArmy2FromPath();
         fight.setDisable(false);
@@ -153,6 +204,10 @@ public class MainController{
         warningLabel.setText("Armies have been reset!");
     }
 
+    /**
+     * Method for using an existing army. Army chosen from choicebox, stats and path set.
+     * @param armyName name of the army that is chosen
+     */
     private void chooseArmy1FromExisting(String armyName) {
         if (armyName == null){
             warningLabel.setText("You must choose an army");
@@ -172,6 +227,10 @@ public class MainController{
         }
     }
 
+    /**
+     * Method for using an existing army. Army chosen from choicebox, stats and path set.
+     * @param armyName name of the army that is chosen
+     */
     private void chooseArmy2FromExisting(String armyName) {
         if (armyName == null) {
             warningLabel.setText("You must choose an army");
@@ -191,6 +250,11 @@ public class MainController{
         }
     }
 
+    /**
+     * Method for viewing path of army, displayed using an information alert.
+     * @param path of the army to be viewed
+     * @param armyName name of the army
+     */
     private void viewPath(String path, String armyName){
         warningLabel.setText("");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -200,6 +264,9 @@ public class MainController{
         alert.showAndWait();
     }
 
+    /**
+     * Observer method for updating GUI when a unit dies. Allowing the user to watch the battle as it is happening
+     */
     private void updateArmies() {
         Platform.runLater(() -> {
             setArmyTwoStats();
@@ -207,6 +274,9 @@ public class MainController{
         });
     }
 
+    /**
+     * Method for displaying winner on GUI, sets green background color of the winner army, and displays a message
+     */
     private void setWinner(){
         Platform.runLater(() -> {
             if (armyOne.hasUnits()){
@@ -219,6 +289,10 @@ public class MainController{
         });
     }
 
+    /**
+     * Method for setting the stats of ArmyOne. Sets the text of GUI components matching with the information about
+     * the given army
+     */
     private void setArmyOneStats(){
         army1Name.setText(armyOne.getName());
         army1Total.setText(String.valueOf(armyOne.getNumberOfUnits()));
@@ -231,6 +305,10 @@ public class MainController{
         army1Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
     }
 
+    /**
+     * Method for setting the stats of ArmyTwo. Sets the text of GUI components matching with the information about
+     * the given army
+     */
     private void setArmyTwoStats(){
         army2Name.setText(armyTwo.getName());
         army2Total.setText(String.valueOf(armyTwo.getNumberOfUnits()));

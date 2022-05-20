@@ -80,29 +80,29 @@ public class Battle{
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
                 armyTwo.getRandomUnit().attack(armyOneRandomUnit, this.terrain,
                         armyTwo.getBannerUnits().size() > 0);
-                //removes unit if health is zero or lower after attack
+                //removes unit if health is zero or lower after attack, the thread then sleeps allowing for updating listeners
                 if (armyOneRandomUnit.getHealth() <= 0) {
                     armyOne.removeUnit(armyOneRandomUnit);
                     try {
+                        fireUpdate();
                         Thread.sleep(70);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
-                    fireUpdate();
                 }
             } else {
                 Unit armyTwoRandomUnit = armyTwo.getRandomUnit();
                 armyOne.getRandomUnit().attack(armyTwoRandomUnit, this.terrain,
                         armyOne.getBannerUnits().size() > 0);
-                //removes unit if health is zero or lower after attack
+                //removes unit if health is zero or lower after attack, the thread then sleeps allowing for updating listeners
                 if (armyTwoRandomUnit.getHealth() <= 0) {
                     armyTwo.removeUnit(armyTwoRandomUnit);
                     try {
+                        fireUpdate();
                         Thread.sleep(70);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
-                    fireUpdate();
                 }
             }
         }catch (Exception e){

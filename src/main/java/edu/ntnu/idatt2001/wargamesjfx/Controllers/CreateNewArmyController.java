@@ -42,6 +42,10 @@ public class CreateNewArmyController {
     List<Button> removeButtons;
     List<Text> costOutList;
 
+    /**
+     * Upon initializing this scene, the choiceboxes are loaded with options, lists of FXML objects are instantiated
+     * and setOnAction is made for certain objects
+     */
     @FXML
     public void initialize(){
         List<String> numbers = new ArrayList<>(Arrays.asList("1","5","10","25","50"));
@@ -60,6 +64,12 @@ public class CreateNewArmyController {
         costOutList = new ArrayList<>(Arrays.asList(costOfInfantryOut, costOfRangedOut, costOfCavalryOut,
                 costOfCommanderOut, costOfMageOut, costOfBannerOut, costOfDragonOut));
         moneyOut.setText(String.valueOf(money));
+
+        /*This loop sets onAction for add and remove buttons with the index that they are placed at, allowing for
+        method calls in adding and removing units to be correct in terms of what unit the user is adding/removing
+
+        Also shows the cost of each unit to the user
+         */
         for (int i = 0; i < addButtons.size(); i++){
             int finalI = i;
             addButtons.get(i).setOnAction(e -> addUnit(finalI));
@@ -88,6 +98,10 @@ public class CreateNewArmyController {
                 "\n To edit army: Type already existing army name");
     }
 
+    /**
+     * Method for checking if the name the user is putting in is already in use. If so the user is presented with the
+     * option to modify the existing army, or to choose another name.
+     */
     @FXML
     void checkName(){
         Army armyNameCheck = new Army(armyName.getText());
@@ -110,12 +124,18 @@ public class CreateNewArmyController {
         }
     }
 
+    /**
+     * Creates army, gets all information from the getArmy method, and writes the army to file, overwrites the file
+     * if the army is not a "new" army.
+     */
     @FXML
     void createNewArmy() {
         Army army = getArmy();
         File file = new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/" + army.getName()
                 + ".csv");
         try {
+            //Uses the boolean from the method isNewArmy to determine whether the army name should be written to
+            // allArmies file or not
             ArmyCSVWrite.writeFile(army, file, ArmyCSVRead.isNewArmy(army));
         }catch (IOException e){
             warningLabel.setText(e.getMessage());
@@ -144,11 +164,21 @@ public class CreateNewArmyController {
         warningLabel.setText("Army added successfully");
     }
 
+    /**
+     * Sets the scene to Main
+     */
     @FXML
-    void setMainScreen() throws IOException {
-        ViewSwitcher.switchTo(View.MAIN);
+    void setMainScreen() {
+        try {
+            ViewSwitcher.switchTo(View.MAIN);
+        }catch (IOException e){
+            warningLabel.setText(e.getMessage());
+        }
     }
 
+    /**
+     * If the user does not wish to edit an existing army, the page is "reset"
+     */
     @FXML
     void onNoButtonPressed(){
         armyName.setText("");
@@ -160,6 +190,10 @@ public class CreateNewArmyController {
         warningLabel.setText("");
     }
 
+    /**
+     * If the user wishes to edit the existing army, that army's information is displayed to the user, and opens for
+     * editing
+     */
     @FXML
     void onYesButtonPressed(){
         totalUnits = 0;
@@ -191,6 +225,10 @@ public class CreateNewArmyController {
         warningLabel.setText("Displaying existing army stats");
     }
 
+    /**
+     * Method for enabling/disabling certain objects
+     * @param bool whether the object should be enabled or not
+     */
     private void setDisableBoxesAndButtons(Boolean bool){
         for (int i = 0; i < numberOfUnitChoiceBoxes.size(); i++){
             numberOfUnitChoiceBoxes.get(i).setDisable(bool);
@@ -200,6 +238,11 @@ public class CreateNewArmyController {
         }
     }
 
+    /**
+     * Method for adding a certain unit, uses the index that the method is called with to choose which unit is to be added
+     * checks that the user has enough money to add that number of units, if so, executes the operation
+     * @param index the index of the unit to be added
+     */
     private void addUnit(int index){
         if (checkValidNumberChoice(index)) {
             int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
@@ -218,6 +261,11 @@ public class CreateNewArmyController {
         }
     }
 
+    /**
+     * Method for removing a certain unit, uses index to specify what unit is to be removed. If the army has fewer units
+     * than the user is trying to remove, the number of units is simply set to 0. Else the number is updated
+     * @param index the index of the unit to be removed
+     */
     private void removeUnit(int index){
         if (checkValidNumberChoice(index)) {
             int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
@@ -239,11 +287,19 @@ public class CreateNewArmyController {
         }
     }
 
+    /**
+     * Checks that the user has chosen a number to add/remove
+     * @param index of the choicebox to check
+     * @return a boolean representing the state of the choicebox
+     */
     private boolean checkValidNumberChoice(int index){
         return numberOfUnitChoiceBoxes.get(index).getValue() != null;
     }
 
-
+    /**
+     * Creates an Army based on the input choices of the user
+     * @return the Army the user has created
+     */
     private Army getArmy(){
         String nameOfArmy = armyName.getText();
         Army newArmy = new Army(nameOfArmy);
@@ -259,6 +315,9 @@ public class CreateNewArmyController {
         return newArmy;
     }
 
+    /**
+     * Sets the current stats of the army to the user. How many they have of each unit, and how much money they have left
+     */
     private void setAllOut(){
         totalOut.setText(String.valueOf(totalUnits));
 
@@ -274,6 +333,11 @@ public class CreateNewArmyController {
         warningLabel.setText("");
     }
 
+    /**
+     * Creates a tooltip for given Node.
+     * @param node the node the tooltip should be added to
+     * @param text the text that is to be displayed upon hovering over the node
+     */
     private void createToolTip(Node node, String text){
         Tooltip tooltip = new Tooltip(text);
         tooltip.setStyle("-fx-font: 14px Arial;");

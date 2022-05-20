@@ -35,21 +35,19 @@ class BattleTest {
     void battleTest(){
         Army humanArmy = new Army("Human Army");
         Army orcArmy = new Army("Orc Army");
-        humanArmy.addUnit(new CommanderUnit(""));
-        orcArmy.addUnit(new CommanderUnit(""));
-        int i;
-        for (i = 0; i < 200; i++){
-            humanArmy.addUnit(new InfantryUnit(""));
-            orcArmy.addUnit(new InfantryUnit(""));
-        }
-        for (i = 0; i < 100; i++){
-            humanArmy.addUnit(new RangedUnit(""));
-            orcArmy.addUnit(new RangedUnit(""));
-        }
-        for (i = 0; i < 20; i++){
-            humanArmy.addUnit(new CavalryUnit(""));
-            orcArmy.addUnit(new CavalryUnit(""));
-        }
+
+        humanArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 10, ""));
+        orcArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 10, ""));
+
+        humanArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit, 10, ""));
+        orcArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.RangedUnit, 10, ""));
+
+        humanArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit, 5, ""));
+        orcArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.CavalryUnit, 5, ""));
+
+        humanArmy.addUnit(GetUnitFactory.getUnit(UnitType.CommanderUnit, ""));
+        orcArmy.addUnit(GetUnitFactory.getUnit(UnitType.CommanderUnit, ""));
+
         Battle testBattle = new Battle(humanArmy,orcArmy,Terrain.Forest);
         System.out.println(testBattle);
     }
