@@ -81,7 +81,7 @@ public class Army{
      * @param unitsToBeAdded an input list of units that will be added to the army.
      */
     public void addAllUnits(List<Unit> unitsToBeAdded) throws IllegalArgumentException{
-        if (unitsToBeAdded == null || unitsToBeAdded.isEmpty()){
+        if (unitsToBeAdded == null){
             throw new IllegalArgumentException("List of units cannot be null");
         }
         units.addAll(unitsToBeAdded);

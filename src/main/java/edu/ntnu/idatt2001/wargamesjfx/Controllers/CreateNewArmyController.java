@@ -12,12 +12,14 @@ import javafx.scene.text.Text;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreateNewArmyController {
     @FXML TextField armyName;
     @FXML Text costOfInfantryOut, costOfRangedOut, costOfCavalryOut, costOfCommanderOut, costOfMageOut, costOfBannerOut,
                 costOfDragonOut;
-    @FXML ChoiceBox infNr, ranNr, cavNr, comNr, mageNr, bannerNr, dragonNr;
+    @FXML ChoiceBox<String> infNr, ranNr, cavNr, comNr, mageNr, bannerNr, dragonNr;
     @FXML Label warningLabel, infOut, ranOut, cavOut, comOut, mageOut, bannerOut, dragonOut, totalOut, moneyOut;
     @FXML ImageView infantryInfo, rangedInfo, cavalryInfo, commanderInfo, mageInfo, bannerInfo, dragonInfo, nameInfo;
     @FXML Button addInfantryBtn, addRangedBtn, addCavalryBtn, addCommanderBtn, addMageBtn, addBannerBtn, addDragonBtn,
@@ -37,7 +39,7 @@ public class CreateNewArmyController {
             costOfCom, costOfMage, costOfBanner, costOfDragon));
     private final List<Integer> numberOfXUnitList = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
 
-    List<ChoiceBox> numberOfUnitChoiceBoxes;
+    List<ChoiceBox<String>> numberOfUnitChoiceBoxes;
     List<Button> addButtons;
     List<Button> removeButtons;
     List<Text> costOutList;
@@ -52,7 +54,7 @@ public class CreateNewArmyController {
         numberOfUnitChoiceBoxes = new ArrayList<>(Arrays.asList(infNr,ranNr,cavNr,comNr,mageNr,bannerNr,
                 dragonNr));
 
-        for (ChoiceBox box : numberOfUnitChoiceBoxes){
+        for (ChoiceBox<String> box : numberOfUnitChoiceBoxes){
             box.getItems().addAll(numbers);
         }
         addButtons = new ArrayList<>(Arrays.asList(addInfantryBtn, addRangedBtn, addCavalryBtn, addCommanderBtn,
@@ -101,26 +103,40 @@ public class CreateNewArmyController {
     /**
      * Method for checking if the name the user is putting in is already in use. If so the user is presented with the
      * option to modify the existing army, or to choose another name.
+     * Also checks whether the army name is only using allowed characters
      */
     @FXML
     void checkName(){
-        Army armyNameCheck = new Army(armyName.getText());
-        try {
-            if (!ArmyCSVRead.isNewArmy(armyNameCheck)){
-                warningLabel.setText("Army name taken, do you wish to edit existing army?");
-                yesButton.setDisable(false);
-                yesButton.setVisible(true);
-                noButton.setVisible(true);
-                noButton.setDisable(false);
-                createNewArmyButton.setDisable(true);
+        String nameOfArmy = armyName.getText();
+        if (nameOfArmy.isBlank()){
+            warningLabel.setText("Army name cannot be empty");
+            armyName.setText("");
+        }
+        else {
+            if (!(nameIsValid(nameOfArmy))) {
+                warningLabel.setText("Invalid army name, characters allowed are A-Z, 0-9");
+                armyName.setText("");
                 setDisableBoxesAndButtons(true);
-            } else{
-                setDisableBoxesAndButtons(false);
-                warningLabel.setText("This name is available");
+            } else {
+                Army armyNameCheck = new Army(armyName.getText());
+                try {
+                    if (!ArmyCSVRead.isNewArmy(armyNameCheck)) {
+                        warningLabel.setText("Army name taken, do you wish to edit existing army?");
+                        yesButton.setDisable(false);
+                        yesButton.setVisible(true);
+                        noButton.setVisible(true);
+                        noButton.setDisable(false);
+                        createNewArmyButton.setDisable(true);
+                        setDisableBoxesAndButtons(true);
+                    } else {
+                        setDisableBoxesAndButtons(false);
+                        warningLabel.setText("This name is available");
 
+                    }
+                } catch (IOException e) {
+                    warningLabel.setText(e.getMessage());
+                }
             }
-        }catch (IOException e){
-            warningLabel.setText(e.getMessage());
         }
     }
 
@@ -156,7 +172,7 @@ public class CreateNewArmyController {
         totalUnits = 0;
         money = 100000;
 
-        for (ChoiceBox box : numberOfUnitChoiceBoxes) {
+        for (ChoiceBox<String> box : numberOfUnitChoiceBoxes) {
             box.valueProperty().set(null);
         }
 
@@ -245,7 +261,7 @@ public class CreateNewArmyController {
      */
     private void addUnit(int index){
         if (checkValidNumberChoice(index)) {
-            int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
+            int numberToAdd = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue());
             if (numberToAdd * costList.get(index) <= money) {
                 int value = numberOfXUnitList.get(index);
                 value += numberToAdd;
@@ -268,7 +284,7 @@ public class CreateNewArmyController {
      */
     private void removeUnit(int index){
         if (checkValidNumberChoice(index)) {
-            int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue().toString());
+            int numberToRemove = Integer.parseInt(numberOfUnitChoiceBoxes.get(index).getValue());
             if (numberOfXUnitList.get(index) >= numberToRemove) {
                 money += numberToRemove * costList.get(index);
                 int value = numberOfXUnitList.get(index);
@@ -297,6 +313,18 @@ public class CreateNewArmyController {
     }
 
     /**
+     * Checks whether the input for army name is valid or not
+     * @param text the name of the army
+     * @return true if name is valid, false if name is invalid
+     */
+    private boolean nameIsValid(String text){
+        String allowedCharacters = "^[a-zA-Z0-9]+$";
+        Pattern pattern = Pattern.compile(allowedCharacters);
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+
+    /**
      * Creates an Army based on the input choices of the user
      * @return the Army the user has created
      */
@@ -313,6 +341,7 @@ public class CreateNewArmyController {
         newArmy.addAllUnits(GetUnitFactory.getXUnits(UnitType.DragonUnit, numberOfXUnitList.get(6), "Dragon"));
 
         return newArmy;
+
     }
 
     /**

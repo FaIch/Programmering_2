@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Interfaces.SituationalBonus;
 
 /**
@@ -36,7 +37,7 @@ public class MageUnit extends Unit implements SituationalBonus {
      * @return the attack bonus of the unit
      */
     @Override
-    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
+    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
         return 3 + getSituationalAttackBonus(enemyUnit);
     }
 
@@ -56,8 +57,8 @@ public class MageUnit extends Unit implements SituationalBonus {
      * @param enemyUnit the enemy the unit is attacking
      * @return the situational attack bonus
      */
-    public int getSituationalAttackBonus(Unit enemyUnit) {
-        if (enemyUnit.getClass().getSimpleName().equals("DragonUnit")){
+    public int getSituationalAttackBonus(UnitType enemyUnit) {
+        if (enemyUnit.equals(UnitType.DragonUnit)){
             return -50;
         }
         return 0;

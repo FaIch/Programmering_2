@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
+/*
  * The code is heavily inspired by lecture in file handling in IDATT2001 Example code.
  */
 /**

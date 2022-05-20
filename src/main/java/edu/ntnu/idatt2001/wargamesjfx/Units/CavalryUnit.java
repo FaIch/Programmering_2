@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Interfaces.*;
 
 /**
@@ -55,8 +56,8 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
      * @param terrain the terrain the attack is happening in
      */
     @Override
-    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
-        int attackBonus = 0;
+    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        int attackBonus;
         if (counter == 0){
             attackBonus = 6;
         }
@@ -106,8 +107,8 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
      * @param enemyUnit that is being attacked
      * @return bonus from situation
      */
-    public int getSituationalAttackBonus(Unit enemyUnit) {
-        if (enemyUnit.getClass().getSimpleName().equals("InfantryUnit")){
+    public int getSituationalAttackBonus(UnitType enemyUnit) {
+        if (enemyUnit.equals(UnitType.InfantryUnit)){
             return 2;
         }
         return 0;

@@ -13,13 +13,12 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
 
 public class MainController{
-    @FXML ChoiceBox terrain, existingArmies1, existingArmies2;
+    @FXML ChoiceBox<String> terrain, existingArmies1, existingArmies2;
 
     @FXML Label army1Name, army1Total, army1Infantry, army1Ranged, army1Cavalry, army1Commander, army1Mage, army1Banner,
             army1Dragon, army2Name, army2Total, army2Infantry, army2Ranged, army2Cavalry, army2Commander, army2Mage,
@@ -29,7 +28,6 @@ public class MainController{
     @FXML ImageView image;
     @FXML VBox army1Box, army2Box;
 
-    private Stage stage;
     private Army armyOne;
     private Army armyTwo;
     private final FileChooser fileChooser = new FileChooser();
@@ -48,9 +46,9 @@ public class MainController{
                 image.setImage(new Image("file:src/main/resources/edu/ntnu/idatt2001/wargamesjfx/images/" + newValue
                         + ".jpg"))));
         existingArmies1.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
-                chooseArmy1FromExisting((String) newValue)));
+                chooseArmy1FromExisting(newValue)));
         existingArmies2.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
-                chooseArmy2FromExisting((String) newValue)));
+                chooseArmy2FromExisting(newValue)));
         try {
             existingArmies1.getItems().addAll(ArmyCSVRead.getArmies());
             existingArmies2.getItems().addAll(ArmyCSVRead.getArmies());
@@ -65,7 +63,7 @@ public class MainController{
      */
     @FXML
     void loadArmy1FromFile() {
-        File file = fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(null);
         try {
             armyOne = ArmyCSVRead.readArmyFromCSV(file);
             setArmyOneStats();
@@ -83,7 +81,7 @@ public class MainController{
      */
     @FXML
     void loadArmy2FromFile() {
-        File file = fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(null);
         try {
             armyTwo = ArmyCSVRead.readArmyFromCSV(file);
             setArmyTwoStats();
@@ -125,7 +123,7 @@ public class MainController{
         else {
             try {
                 //Observer pattern credit: https://www.youtube.com/watch?v=a2aB9n472U0
-                battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue().toString()));
+                battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue()));
                 battle.addListener(this::updateArmies);
                 warningLabel.setText("Battle is ongoing!");
                 new Thread(() -> {

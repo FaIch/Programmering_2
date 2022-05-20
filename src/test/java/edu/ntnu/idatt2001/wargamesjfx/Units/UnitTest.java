@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,11 +39,11 @@ class UnitTest {
     @DisplayName("Attack bonus test")
     void getAttackBonus() {
         CommanderUnit commanderUnit = new CommanderUnit("");
-        InfantryUnit dummyUnit = new InfantryUnit("");
+        Unit dummyUnit = new InfantryUnit("");
         Terrain terrain = Terrain.Forest;
-        assertEquals(8,commanderUnit.getAttackBonus(dummyUnit, terrain));
-        assertEquals(4,commanderUnit.getAttackBonus(dummyUnit, terrain));
-        assertEquals(4,commanderUnit.getAttackBonus(dummyUnit, terrain));
+        assertEquals(8,commanderUnit.getAttackBonus(UnitType.InfantryUnit, terrain));
+        assertEquals(4,commanderUnit.getAttackBonus(UnitType.InfantryUnit, terrain));
+        assertEquals(4,commanderUnit.getAttackBonus(UnitType.InfantryUnit, terrain));
     }
 
     @Test

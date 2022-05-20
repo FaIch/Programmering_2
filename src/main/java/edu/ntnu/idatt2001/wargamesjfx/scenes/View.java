@@ -13,7 +13,7 @@ public enum View {
      */
     NEWARMY("create_new_army_screen.fxml");
 
-    private String fileName;
+    private final String fileName;
 
     View(String fileName) {
         this.fileName = fileName;

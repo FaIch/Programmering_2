@@ -61,7 +61,7 @@ class BattleTest {
         armyTwo.addAllUnits(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 4, "Jenta"));
 
         Battle testBattle = new Battle(armyOne,armyTwo,Terrain.Plains);
-        assertEquals(1,armyOne.getRandomUnit().getAttackBonus(armyTwo.getRandomUnit(), Terrain.Forest));
+        assertEquals(1,armyOne.getRandomUnit().getAttackBonus(UnitType.valueOf(armyTwo.getRandomUnit().getClass().getSimpleName()), Terrain.Forest));
     }
 }
 

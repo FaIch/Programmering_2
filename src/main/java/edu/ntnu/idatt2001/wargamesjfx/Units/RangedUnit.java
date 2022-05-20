@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Interfaces.TerrainAttackBonus;
 
 /**
@@ -56,7 +57,7 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      * @param terrain the terrain the attack is happening in
      */
     @Override
-    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
+    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
         return 3 + getTerrainAttackBonus(terrain);
     }
 
@@ -68,7 +69,7 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      */
     @Override
     public int getResistBonus(Terrain terrain) {
-        int resistBonus = 0;
+        int resistBonus;
         if (this.counter == 0){
             resistBonus = 6;
         }

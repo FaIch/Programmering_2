@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 
 import java.util.Objects;
 
@@ -41,7 +42,7 @@ public abstract class Unit {
      *                  unit is increased by 20%
      */
     public void attack(Unit opponent, Terrain terrain, boolean hasBanner){
-        int totalDamage = this.attack + this.getAttackBonus(opponent, terrain);
+        int totalDamage = this.attack + this.getAttackBonus(UnitType.valueOf(opponent.getClass().getSimpleName()), terrain);
         if (hasBanner){
             totalDamage += Math.abs(totalDamage * 0.2);
         }
@@ -108,17 +109,17 @@ public abstract class Unit {
      * All classes that inherit this class, must implement this method
      *
      * @return the attack bonus of the unit
-     * @param enemyUnit
-     * @param terrain
+     * @param enemyUnit the type of the unit that is being attacked
+     * @param terrain the terrain the attack is happening in
      */
-    public abstract int getAttackBonus(Unit enemyUnit, Terrain terrain);
+    public abstract int getAttackBonus(UnitType enemyUnit, Terrain terrain);
 
     /**
      * Abstract method for retrieving the resist bonus of a unit.
      * All subclasses implement this method
      *
      * @return the resist bonus of the unit
-     * @param terrain
+     * @param terrain the terrain the attack is happening in
      */
     public abstract int getResistBonus(Terrain terrain);
 

@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Units;
 
 import edu.ntnu.idatt2001.wargamesjfx.Battle.Terrain;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Interfaces.*;
 
 
@@ -41,7 +42,7 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
      * @param terrain the terrain the attack is happening in
      */
     @Override
-    public int getAttackBonus(Unit enemyUnit, Terrain terrain) {
+    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
         return 2 + getTerrainAttackBonus(terrain);
     }
 
