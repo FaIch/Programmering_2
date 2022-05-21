@@ -48,6 +48,49 @@
     -fx-text-fill: white;
 }
 
+.scroll-pane{
+    -fx-background-color: black;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb{
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+
+.table-view .column-header{
+    -fx-background-color: white;
+    -fx-border-color: black;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: grey;
+}
+
+.table-row-cell: even{
+    -fx-background-color: white;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical . track,
+.table-view .virtual-flow .scroll-bar:vertical . track-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: black;
+    -fx-background-radius: 5em;
+}
+
 
 
 .infantry-image{

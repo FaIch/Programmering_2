@@ -3,9 +3,13 @@ package edu.ntnu.idatt2001.wargamesjfx.Controllers;
 import edu.ntnu.idatt2001.wargamesjfx.Battle.*;
 import edu.ntnu.idatt2001.wargamesjfx.IO.*;
 
+import edu.ntnu.idatt2001.wargamesjfx.Units.Unit;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -27,7 +31,9 @@ public class MainController{
     @FXML Button fight, reset, army1PathButton, army2PathButton;
     @FXML ImageView image;
     @FXML VBox army1Box, army2Box;
-
+    @FXML TableView<Unit> unitTableArmy1, unitTableArmy2;
+    @FXML TableColumn<Unit, String> army1UnitName, army2UnitName;
+    @FXML TableColumn<Unit, Integer> army1UnitHealth, army2UnitHealth;
     private Army armyOne;
     private Army armyTwo;
     private final FileChooser fileChooser = new FileChooser();
@@ -49,6 +55,17 @@ public class MainController{
                 chooseArmy1FromExisting(newValue)));
         existingArmies2.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
                 chooseArmy2FromExisting(newValue)));
+
+        army1UnitName.setCellValueFactory((TableColumn.CellDataFeatures<Unit, String> unit)
+                -> new SimpleObjectProperty<>(unit.getValue().getName()));
+        army1UnitHealth.setCellValueFactory((TableColumn.CellDataFeatures<Unit, Integer> unit)
+                -> new SimpleObjectProperty<>(unit.getValue().getHealth()));
+
+        army2UnitName.setCellValueFactory((TableColumn.CellDataFeatures<Unit, String> unit)
+                -> new SimpleObjectProperty<>(unit.getValue().getName()));
+        army2UnitHealth.setCellValueFactory((TableColumn.CellDataFeatures<Unit, Integer> unit)
+                -> new SimpleObjectProperty<>(unit.getValue().getHealth()));
+
         try {
             existingArmies1.getItems().addAll(ArmyCSVRead.getArmies());
             existingArmies2.getItems().addAll(ArmyCSVRead.getArmies());
@@ -267,8 +284,9 @@ public class MainController{
      */
     private void updateArmies() {
         Platform.runLater(() -> {
-            setArmyTwoStats();
             setArmyOneStats();
+            setArmyTwoStats();
+
         });
     }
 
@@ -301,6 +319,10 @@ public class MainController{
         army1Mage.setText(String.valueOf(armyOne.getMageUnits().size()));
         army1Banner.setText(String.valueOf(armyOne.getBannerUnits().size()));
         army1Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
+
+        ObservableList<Unit> unitData = FXCollections.observableList(armyOne.getAllUnits());
+        unitTableArmy1.setItems(unitData);
+
     }
 
     /**
@@ -317,5 +339,8 @@ public class MainController{
         army2Mage.setText(String.valueOf(armyTwo.getMageUnits().size()));
         army2Banner.setText(String.valueOf(armyTwo.getBannerUnits().size()));
         army2Dragon.setText(String.valueOf(armyTwo.getDragonUnits().size()));
+
+        ObservableList<Unit> unitData = FXCollections.observableList(armyTwo.getAllUnits());
+        unitTableArmy2.setItems(unitData);
     }
 }

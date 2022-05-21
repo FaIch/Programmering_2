@@ -28,6 +28,12 @@ public class BannerUnit extends Unit{
      */
     public BannerUnit(String name){super(80, name,0, 0);}
 
+    /**
+     * Since this unit is only boosting its allies, this unit does not have any bonuses
+     * @param enemyUnit the type of the unit that is being attacked
+     * @param terrain the terrain the attack is happening in
+     * @return returns 0
+     */
     @Override
     public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
         return 0;
