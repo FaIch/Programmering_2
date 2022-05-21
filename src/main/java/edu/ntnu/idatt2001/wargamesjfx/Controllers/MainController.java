@@ -56,6 +56,7 @@ public class MainController{
         existingArmies2.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) ->
                 chooseArmy2FromExisting(newValue)));
 
+        //Sets correct value for TableView
         army1UnitName.setCellValueFactory((TableColumn.CellDataFeatures<Unit, String> unit)
                 -> new SimpleObjectProperty<>(unit.getValue().getName()));
         army1UnitHealth.setCellValueFactory((TableColumn.CellDataFeatures<Unit, Integer> unit)
@@ -117,6 +118,7 @@ public class MainController{
     public void createNewArmy() {
         try {
             ViewSwitcher.switchTo(View.NEWARMY);
+            Battle.stop();
         }catch (IOException e){
             warningLabel.setText(e.getMessage());
         }
@@ -320,6 +322,7 @@ public class MainController{
         army1Banner.setText(String.valueOf(armyOne.getBannerUnits().size()));
         army1Dragon.setText(String.valueOf(armyOne.getDragonUnits().size()));
 
+        //Adds all unit to observable list to display in TableView
         ObservableList<Unit> unitData = FXCollections.observableList(armyOne.getAllUnits());
         unitTableArmy1.setItems(unitData);
 
@@ -340,6 +343,7 @@ public class MainController{
         army2Banner.setText(String.valueOf(armyTwo.getBannerUnits().size()));
         army2Dragon.setText(String.valueOf(armyTwo.getDragonUnits().size()));
 
+        //Adds all unit to observable list to display in TableView
         ObservableList<Unit> unitData = FXCollections.observableList(armyTwo.getAllUnits());
         unitTableArmy2.setItems(unitData);
     }

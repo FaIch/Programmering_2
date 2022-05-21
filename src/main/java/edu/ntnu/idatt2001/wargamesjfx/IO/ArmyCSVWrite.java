@@ -20,7 +20,6 @@ public class ArmyCSVWrite {
 
     /**
      * Instantiates a new Army csv write.
-     * Empty constructor since the class should be able to write multiple files without creating a new instance.
      */
     public ArmyCSVWrite(){}
 

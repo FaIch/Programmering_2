@@ -17,7 +17,7 @@ class ArmyCSVWriteTest {
         Army army = new Army("Human");
         ArrayList<Unit> testList = new ArrayList<>();
         testList.add(new CommanderUnit(""));
-        int i = 0;
+        int i;
         for (i = 0; i < 50; i++) {
             testList.add(new InfantryUnit(""));
         }

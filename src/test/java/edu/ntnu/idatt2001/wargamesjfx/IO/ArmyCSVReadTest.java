@@ -12,16 +12,15 @@ class ArmyCSVReadTest {
 
     @Test
     void readArmyFromCSV() {
-        ArmyCSVRead armyCSVRead = new ArmyCSVRead();
         Army army = null;
         try {
-            armyCSVRead.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/" +
+            ArmyCSVRead.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/" +
                     "wargamesjfx/files/Human.csv"));
         }catch (IOException e){
             e.printStackTrace();
         }finally {
             try {
-                army = armyCSVRead.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/" +
+                army = ArmyCSVRead.readArmyFromCSV(new File("src/main/resources/edu/ntnu/idatt2001/" +
                         "wargamesjfx/files/Human.csv"));
             }catch (IOException e){
                 e.printStackTrace();
@@ -33,15 +32,13 @@ class ArmyCSVReadTest {
 
     @Test
     void readNonExistingFile(){
-        ArmyCSVRead armyCSVRead = new ArmyCSVRead();
-        assertThrows(IOException.class, () -> armyCSVRead.readArmyFromCSV(
+        assertThrows(IOException.class, () -> ArmyCSVRead.readArmyFromCSV(
                 new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/noFileToSeeHere.csv")));
     }
 
     @Test
     void readEmptyFile(){
-        ArmyCSVRead armyCSVRead = new ArmyCSVRead();
-        assertThrows(IOException.class, () -> armyCSVRead.readArmyFromCSV(
+        assertThrows(IOException.class, () -> ArmyCSVRead.readArmyFromCSV(
                 new File("src/main/resources/edu/ntnu/idatt2001/wargamesjfx/files/Empty.csv")));
     }
 

@@ -1,9 +1,9 @@
 package edu.ntnu.idatt2001.wargamesjfx;
 
+import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -18,7 +18,10 @@ public class WarGames extends Application {
         ViewSwitcher.switchTo(View.MAIN);
         stage.setTitle("WARGAMES");
         stage.setScene(scene);
+        //When the application is closed, the thread for battle will stop
+        stage.setOnCloseRequest(windowEvent -> Battle.stop());
         stage.show();
+
     }
 
     public static void main(String[] args) {

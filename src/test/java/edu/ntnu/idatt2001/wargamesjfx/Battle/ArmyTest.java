@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.wargamesjfx.Battle;
 
+import edu.ntnu.idatt2001.wargamesjfx.Factory.GetUnitFactory;
+import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import edu.ntnu.idatt2001.wargamesjfx.Units.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,18 +40,10 @@ class ArmyTest {
     @DisplayName("Add list of units to army")
     void addListOfUnits(){
         ArrayList<Unit> testList = new ArrayList<>();
-        testList.add(new CommanderUnit(""));
-        int i = 0;
-        for (i = 0; i < 50; i++) {
-            testList.add(new InfantryUnit(""));
-        }
-        for (i = 0; i < 20; i++) {
-            testList.add(new RangedUnit(""));
-        }
-        for (i = 0; i < 5; i++) {
-            testList.add(new CavalryUnit(""));
-        }
-
+        testList.add(GetUnitFactory.getUnit(UnitType.CommanderUnit, ""));
+        testList.addAll(GetUnitFactory.getXUnits(UnitType.InfantryUnit, 50, ""));
+        testList.addAll(GetUnitFactory.getXUnits(UnitType.RangedUnit, 20, ""));
+        testList.addAll(GetUnitFactory.getXUnits(UnitType.CavalryUnit, 5, ""));
         testArmy.addAllUnits(testList);
         assertEquals(76,testArmy.getNumberOfUnits());
     }
@@ -113,7 +107,7 @@ class ArmyTest {
     void getInfantryUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
         testList.add(new CommanderUnit(""));
-        int i = 0;
+        int i;
         for (i = 0;i < 50;i++){
             testList.add(new InfantryUnit(""));
         }
@@ -132,7 +126,7 @@ class ArmyTest {
     void getRangedUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
         testList.add(new CommanderUnit(""));
-        int i = 0;
+        int i;
         for (i = 0;i < 50;i++){
             testList.add(new InfantryUnit(""));
         }
@@ -151,7 +145,7 @@ class ArmyTest {
     void getCavalryUnitsTest(){
         ArrayList<Unit> testList = new ArrayList<>();
         testList.add(new CommanderUnit(""));
-        int i = 0;
+        int i;
         for (i = 0;i < 50;i++){
             testList.add(new InfantryUnit(""));
         }
@@ -172,7 +166,7 @@ class ArmyTest {
         testList.add(new CommanderUnit(""));
         testList.add(new CommanderUnit(""));
         testList.add(new CommanderUnit(""));
-        int i = 0;
+        int i;
         for (i = 0;i < 50;i++){
             testList.add(new InfantryUnit(""));
         }

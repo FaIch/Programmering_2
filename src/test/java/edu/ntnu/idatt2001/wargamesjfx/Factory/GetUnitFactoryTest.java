@@ -19,8 +19,7 @@ class GetUnitFactoryTest {
 
     @Test
     void getXUnits() {
-        ArrayList<Unit> testList = new ArrayList<>();
-        testList.addAll(GetUnitFactory.getXUnits(RangedUnit, 50, ""));
+        ArrayList<Unit> testList = new ArrayList<>(GetUnitFactory.getXUnits(RangedUnit, 50, ""));
         assertEquals(50,testList.size());
     }
 }

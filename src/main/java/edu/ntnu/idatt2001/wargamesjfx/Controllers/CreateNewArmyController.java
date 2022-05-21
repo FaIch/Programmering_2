@@ -24,10 +24,11 @@ public class CreateNewArmyController {
     @FXML ImageView infantryInfo, rangedInfo, cavalryInfo, commanderInfo, mageInfo, bannerInfo, dragonInfo, nameInfo;
     @FXML Button addInfantryBtn, addRangedBtn, addCavalryBtn, addCommanderBtn, addMageBtn, addBannerBtn, addDragonBtn,
                 removeInfantryBtn, removeRangedBtn, removeCavalryBtn, removeCommanderBtn, removeMageBtn, removeBannerBtn
-                ,removeDragonBtn, checkNameBtn, createNewArmyButton, yesButton, noButton;
+                ,removeDragonBtn, checkNameBtn, createNewArmyButton, yesButton, noButton, resetButton;
 
     private int totalUnits = 0;
-    private int money = 100000;
+    private final int maxMoney = 100000;
+    private int money = maxMoney;
     private final int costOfInf = 125;
     private final int costOfRan = 130;
     private final int costOfCav = 170;
@@ -170,7 +171,7 @@ public class CreateNewArmyController {
         }
 
         totalUnits = 0;
-        money = 100000;
+        money = maxMoney;
 
         for (ChoiceBox<String> box : numberOfUnitChoiceBoxes) {
             box.valueProperty().set(null);
@@ -242,6 +243,19 @@ public class CreateNewArmyController {
     }
 
     /**
+     * Resets the units added in the current army
+     */
+    @FXML
+    void onResetButtonPressed(){
+        for (int i = 0; i < numberOfXUnitList.size(); i++){
+            numberOfXUnitList.set(i,0);
+        }
+        totalUnits = 0;
+        money = maxMoney;
+        setAllOut();
+    }
+
+    /**
      * Method for enabling/disabling certain objects
      * @param bool whether the object should be enabled or not
      */
@@ -250,8 +264,9 @@ public class CreateNewArmyController {
             numberOfUnitChoiceBoxes.get(i).setDisable(bool);
             addButtons.get(i).setDisable(bool);
             removeButtons.get(i).setDisable(bool);
-            createNewArmyButton.setDisable(bool);
         }
+        createNewArmyButton.setDisable(bool);
+        resetButton.setDisable(bool);
     }
 
     /**

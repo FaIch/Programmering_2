@@ -8,6 +8,7 @@ import edu.ntnu.idatt2001.wargamesjfx.Factory.UnitType;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 /*
  * The code is heavily inspired by lecture in file handling in IDATT2001 Example code.
@@ -76,7 +77,7 @@ public class ArmyCSVRead {
         return army;
     }
 
-    public static ArrayList<String> getArmies() throws IOException {
+    public static List<String> getArmies() throws IOException {
         ArrayList<String> returnList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File("src/main/resources/edu/ntnu/idatt2001/" +
                 "wargamesjfx/files/allArmies.csv"))) {
@@ -113,7 +114,7 @@ public class ArmyCSVRead {
 
     public static boolean isNewArmy(Army army) throws IOException {
         try {
-            ArrayList<String> existingArmies = getArmies();
+            List<String> existingArmies = getArmies();
             for (String existingArmy : existingArmies){
                 if (army.getName().equals(existingArmy)){
                     return false;

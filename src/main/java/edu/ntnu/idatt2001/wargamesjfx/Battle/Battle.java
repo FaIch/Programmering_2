@@ -11,6 +11,7 @@ import java.util.List;
 public class Battle{
     private final Army armyOne;
     private final Army armyTwo;
+    private static boolean shouldRun = true;
     public Terrain terrain;
     private final List<BattleListener> listeners= new ArrayList<>();
 
@@ -49,7 +50,8 @@ public class Battle{
 
     public Army simulate() throws InterruptedException {
         int counter = 0;
-        while (armyOne.hasUnits() && armyTwo.hasUnits()) {
+        shouldRun = true;
+        while (armyOne.hasUnits() && armyTwo.hasUnits() && shouldRun) {
             if (counter % 2 == 0) {
                 armyAttack(armyTwo);
             }
@@ -129,6 +131,13 @@ public class Battle{
             throw new IllegalArgumentException("Listener cannot be null");
         }
         listeners.add(listener);
+    }
+
+    /**
+     * Stops the battle if window is closed
+     */
+    public static void stop(){
+        shouldRun = false;
     }
 
 
