@@ -33,7 +33,11 @@ public class DragonUnit extends Unit implements TerrainAttackBonus {
     }
 
     @Override
-    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {return 3 + getTerrainAttackBonus(terrain);}
+    public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
+        return 3 + getTerrainAttackBonus(terrain);}
 
     @Override
     public int getResistBonus(Terrain terrain) {
@@ -46,8 +50,14 @@ public class DragonUnit extends Unit implements TerrainAttackBonus {
      * @return the situational attack bonus
      */
     public int getTerrainAttackBonus(Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         if (terrain.equals(Terrain.Forest)){
             return -10;
+        }
+        else if (terrain.equals(Terrain.Plains)){
+            return 2;
         }
         return 0;
     }

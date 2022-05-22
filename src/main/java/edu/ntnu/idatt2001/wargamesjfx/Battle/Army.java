@@ -70,9 +70,7 @@ public class Army{
         if (unit == null){
             throw new IllegalArgumentException("Unit cannot be null");
         }
-        else {
-            units.add(unit);
-        }
+        units.add(unit);
     }
 
     /**
@@ -84,7 +82,9 @@ public class Army{
         if (unitsToBeAdded == null){
             throw new IllegalArgumentException("List of units cannot be null");
         }
-        units.addAll(unitsToBeAdded);
+        for (Unit unit : unitsToBeAdded){
+            addUnit(unit);
+        }
     }
 
     /**

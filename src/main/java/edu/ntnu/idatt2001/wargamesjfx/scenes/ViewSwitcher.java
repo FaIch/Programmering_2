@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * The type View switcher.
- * Used for easy scene switching
+ * Used for scene switching
  */
 public class ViewSwitcher {
 

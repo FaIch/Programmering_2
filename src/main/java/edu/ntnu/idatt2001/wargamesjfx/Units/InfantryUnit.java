@@ -43,6 +43,9 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
      */
     @Override
     public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         return 2 + getTerrainAttackBonus(terrain);
     }
 
@@ -54,6 +57,9 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
      */
     @Override
     public int getResistBonus(Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         return 1 + getTerrainDefenceBonus(terrain);
     }
 
@@ -64,6 +70,9 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
      * @return bonus based on terrain
      */
     public int getTerrainAttackBonus(Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         if (terrain == Terrain.Forest) {
             return 2;
         }
@@ -77,6 +86,9 @@ public class InfantryUnit extends Unit implements TerrainAttackBonus, TerrainDef
      * @return bonus based on terrain
      */
     public int getTerrainDefenceBonus(Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         if (terrain == Terrain.Forest) {
             return 2;
         }

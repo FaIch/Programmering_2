@@ -51,8 +51,8 @@ class ArmyTest {
     @Test
     @DisplayName("Add empty list to Army, throws IllegalArgumentException")
     void addEmptyListThrowsException(){
-        ArrayList<Unit> testList = new ArrayList<>();
-        assertThrows(IllegalArgumentException.class, () -> testArmy.addAllUnits(testList));
+
+        assertThrows(IllegalArgumentException.class, () -> testArmy.addAllUnits(null));
     }
 
     @Test
@@ -63,10 +63,9 @@ class ArmyTest {
 
     @Test
     @DisplayName("Create army with empty list, throws IllegalArgumentException")
-    void createArmyWithEmptyListThrowsException(){
-        ArrayList<Unit> testList = new ArrayList<>();
+    void createArmyWithNullListThrowsException(){
         assertThrows(IllegalArgumentException.class, () ->{
-           Army failArmy = new Army("FailArmy",testList);
+           Army failArmy = new Army("FailArmy", null);
         });
     }
 

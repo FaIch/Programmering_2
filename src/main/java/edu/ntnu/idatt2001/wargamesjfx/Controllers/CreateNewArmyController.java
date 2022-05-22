@@ -15,6 +15,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class for controlling the scene where the user can create/edit Army
+ */
 public class CreateNewArmyController {
     @FXML TextField armyName;
     @FXML Text costOfInfantryOut, costOfRangedOut, costOfCavalryOut, costOfCommanderOut, costOfMageOut, costOfBannerOut,
@@ -82,22 +85,22 @@ public class CreateNewArmyController {
 
         createToolTip(infantryInfo,"Health: 100, Attack : 15, Armor: 10 \n Bonus in Forest");
 
-        createToolTip(rangedInfo,"Health: 100, Attack: 15, Armor: 8 " +
+        createToolTip(rangedInfo,"Health: 100, Attack: 15, Armor: 8" +
                 "\n attack bonus in Hill, lower attack in Forest");
 
-        createToolTip(cavalryInfo, "Health: 100, Attack: 20, Armor: 12 " +
+        createToolTip(cavalryInfo, "Health: 100, Attack: 20, Armor: 12" +
                 "\n Bonus in Plains, good against Infantry");
 
-        createToolTip(mageInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
-                "\n Glass cannon unit, Bonus in: TBD");
+        createToolTip(mageInfo,"Health: 70, Attack: 35, Armor: 5" +
+                "\n Glass cannon unit, not useful against dragons");
 
-        createToolTip(bannerInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
+        createToolTip(bannerInfo,"Health: 80, Attack: 0, Armor: 0" +
                 "\n Boosts attack for all units in Army by 20%(Unique)");
 
-        createToolTip(dragonInfo,"Health: TBD, Attack: TBD, Armor: TBD " +
+        createToolTip(dragonInfo,"Health: 200, Attack: 30, Armor: 10" +
                 "\n Immune to magic, disadvantage in forest, advantage in plains");
 
-        createToolTip(nameInfo,"Name of army " +
+        createToolTip(nameInfo,"Name of army" +
                 "\n To edit army: Type already existing army name");
     }
 
@@ -113,30 +116,32 @@ public class CreateNewArmyController {
             warningLabel.setText("Army name cannot be empty");
             armyName.setText("");
         }
+        else if (!(nameIsValid(nameOfArmy))) {
+            warningLabel.setText("Invalid army name, characters allowed are A-Z, 0-9");
+            armyName.setText("");
+            setDisableBoxesAndButtons(true);
+        }
+        else if (nameOfArmy.length() > 15) {
+            warningLabel.setText("Name of army cannot exceed 15 characters");
+        }
         else {
-            if (!(nameIsValid(nameOfArmy))) {
-                warningLabel.setText("Invalid army name, characters allowed are A-Z, 0-9");
-                armyName.setText("");
-                setDisableBoxesAndButtons(true);
-            } else {
-                Army armyNameCheck = new Army(armyName.getText());
-                try {
-                    if (!ArmyCSVRead.isNewArmy(armyNameCheck)) {
-                        warningLabel.setText("Army name taken, do you wish to edit existing army?");
-                        yesButton.setDisable(false);
-                        yesButton.setVisible(true);
-                        noButton.setVisible(true);
-                        noButton.setDisable(false);
-                        createNewArmyButton.setDisable(true);
-                        setDisableBoxesAndButtons(true);
-                    } else {
-                        setDisableBoxesAndButtons(false);
-                        warningLabel.setText("This name is available");
+            Army armyNameCheck = new Army(armyName.getText());
+            try {
+                if (!ArmyCSVRead.isNewArmy(armyNameCheck)) {
+                    warningLabel.setText("Army name taken, do you wish to edit existing army?");
+                    yesButton.setDisable(false);
+                    yesButton.setVisible(true);
+                    noButton.setVisible(true);
+                    noButton.setDisable(false);
+                    createNewArmyButton.setDisable(true);
+                    setDisableBoxesAndButtons(true);
+                } else {
+                    setDisableBoxesAndButtons(false);
+                    warningLabel.setText("This name is available");
 
-                    }
-                } catch (IOException e) {
-                    warningLabel.setText(e.getMessage());
                 }
+            } catch (IOException e) {
+                warningLabel.setText(e.getMessage());
             }
         }
     }

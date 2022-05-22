@@ -12,8 +12,8 @@ public class Battle{
     private final Army armyOne;
     private final Army armyTwo;
     private static boolean shouldRun = true;
-    public Terrain terrain;
-    private final List<BattleListener> listeners= new ArrayList<>();
+    private final Terrain terrain;
+    private final List<BattleListener> listeners = new ArrayList<>();
 
     /**
      * Instantiates a new Battle.
@@ -71,12 +71,14 @@ public class Battle{
      * Method for attacking, a random unit from one army attacks a random unit from the other,
      * if the health of the unit that is attacked is below or equal zero, the unit is removed from the army.
      *
-     * When a unit is removed, the thread sleeps for 70 milliseconds and calls the fireUpdate method for updating GUI
+     * When a unit is removed, the thread sleeps for various duration based on how many units are in battle and calls
+     * the fireUpdate method for updating all listeners
      *
      * @param army the army that is attacked, decided by the counter in the simulate method.
     */
 
-    private void armyAttack(Army army){
+    private void armyAttack(Army army) throws InterruptedException {
+        int sleepTime = threadSleepDuration();
         try {
             if (army.equals(armyTwo)) {
                 Unit armyOneRandomUnit = armyOne.getRandomUnit();
@@ -87,7 +89,7 @@ public class Battle{
                     armyOne.removeUnit(armyOneRandomUnit);
                     try {
                         fireUpdate();
-                        Thread.sleep(threadSleepDuration());
+                        Thread.sleep(sleepTime);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
@@ -101,14 +103,14 @@ public class Battle{
                     armyTwo.removeUnit(armyTwoRandomUnit);
                     try {
                         fireUpdate();
-                        Thread.sleep(threadSleepDuration());
+                        Thread.sleep(sleepTime);
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
                 }
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }catch (InterruptedException e){
+            throw new InterruptedException(e.getMessage());
         }
     }
 

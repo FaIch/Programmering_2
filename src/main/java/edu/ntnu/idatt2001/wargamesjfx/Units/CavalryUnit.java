@@ -57,6 +57,12 @@ public class CavalryUnit extends Unit implements TerrainAttackBonus, TerrainDefe
      */
     @Override
     public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
+        if (enemyUnit == null){
+            throw new IllegalArgumentException("Enemy Unit cannot be null");
+        }
         int attackBonus;
         if (counter == 0){
             attackBonus = 6;

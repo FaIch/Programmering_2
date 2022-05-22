@@ -143,8 +143,8 @@ public class MainController{
             try {
                 //Observer pattern credit: https://www.youtube.com/watch?v=a2aB9n472U0
                 battle = new Battle(armyOne, armyTwo, Terrain.valueOf(terrain.getValue()));
-                battle.addListener(this::updateArmies);
                 warningLabel.setText("Battle is ongoing!");
+                battle.addListener(this::updateArmies);
                 new Thread(() -> {
                     try {
                         battle.simulate();

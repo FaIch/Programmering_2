@@ -38,6 +38,9 @@ public class MageUnit extends Unit implements SituationalBonus {
      */
     @Override
     public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        if (enemyUnit == null){
+            throw new IllegalArgumentException("EnemyUnit cannot be null");
+        }
         return 3 + getSituationalAttackBonus(enemyUnit);
     }
 
@@ -58,6 +61,9 @@ public class MageUnit extends Unit implements SituationalBonus {
      * @return the situational attack bonus
      */
     public int getSituationalAttackBonus(UnitType enemyUnit) {
+        if (enemyUnit == null){
+            throw new IllegalArgumentException("EnemyUnit cannot be null");
+        }
         if (enemyUnit.equals(UnitType.DragonUnit)){
             return -50;
         }

@@ -58,6 +58,9 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      */
     @Override
     public int getAttackBonus(UnitType enemyUnit, Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         return 3 + getTerrainAttackBonus(terrain);
     }
 
@@ -90,6 +93,9 @@ public class RangedUnit extends Unit implements TerrainAttackBonus {
      * @return the calculated attack bonus
      */
     public int getTerrainAttackBonus(Terrain terrain) {
+        if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         return switch (terrain) {
             case Forest -> -2;
             case Hill -> 2;
