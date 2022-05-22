@@ -134,10 +134,10 @@ public class MainController{
      */
     @FXML
     void fight() {
-        if (terrain.getValue() == null) {
-            warningLabel.setText("You must choose terrain");
-        } else if (armyOne == null || armyTwo == null) {
+        if (armyOne == null || armyTwo == null) {
             warningLabel.setText("You must choose armies");
+        } else if (terrain.getValue() == (null)) {
+            warningLabel.setText("You must choose terrain");
         }
         else {
             try {
@@ -221,6 +221,16 @@ public class MainController{
         warningLabel.setText("Armies have been reset!");
     }
 
+    @FXML
+    void onAboutButtonPressed(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("About");
+        alert.setContentText("This is an application made in the course IDATT2001, created by Joakim Falch " +
+                "22.05.2022 \nFor any queries, contact: joakifa@stud.ntnu.no");
+        alert.showAndWait();
+    }
+
     /**
      * Method for using an existing army. Army chosen from choicebox, stats and path set.
      * @param armyName name of the army that is chosen
@@ -243,6 +253,7 @@ public class MainController{
             }
         }
     }
+
 
     /**
      * Method for using an existing army. Army chosen from choicebox, stats and path set.

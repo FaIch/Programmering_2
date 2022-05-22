@@ -28,7 +28,7 @@ public class DragonUnit extends Unit implements TerrainAttackBonus {
      * @param name the name of the unit
      */
     public DragonUnit(String name){
-        super(200, name, 30, 12);
+        super(200, name, 30, 10);
 
     }
 
@@ -37,7 +37,7 @@ public class DragonUnit extends Unit implements TerrainAttackBonus {
 
     @Override
     public int getResistBonus(Terrain terrain) {
-        return 3;
+        return 2;
     }
 
     /**

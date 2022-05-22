@@ -6,6 +6,10 @@
     -fx-border-radius: 30;
 }
 
+.jfx-button:hover{
+    -fx-background-color: #B8E1FF;
+}
+
 .jfx-label {
     -fx-text-fill : #222E44;
 }
@@ -90,7 +94,6 @@
     -fx-background-color: black;
     -fx-background-radius: 5em;
 }
-
 
 
 .infantry-image{

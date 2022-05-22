@@ -3,9 +3,13 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -26,7 +30,21 @@
                <children>
                   <HBox prefHeight="256.0" prefWidth="1297.0" style="-fx-border-color: black; -fx-background-color: white;">
                      <children>
-                        <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS" />
+                        <Pane prefHeight="85.0" prefWidth="479.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="65.0">
+                                <menus>
+                                  <Menu mnemonicParsing="false" text="About">
+                                    <items>
+                                      <MenuItem mnemonicParsing="false" onAction="#onAboutButtonPressed" text="About" />
+                                    </items>
+                                  </Menu>
+                                </menus>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </MenuBar>
+                           </children></Pane>
                         <VBox prefHeight="83.0" prefWidth="264.0">
                            <children>
                               <Pane prefHeight="100.0" prefWidth="444.0" VBox.vgrow="ALWAYS" />
@@ -218,7 +236,11 @@
                                     </HBox>
                                     <HBox prefHeight="27.0" prefWidth="303.0">
                                        <children>
-                                          <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box" />
+                                          <ChoiceBox fx:id="existingArmies1" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ChoiceBox>
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -236,6 +258,9 @@
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Button>
                                     <Button fx:id="army1PathButton" disable="true" mnemonicParsing="false" onAction="#viewArmy1Path" styleClass="jfx-button" text="View Army Path">
                                        <VBox.margin>
@@ -272,23 +297,37 @@
                                                 <Insets top="3.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <ChoiceBox fx:id="terrain" prefWidth="150.0" styleClass="jfx-choice-box" />
+                                          <ChoiceBox fx:id="terrain" prefWidth="150.0" styleClass="jfx-choice-box">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ChoiceBox>
                                           <Pane prefHeight="82.0" prefWidth="200.0" />
                                        </children>
                                     </HBox>
-                                    <ImageView fx:id="image" fitHeight="300.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true" styleClass="terrain-image" VBox.vgrow="NEVER">
+                                    <ImageView fx:id="image" fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" styleClass="terrain-image" VBox.vgrow="NEVER">
                                        <viewport>
                                           <Rectangle2D height="300.0" />
                                        </viewport>
+                                       <VBox.margin>
+                                          <Insets bottom="50.0" top="50.0" />
+                                       </VBox.margin>
                                     </ImageView>
                                     <HBox prefHeight="28.0" prefWidth="503.0" VBox.vgrow="NEVER">
                                        <children>
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
-                                          <Button fx:id="fight" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Fight" />
+                                          <Button fx:id="fight" mnemonicParsing="false" onAction="#fight" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Fight">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
                                           <Button fx:id="reset" disable="true" mnemonicParsing="false" onAction="#resetArmies" prefHeight="25.0" prefWidth="150.0" styleClass="jfx-button" text="Reset">
                                              <HBox.margin>
                                                 <Insets left="5.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Button>
                                           <Pane prefHeight="200.0" prefWidth="200.0" />
                                        </children>
@@ -303,6 +342,9 @@
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Button>
                                           <Pane prefHeight="0.0" prefWidth="150.0" />
                                        </children>
@@ -334,23 +376,23 @@
                                        </VBox.margin>
                                        <children>
                                           <Pane prefHeight="29.0" prefWidth="133.0" HBox.hgrow="NEVER" />
-                                          <Label prefHeight="29.0" prefWidth="183.0" text="Total Units:" textFill="WHITE">
+                                          <Label alignment="CENTER" prefHeight="29.0" prefWidth="183.0" text="Total Units:" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="25.0" />
                                              </font>
                                           </Label>
-                                          <Pane prefHeight="29.0" prefWidth="41.0" HBox.hgrow="NEVER" />
+                                          <Pane prefHeight="29.0" prefWidth="88.0" HBox.hgrow="NEVER" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="26.0" prefWidth="311.0" VBox.vgrow="NEVER">
                                        <children>
-                                          <Pane prefHeight="34.0" prefWidth="207.0" HBox.hgrow="NEVER" />
-                                          <Label fx:id="army2Total" prefHeight="34.0" prefWidth="144.0" text="0" textFill="WHITE">
+                                          <Pane prefHeight="34.0" prefWidth="175.0" HBox.hgrow="NEVER" />
+                                          <Label fx:id="army2Total" alignment="CENTER" prefHeight="34.0" prefWidth="118.0" text="0" textFill="WHITE">
                                              <font>
                                                 <Font name="Times New Roman" size="30.0" />
                                              </font>
                                           </Label>
-                                          <Pane prefHeight="200.0" prefWidth="77.0" HBox.hgrow="NEVER" />
+                                          <Pane prefHeight="34.0" prefWidth="138.0" HBox.hgrow="NEVER" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="50.0">
@@ -483,7 +525,7 @@
                                                 <Font size="17.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets top="10.0" />
+                                                <Insets right="5.0" top="10.0" />
                                              </HBox.margin>
                                           </Text>
                                        </children>
@@ -493,8 +535,11 @@
                                           <Pane prefHeight="200.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
                                           <ChoiceBox fx:id="existingArmies2" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-choice-box">
                                              <HBox.margin>
-                                                <Insets />
+                                                <Insets right="5.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ChoiceBox>
                                        </children>
                                        <VBox.margin>
@@ -506,17 +551,20 @@
                                           <Font size="17.0" />
                                        </font>
                                        <VBox.margin>
-                                          <Insets right="5.0" top="10.0" />
+                                          <Insets right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Text>
                                     <Button mnemonicParsing="false" onAction="#loadArmy2FromFile" prefHeight="25.0" prefWidth="133.0" styleClass="jfx-button" text="Load army from file">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets right="4.0" />
                                        </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Button>
                                     <Button fx:id="army2PathButton" disable="true" mnemonicParsing="false" onAction="#viewArmy2Path" styleClass="jfx-button" text="View Army Path">
                                        <VBox.margin>
-                                          <Insets top="20.0" />
+                                          <Insets right="4.0" top="20.0" />
                                        </VBox.margin>
                                     </Button>
                                     <TableView fx:id="unitTableArmy2" prefHeight="200.0" prefWidth="200.0">
@@ -528,7 +576,7 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                        <VBox.margin>
-                                          <Insets top="10.0" />
+                                          <Insets right="4.0" top="10.0" />
                                        </VBox.margin>
                                     </TableView>
                                  </children>

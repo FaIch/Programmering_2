@@ -87,7 +87,7 @@ public class Battle{
                     armyOne.removeUnit(armyOneRandomUnit);
                     try {
                         fireUpdate();
-                        Thread.sleep(70);
+                        Thread.sleep(threadSleepDuration());
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
@@ -101,7 +101,7 @@ public class Battle{
                     armyTwo.removeUnit(armyTwoRandomUnit);
                     try {
                         fireUpdate();
-                        Thread.sleep(70);
+                        Thread.sleep(threadSleepDuration());
                     }catch (InterruptedException e){
                         throw new InterruptedException(e.getMessage());
                     }
@@ -138,6 +138,32 @@ public class Battle{
      */
     public static void stop(){
         shouldRun = false;
+    }
+
+    /**
+     * Method for calculating how fast the simulation is going to be, the fewer the units, the slower the simulation
+     * to allow user to see the outcome of the battle more clearly.
+     * @return the duration the thread should sleep
+     */
+    private int threadSleepDuration(){
+        int sumOfUnits = armyOne.getNumberOfUnits() + armyTwo.getNumberOfUnits();
+        int returnValue;
+        if (sumOfUnits < 50){
+            returnValue = 70;
+        }
+        else if (sumOfUnits < 100){
+            returnValue = 40;
+        }
+        else if (sumOfUnits < 250){
+            returnValue = 30;
+        }
+        else if (sumOfUnits < 1000){
+            returnValue = 20;
+        }
+        else{
+            returnValue = 10;
+        }
+        return returnValue;
     }
 
 

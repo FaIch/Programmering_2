@@ -162,6 +162,7 @@ public class CreateNewArmyController {
         checkNameBtn.setDisable(false);
         createNewArmyButton.setText("Create new Army");
         createNewArmyButton.setDisable(true);
+        resetButton.setDisable(true);
 
         for (int i = 0; i < numberOfXUnitList.size(); i++){
             numberOfXUnitList.set(i,0);

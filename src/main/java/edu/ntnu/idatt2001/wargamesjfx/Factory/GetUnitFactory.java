@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The factory: Get unit factory, used for creating and adding units to army
+ * The factory: Get unit factory, used for creating and adding units to army. Given the little information this class
+ * gets from other classes, the objects made are not connected elsewhere. Ensuring low coupling.
  */
 public class GetUnitFactory {
 
     /**
-     * Get unit, takes in unitType and name and creates the unit
+     * Get unit, takes in unitType and name and creates the unit.
      *
      * @param unitType the unit type
      * @param name     the name
