@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.wargamesjfx;
 
-import edu.ntnu.idatt2001.wargamesjfx.Battle.Battle;
+import edu.ntnu.idatt2001.wargamesjfx.battle.Battle;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.View;
 import edu.ntnu.idatt2001.wargamesjfx.scenes.ViewSwitcher;
 import javafx.application.Application;
