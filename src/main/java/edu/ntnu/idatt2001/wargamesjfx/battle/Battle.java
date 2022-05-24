@@ -109,7 +109,7 @@ public class Battle{
                     }
                 }
             }
-        }catch (InterruptedException e){
+        }catch (InterruptedException | IllegalArgumentException e){
             throw new InterruptedException(e.getMessage());
         }
     }

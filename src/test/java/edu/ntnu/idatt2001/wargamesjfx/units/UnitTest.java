@@ -56,4 +56,25 @@ class UnitTest {
         assertEquals(2,rangedUnit.getResistBonus(terrain));
         assertEquals(2,rangedUnit.getResistBonus(terrain));
     }
+
+    @Test
+    @DisplayName("Terrain bonus test")
+    void getTerrainBonus(){
+        assertEquals(2, new CavalryUnit("").getTerrainAttackBonus(Terrain.Plains));
+        assertEquals(2, new InfantryUnit("").getTerrainDefenceBonus(Terrain.Forest));
+    }
+
+    @Test
+    @DisplayName("Situational bonus test")
+    void getSituationalBonus(){
+        assertEquals(-50, new MageUnit("").getSituationalAttackBonus(UnitType.DragonUnit));
+    }
+
+    @Test
+    @DisplayName("Set Terrain null attack test")
+    void setInvalidTerrainThrowsException(){
+        InfantryUnit testInf = new InfantryUnit("");
+        RangedUnit testRanged = new RangedUnit("");
+        assertThrows(IllegalArgumentException.class, () -> testInf.attack(testRanged,null, true));
+    }
 }

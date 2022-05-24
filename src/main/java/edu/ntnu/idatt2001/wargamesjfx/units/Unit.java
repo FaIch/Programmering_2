@@ -41,7 +41,13 @@ public abstract class Unit {
      * @param hasBanner a boolean for whether the army the unit is in has a bannerUnit or not. If so, the damage to the
      *                  unit is increased by 20%
      */
-    public void attack(Unit opponent, Terrain terrain, boolean hasBanner){
+    public void attack(Unit opponent, Terrain terrain, boolean hasBanner) throws IllegalArgumentException{
+        if (opponent == null){
+            throw new IllegalArgumentException("Opponent cannot be null");
+        }
+        else if (terrain == null){
+            throw new IllegalArgumentException("Terrain cannot be null");
+        }
         int totalDamage = this.attack + this.getAttackBonus(UnitType.valueOf(opponent.getClass().getSimpleName()), terrain);
         if (hasBanner){
             totalDamage += Math.abs(totalDamage * 0.2);
